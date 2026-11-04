@@ -1,0 +1,57 @@
+# Sensitivity S4: Include PROs with is_pro
+# Generated: 2026-10-28 14:42:48
+# Python 3.12.13, pandas 3.0.1, numpy 2.4.3, statsmodels 0.14.6, scipy 1.17.1, scikit-learn 1.8.0, pymannkendall 1.4.3
+# Dataset: ironman_merged.csv (version 4.0.0)
+# Seed: 42
+# Reference counts of the merged dataset file (ironman_merged.csv, v4.0.0, whole file; constants, not counted from the file read): N = 3,632,323, DNF = 216,130
+# Analysis code: sha256 ecc7a0109c9fce44f371632752704b0b02cf0fce41db594816dc0fce4160849f (notebooks/*.py except generate_figures.py, generate_tables.py, manuscript_number_audit.py)
+# Analysed population: 14 duplicated race-years, 29 non-standard-format editions, 5 non-IRONMAN races and 6 stopped or wholesale-coded editions excluded at load (_common.load_dataset; descriptives.txt, Excluded records)
+
+
+======================================================================
+MODEL: IM — with PROs
+======================================================================
+N = 1,127,617, DNF = 101,375 (8.9902%)
+Converged: True
+AUC-ROC: 0.621795
+Standard errors: clustered by event (event_id), 669 clusters
+
+Key odds ratios:
+  female                    OR=1.224 (1.182–1.267) p=0.0000 ***
+  is_pro                    OR=4.014 (3.757–4.288) p=0.0000 ***
+  ath_Africa                OR=0.656 (0.571–0.753) p=0.0000 ***
+  ath_Asia                  OR=0.856 (0.777–0.943) p=0.0016 **
+  ath_Europe                OR=0.649 (0.597–0.706) p=0.0000 ***
+  ath_Oceania               OR=0.545 (0.488–0.609) p=0.0000 ***
+  ath_South_America         OR=0.704 (0.643–0.770) p=0.0000 ***
+  race_Africa               OR=1.486 (1.207–1.830) p=0.0002 ***
+  race_Asia                 OR=1.561 (1.276–1.909) p=0.0000 ***
+  race_Europe               OR=1.577 (1.380–1.803) p=0.0000 ***
+  race_Oceania              OR=0.949 (0.792–1.137) p=0.5691 
+  race_South_America        OR=0.936 (0.626–1.400) p=0.7483 
+  race_year                 OR=0.975 (0.966–0.985) p=0.0000 ***
+  age_70+                   OR=8.661 (7.933–9.456) p=0.0000 ***
+
+======================================================================
+MODEL: HIM — with PROs
+======================================================================
+N = 1,985,153, DNF = 91,715 (4.6200%)
+Converged: True
+AUC-ROC: 0.600198
+Standard errors: clustered by event (event_id), 1,424 clusters
+
+Key odds ratios:
+  female                    OR=1.358 (1.317–1.399) p=0.0000 ***
+  is_pro                    OR=3.182 (2.978–3.400) p=0.0000 ***
+  ath_Africa                OR=1.172 (0.953–1.442) p=0.1316 
+  ath_Asia                  OR=1.326 (1.178–1.492) p=0.0000 ***
+  ath_Europe                OR=0.771 (0.708–0.840) p=0.0000 ***
+  ath_Oceania               OR=0.994 (0.874–1.130) p=0.9277 
+  ath_South_America         OR=0.808 (0.732–0.892) p=0.0000 ***
+  race_Africa               OR=1.392 (0.991–1.954) p=0.0562 
+  race_Asia                 OR=1.213 (1.041–1.413) p=0.0131 *
+  race_Europe               OR=1.242 (1.072–1.439) p=0.0039 **
+  race_Oceania              OR=0.841 (0.697–1.014) p=0.0701 
+  race_South_America        OR=1.054 (0.876–1.269) p=0.5751 
+  race_year                 OR=0.993 (0.983–1.002) p=0.1157 
+  age_70+                   OR=5.287 (4.854–5.758) p=0.0000 ***

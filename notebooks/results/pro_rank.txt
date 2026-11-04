@@ -1,0 +1,114 @@
+# Professional athletes — rank at the end of the cycling segment (in-race DNFs vs finishers)
+# Generated: 2026-10-28 14:40:08
+# Python 3.12.13, pandas 3.0.1, numpy 2.4.3, statsmodels 0.14.6, scipy 1.17.1, scikit-learn 1.8.0, pymannkendall 1.4.3
+# Dataset: ironman_merged.csv (version 4.0.0)
+# Seed: 42
+# Reference counts of the merged dataset file (ironman_merged.csv, v4.0.0, whole file; constants, not counted from the file read): N = 3,632,323, DNF = 216,130
+# Analysis code: sha256 ecc7a0109c9fce44f371632752704b0b02cf0fce41db594816dc0fce4160849f (notebooks/*.py except generate_figures.py, generate_tables.py, manuscript_number_audit.py)
+# Analysed population: 14 duplicated race-years, 29 non-standard-format editions, 5 non-IRONMAN races and 6 stopped or wholesale-coded editions excluded at load (_common.load_dataset; descriptives.txt, Excluded records)
+
+============================================================
+SECTION 1: SAMPLE AND COVERAGE
+============================================================
+
+IM PRO starts (all finish_status in FIN/DNF/DQ): 21,571
+IM PRO DNFs (total): 4,709; finish-time DNFs (recorded finish time, excluded): 12; in-race DNFs: 4,697
+IM PRO FINishers (total): 16,800
+
+Valid subset: bike_sec > 0 AND bike_rank real (1..99998):
+  In-race DNFs with valid bike_rank: 1,414 (30.1043% of in-race DNFs)
+  FINs with valid bike_rank: 13,612 (81.0238% of FINs)
+
+============================================================
+SECTION 2: BIKE_RANK DISTRIBUTION AT THE END OF THE CYCLING SEGMENT (PRO IN-RACE DNFs)
+============================================================
+
+IM PRO in-race DNFs with valid bike_rank:
+  count    1414.00
+  mean      143.35
+  std       285.72
+  min         1.00
+  10%         7.00
+  25%        15.00
+  50%        39.00
+  75%       137.75
+  90%       356.70
+  max      2509.00
+
+Cumulative % of PRO in-race DNFs OUTSIDE top-N at the end of the bike segment:
+  outside top 5: 92.2914%
+  outside top 10: 83.8048%
+  outside top 20: 66.2659%
+  outside top 30: 56.0113%
+  outside top 50: 45.0495%
+
+Reference — IM PRO FINishers bike_rank distribution:
+  count    13612.00
+  mean        86.55
+  std        152.85
+  min          1.00
+  10%          4.00
+  25%         10.00
+  50%         28.00
+  75%         94.00
+  90%        234.00
+  max       2315.00
+
+Finisher comparator — % OUTSIDE top-N at the end of the bike segment, in-race DNFs vs FINishers:
+  top-N        DNF %     FIN %   diff pp
+  5          92.2914   87.0702    5.2211
+  10         83.8048   74.8971    8.9077
+  20         66.2659   57.9195    8.3464
+  30         56.0113   47.5389    8.4724
+  50         45.0495   36.7617    8.2878
+
+  Outside top 10 — in-race DNF 1,185/1,414 vs FIN 10,195/13,612: OR = 1.734365463 (95% CI 1.497728832-2.008389967); Wald CI on log(OR), SE 0.07484274017
+  Mann-Whitney U on bike_rank (in-race DNF vs FIN): U = 10,967,780, p = 4.777877718e-18; median DNF 39.0 vs FIN 28.0
+
+============================================================
+SECTION 3: TableS4 — DISTRIBUTION BY RANK BAND (PRO IN-RACE DNFs)
+============================================================
+
+IM PRO in-race DNFs with valid bike_rank (n = 1,414):
+  Rank band        N         %
+  1–5            109    7.7086
+  6–10           120    8.4866
+  11–20          248   17.5389
+  21–50          300   21.2164
+  51–100         196   13.8614
+  101+           441   31.1881
+
+============================================================
+SECTION 4: IRONMAN MALE PRO DNF RATE BY YEAR (starters = FIN + DNF + DQ)
+============================================================
+
+           starts  dnf  rate_pct
+race_year                       
+2002           84   18   21.4286
+2003          267   63   23.5955
+2004          215   56   26.0465
+2005          421  103   24.4656
+2006          450  101   22.4444
+2007          553  131   23.6890
+2008          654  156   23.8532
+2009          607  144   23.7232
+2010          562  131   23.3096
+2011          570  130   22.8070
+2012          700  154   22.0000
+2013          817  174   21.2974
+2014          881  225   25.5392
+2015          804  213   26.4925
+2016          822  198   24.0876
+2017          736  190   25.8152
+2018          745  174   23.3557
+2019          704  189   26.8466
+2020           53    8   15.0943
+2021          506  120   23.7154
+2022          548  139   25.3650
+2023          565  138   24.4248
+2024          646  156   24.1486
+2025          652  144   22.0859
+2026          540  133   24.6296
+
+Years with >= 100 MPRO starts: 23 (2003-2026); annual rate range 21.2974%-26.8466%, median 23.8532%
+All years (incl. small fields): range 15.1%-26.8%

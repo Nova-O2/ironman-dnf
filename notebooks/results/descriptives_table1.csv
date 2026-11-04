@@ -1,0 +1,15 @@
+# RQ1 — Table 1 block (finish status by event type × sex)
+# Generated: 2026-10-28 14:37:42
+# Python 3.12.13, pandas 3.0.1, numpy 2.4.3, statsmodels 0.14.6, scipy 1.17.1, scikit-learn 1.8.0, pymannkendall 1.4.3
+# Dataset: ironman_merged.csv (version 4.0.0)
+# Seed: 42
+# Reference counts of the merged dataset file (ironman_merged.csv, v4.0.0, whole file; constants, not counted from the file read): N = 3,632,323, DNF = 216,130
+# Analysis code: sha256 ecc7a0109c9fce44f371632752704b0b02cf0fce41db594816dc0fce4160849f (notebooks/*.py except generate_figures.py, generate_tables.py, manuscript_number_audit.py)
+# Analysed population: 14 duplicated race-years, 29 non-standard-format editions, 5 non-IRONMAN races and 6 stopped or wholesale-coded editions excluded at load (_common.load_dataset; descriptives.txt, Excluded records)
+race_type,gender,n_records,starters,finishers,dnf,dnf_rate_pct,dns,dns_pct_of_records,dq,dq_pct_of_records,finish_time_dnf,finish_time_pct_of_dnf,pro_starters,pro_dnf,pro_dnf_rate_pct
+im,Male,1028792,937341,851502,83018,8.856755439,91451,8.889163213,2821,0.2742050871,1304,1.570743694,14102,3388,24.024961
+im,Female,242779,220801,196760,23522,10.65303146,21978,9.052677538,519,0.2137746675,468,1.989626732,7469,1321,17.68643727
+im,Total,1272930,1159245,1049092,106810,9.213755505,113685,8.930970281,3343,0.2626224537,1793,1.678681771,21571,4709,21.83023504
+him,Male,1737573,1536113,1457908,70549,4.59269598,201460,11.59433302,7656,0.4406145814,4594,6.511786134,20332,2440,12.00078694
+him,Female,562658,494948,462502,30865,6.236008631,67710,12.03395313,1581,0.2809877403,2761,8.945407419,11414,1097,9.61100403
+him,Total,2302877,2033262,1922310,101703,5.001962364,269615,11.70774644,9249,0.4016280505,7406,7.281987749,31746,3537,11.14156114

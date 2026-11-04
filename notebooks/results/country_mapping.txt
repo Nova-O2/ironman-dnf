@@ -1,0 +1,52 @@
+# Country → Continent Mapping — Variant Count
+# Generated: 2026-10-28 14:39:49
+# Python 3.12.13, pandas 3.0.1, numpy 2.4.3, statsmodels 0.14.6, scipy 1.17.1, scikit-learn 1.8.0, pymannkendall 1.4.3
+# Dataset: ironman_merged.csv (version 4.0.0)
+# Seed: 42
+# Reference counts of the merged dataset file (ironman_merged.csv, v4.0.0, whole file; constants, not counted from the file read): N = 3,632,323, DNF = 216,130
+# Analysis code: sha256 ecc7a0109c9fce44f371632752704b0b02cf0fce41db594816dc0fce4160849f (notebooks/*.py except generate_figures.py, generate_tables.py, manuscript_number_audit.py)
+# Analysed population: 14 duplicated race-years, 29 non-standard-format editions, 5 non-IRONMAN races and 6 stopped or wholesale-coded editions excluded at load (_common.load_dataset; descriptives.txt, Excluded records)
+
+Source: _common.CONTINENT_MAP (single source of truth for
+athlete-origin continental assignment across all analyses).
+
+============================================================
+VARIANT COUNT
+============================================================
+
+Total country-name variants in mapping: 369
+Number of distinct continents covered:  6
+
+Variants per continent:
+  Africa               71
+  Asia                 83
+  Europe              111
+  North America        63
+  Oceania              26
+  South America        15
+
+============================================================
+COUNTRY FIELD IN THE DATA (starters: FIN + DNF + DQ)
+============================================================
+
+Starters: 3,192,507
+Non-empty country field: 3,189,224 (99.8972%)
+  among all analysed records (any finish status, DNS and records without a status included): 3,571,865 / 3,586,149 (99.6017%)
+Ambiguous short codes (< 3 characters, excluded from the mapping): 2,213 (0.0693%)
+Short strings covered by the mapping (not counted above): none
+Distinct non-empty country strings: 473
+Distinct strings covered by the mapping: 366
+Starters mapped to a continent: 3,128,842 / 3,192,507 (98.0058%)
+
+============================================================
+RACE LOCATION — EVENT SERIES MAPPED TO THEIR HOST COUNTRY
+============================================================
+
+Rule: race -> host country -> continent by CONTINENT_MAP (the athlete-origin mapping).
+Event series (parent slugs) in the official index: 176
+Official series mapped by hand to their host country (SLUG_TO_COUNTRY): 174
+Official World Championship series (2): host by year, from the event name
+Secondary-source series in race_metadata.csv: 334; mapped by hand to their host country (CC_SERIES_TO_COUNTRY): 331; World Championship series mapped by year: 3
+  (one secondary-source series name, 'Ironman 70.3 San Juan', covers two venues: its races up to 2016
+   are mapped as 'Ironman 70.3 Puerto Rico')
+Host countries: 69

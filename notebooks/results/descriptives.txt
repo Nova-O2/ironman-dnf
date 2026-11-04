@@ -1,0 +1,418 @@
+# RQ1 — DNF Descriptives
+# Generated: 2026-10-28 14:37:10
+# Python 3.12.13, pandas 3.0.1, numpy 2.4.3, statsmodels 0.14.6, scipy 1.17.1, scikit-learn 1.8.0, pymannkendall 1.4.3
+# Dataset: ironman_merged.csv (version 4.0.0)
+# Seed: 42
+# Reference counts of the merged dataset file (ironman_merged.csv, v4.0.0, whole file; constants, not counted from the file read): N = 3,632,323, DNF = 216,130
+# Analysis code: sha256 ecc7a0109c9fce44f371632752704b0b02cf0fce41db594816dc0fce4160849f (notebooks/*.py except generate_figures.py, generate_tables.py, manuscript_number_audit.py)
+# Analysed population: 14 duplicated race-years, 29 non-standard-format editions, 5 non-IRONMAN races and 6 stopped or wholesale-coded editions excluded at load (_common.load_dataset; descriptives.txt, Excluded records)
+
+NOTE: Sections 1-4 include PROs and finish-time DNFs (DNFs with a recorded finish time; full population).
+Section 3b (Figure 1) and the logistic regression (RQ4) exclude both.
+
+Records in the file read: 3,632,323 (reference count of the merged dataset file: 3,632,323)
+Records in the excluded race-years (section 0): 46,174; records analysed: 3,586,149
+
+============================================================
+SECTION 0: EXCLUDED RECORDS (race-years removed before every analysis)
+============================================================
+
+The records of these race-years (event_ids) are dropped by _common.load_dataset, so every analysis
+and a rerun on the deposited file use the same population. Reasons:
+  duplicate: duplicated race-year (second copy of a race already in the file)
+  olympic_5150: Olympic-distance 5150 race recorded as an IRONMAN® event (1.5 km swim, 40 km cycling, 10 km run)
+  aquabike: aquabike race (swim and cycling, no run; its athletes are recorded as DNF)
+  bike_run: bike-run race (cycling and run, no swim)
+  do_not_use: edition that the source flags 'DO-NOT-USE'
+  non_ironman: race of another brand recorded as an IRONMAN® event in the data (Challenge Family)
+  stopped: stopped or wholesale-coded edition (in-race DNF ≥ 40% of starters)
+Starters = FIN + DNF + DQ.
+
+Listed race-years absent from this file: 0
+
+Excluded race-years by reason and event type:
+  reason         type race-years   records  starters     DNF
+  duplicate      im            1       320       313      19
+  duplicate      him          13    22,137    19,487     567
+  olympic_5150   im           10     7,139     5,920     217
+  olympic_5150   him           0         0         0       0
+  aquabike       im            2       142       132     132
+  aquabike       him           9       300       258     240
+  bike_run       im            2        51        39       9
+  bike_run       him           5       161       134       9
+  do_not_use     im            1     1,810     1,777     174
+  do_not_use     him           0         0         0       0
+  non_ironman    im            5     5,754     5,754     893
+  non_ironman    him           0         0         0       0
+  stopped        im            1       788       788     413
+  stopped        him           5     7,572     5,645   4,944
+  total          im           22    16,004    14,723   1,857
+  total          him          32    30,170    25,524   5,760
+  total          all          54    46,174    40,247   7,617
+Excluded race-years: 54 (duplicated copies 14, non-standard formats 29, non-IRONMAN races 5, stopped or wholesale-coded editions 6)
+Excluded records: 46,174; excluded starters: 40,247; excluded DNFs: 7,617
+
+Duplicated race-years — overlap of the two copies (finisher key = bib, overall, swim and cycling times
+of records with an overall time > 0 and a bib) and the completeness criteria of the copy kept
+(_common.DUPLICATE_RACE_YEARS: rule 1 subset, rule 2 event type contradicts finish times, rule 3 records >
+finishers > split times, rule 4 series name):
+  DROPPED 2019 IRONMAN World Championship Kukui Division [7b8fe9f3-87d2-ea11-a812-000d3a5a1cf8]: records 320, finishers 292, DNF 19, split times 1,511
+     KEPT Ironman World Championship 2019 [502]: records 2,434, finishers 2,258, DNF 98, split times 11,582
+     shared finisher keys 292 = 100.0000% of the dropped copy, 12.9318% of the kept copy (100.0000% of the smaller); rule 1
+  DROPPED Ironman 70.3 Mar del Plata 2017 [2029]: records 1,265, finishers 1,009, DNF 54, split times 3,027
+     KEPT Ironman Argentina 2017 [415]: records 1,263, finishers 1,011, DNF 0, split times 5,090
+     shared finisher keys 1,007 = 99.8018% of the dropped copy, 99.6044% of the kept copy (99.8018% of the smaller); rule 2
+  DROPPED Ironman 70.3 Mar del Plata 2018 [2030]: records 985, finishers 781, DNF 44, split times 2,412
+     KEPT Ironman Argentina 2018 [465]: records 982, finishers 780, DNF 44, split times 4,029
+     shared finisher keys 780 = 99.8720% of the dropped copy, 100.0000% of the kept copy (100.0000% of the smaller); rule 2
+  DROPPED Ironman 70.3 Mar del Plata 2019 [2031]: records 760, finishers 568, DNF 68, split times 1,819
+     KEPT Ironman Argentina 2019 [531]: records 760, finishers 568, DNF 68, split times 3,055
+     shared finisher keys 568 = 100.0000% of the dropped copy, 100.0000% of the kept copy (100.0000% of the smaller); rule 2
+  DROPPED Ironman 70.3 Santa Rosa 2014 [871]: records 2,218, finishers 2,171, DNF 10, split times 10,865
+     KEPT Ironman 70.3 Vineman 2014 [1351]: records 2,565, finishers 2,171, DNF 69, split times 6,504
+     shared finisher keys 2,163 = 100.0000% of the dropped copy, 100.0000% of the kept copy (100.0000% of the smaller); rule 3, records
+  DROPPED Ironman 70.3 Santa Rosa 2015 [872]: records 2,218, finishers 2,163, DNF 12, split times 10,831
+     KEPT Ironman 70.3 Vineman 2015 [1384]: records 2,575, finishers 2,164, DNF 68, split times 6,499
+     shared finisher keys 2,160 = 100.0000% of the dropped copy, 99.9537% of the kept copy (100.0000% of the smaller); rule 3, records
+  DROPPED Ironman 70.3 Santa Rosa 2016 [873]: records 1,893, finishers 1,809, DNF 80, split times 9,389
+     KEPT Ironman 70.3 Vineman 2016 [1409]: records 1,996, finishers 1,809, DNF 144, split times 5,585
+     shared finisher keys 1,809 = 100.0000% of the dropped copy, 100.0000% of the kept copy (100.0000% of the smaller); rule 3, records
+  DROPPED Ironman 70.3 South American Championship 2017 [759]: records 2,235, finishers 1,831, DNF 50, split times 9,315
+     KEPT Ironman 70.3 Buenos Aires 2017 [1975]: records 2,241, finishers 1,837, DNF 50, split times 5,537
+     shared finisher keys 1,831 = 100.0000% of the dropped copy, 99.6734% of the kept copy (100.0000% of the smaller); rule 3, records
+  DROPPED Ironman 70.3 South American Championship 2018 [760]: records 2,524, finishers 1,968, DNF 55, split times 10,003
+     KEPT Ironman 70.3 Buenos Aires 2018 [1976]: records 2,527, finishers 1,970, DNF 55, split times 6,003
+     shared finisher keys 1,968 = 100.0000% of the dropped copy, 99.8985% of the kept copy (100.0000% of the smaller); rule 3, records
+  DROPPED Ironman 70.3 South American Championship 2019 [642]: records 1,331, finishers 1,119, DNF 24, split times 5,639
+     KEPT Ironman 70.3 Buenos Aires 2019 [1977]: records 1,331, finishers 1,121, DNF 24, split times 3,394
+     shared finisher keys 1,119 = 100.0000% of the dropped copy, 99.8216% of the kept copy (100.0000% of the smaller); rule 3, finishers
+  DROPPED Ironman 70.3 Buenos Aires 2016 [1974]: records 1,920, finishers 1,543, DNF 45, split times 4,629
+     KEPT Ironman 70.3 South American Championship 2016 [758]: records 1,920, finishers 1,543, DNF 45, split times 7,825
+     shared finisher keys 1,541 = 100.0000% of the dropped copy, 100.0000% of the kept copy (100.0000% of the smaller); rule 3, split times
+  DROPPED Ironman 70.3 Cancun 2012 [1231]: records 1,765, finishers 1,422, DNF 52, split times 7,217
+     KEPT Ironman 70.3 Cozumel 2012 [534]: records 1,765, finishers 1,422, DNF 52, split times 7,220
+     shared finisher keys 1,406 = 100.0000% of the dropped copy, 99.9289% of the kept copy (100.0000% of the smaller); rule 3, split times
+  DROPPED Ironman 70.3 Alagoas 2017 [1411]: records 944, finishers 816, DNF 15, split times 4,110
+     KEPT Ironman 70.3 Maceio 2017 [1036]: records 944, finishers 816, DNF 15, split times 4,110
+     shared finisher keys 814 = 100.0000% of the dropped copy, 100.0000% of the kept copy (100.0000% of the smaller); rule 4
+  DROPPED Ironman 70.3 Virginia 2019 [564]: records 2,079, finishers 1,539, DNF 58, split times 4,715
+     KEPT Ironman 70.3 Virginia's Blue Ridge 2019 [2117]: records 2,079, finishers 1,539, DNF 58, split times 4,715
+     shared finisher keys 1,539 = 100.0000% of the dropped copy, 100.0000% of the kept copy (100.0000% of the smaller); rule 4
+  minimum shared share of the smaller copy: 99.8018%
+
+Non-standard-format editions (event-name rule; modal swim / cycling / run / total distance of the
+finishers, km, when the edition has finishers with distances):
+  aquabike     Ironman 70.3 Atlantic City Aqaubike 2018 (him, coachcox): records 1, starters 1, DNF 1, finishers 0; course —/—/—/—
+  aquabike     2023 Aquabike Geelong (im, official): records 77, starters 72, DNF 72, finishers 0; course —/—/—/—
+  aquabike     2024 Aquabike Geelong (im, official): records 65, starters 60, DNF 60, finishers 0; course —/—/—/—
+  aquabike     2025 Aquabike 70.3 Cairns (him, official): records 21, starters 20, DNF 20, finishers 0; course —/—/—/—
+  aquabike     2025 Aquabike 70.3 Geelong (him, official): records 41, starters 38, DNF 38, finishers 0; course —/—/—/—
+  aquabike     2025 Aquabike 70.3 Melbourne (him, official): records 25, starters 18, DNF 0, finishers 18; course 0/90.202/0/90.202
+  aquabike     2025 Aquabike 70.3 Western Australia (him, official): records 39, starters 31, DNF 31, finishers 0; course —/—/—/—
+  aquabike     2025 Aquabike 70.3 Western Sydney (him, official): records 40, starters 38, DNF 38, finishers 0; course —/—/—/—
+  aquabike     2026 Aquabike 70.3 Geelong (him, official): records 43, starters 39, DNF 39, finishers 0; course —/—/—/—
+  aquabike     2026 Aquabike 70.3 New Zealand (him, official): records 47, starters 41, DNF 41, finishers 0; course —/—/—/—
+  aquabike     2026 Aquabike 70.3 Western Sydney (him, official): records 43, starters 32, DNF 32, finishers 0; course —/—/—/—
+  bike_run     2021 IRONMAN 70.3 Cascais Portugal Bike-Run (him, official): records 33, starters 29, DNF 3, finishers 26; course 0/88/21/109
+  bike_run     2021 IRONMAN 70.3 Emilia Romagna Bike-Run (him, official): records 33, starters 30, DNF 1, finishers 29; course 0/90/21.095/111.095
+  bike_run     2021 IRONMAN 70.3 Jonkoping Bike-Run (him, official): records 22, starters 16, DNF 0, finishers 16; course 0/90/21.1/111.1
+  bike_run     2021 IRONMAN 70.3 Les Sables d'Olonne Bike-Run (him, official): records 32, starters 31, DNF 2, finishers 28; course 0/91.9/21.1/113
+  bike_run     2021 IRONMAN 70.3 Zell am See Kaprun Bike-Run (him, official): records 41, starters 28, DNF 3, finishers 25; course 0/90/21.1/111.1
+  bike_run     2021 IRONMAN Emilia Romagna Bike-Run (im, official): records 23, starters 17, DNF 7, finishers 10; course 0/180/42.095/222.095
+  bike_run     2021 IRONMAN Portugal-Cascais Bike-Run (im, official): records 28, starters 22, DNF 2, finishers 20; course 0/180.21/41.2/221.41
+  do_not_use   2023 IRONMAN Kalmar-Sweden DO-NOT-USE (see notes) (im, official): records 1,810, starters 1,777, DNF 174, finishers 1,602; course 3.86/180/42.2/226.06
+  olympic_5150 2015 5150 Geelong (im, official): records 177, starters 172, DNF 2, finishers 170; course 1.5/40/10/—
+  olympic_5150 2015 5150 Kraichgau (im, official): records 732, starters 578, DNF 16, finishers 557; course 1.5/40/10/—
+  olympic_5150 2016 5150 Kraichgau (im, official): records 671, starters 555, DNF 4, finishers 547; course 1.5/40/10/—
+  olympic_5150 2016 5150 Mont-Tremblant (im, official): records 934, starters 917, DNF 17, finishers 894; course 1.5/40/10/—
+  olympic_5150 2016 5150 Penghu (im, official): records 212, starters 138, DNF 14, finishers 122; course 1.5/40/10/—
+  olympic_5150 2017 5150 Kraichgau (im, official): records 652, starters 544, DNF 26, finishers 518; course 1.5/40/10/—
+  olympic_5150 2018 5150 Kraichgau (im, official): records 643, starters 551, DNF 18, finishers 531; course 1.5/41.5/10.1/53.1
+  olympic_5150 2018 5150 Mont-Tremblant (im, official): records 1,220, starters 958, DNF 31, finishers 926; course 1.5/40/10/51.5
+  olympic_5150 2019 5150 Kraichgau (im, official): records 751, starters 613, DNF 46, finishers 567; course 1.5/41.5/10.1/53.1
+  olympic_5150 2019 5150 Mont-Tremblant (im, official): records 1,147, starters 894, DNF 43, finishers 850; course 0.75/40/10/50.75
+
+Non-IRONMAN races (_common.NON_IRONMAN_EVENTS): races of another brand recorded as IRONMAN® events in the data, identified
+by event-name rules (case-insensitive) for these brands: Challenge Family, Rev3, HITS, Xterra, Ultraman, Escape, Oceanman; event names matched in the file, both sources: 5 (load_dataset fails unless the rules match exactly the races listed):
+  Challenge Family: Challenge Copenhagen 2010 (im, coachcox) [210]: records 1,575, starters 1,575, DNF 267
+  Challenge Family: Challenge Copenhagen 2011 (im, coachcox) [211]: records 1,734, starters 1,734, DNF 370
+  Challenge Family: Challenge Copenhagen 2012 (im, coachcox) [212]: records 1,566, starters 1,566, DNF 193
+  Challenge Family: Challenge Weymouth 2014 (im, coachcox) [356]: records 449, starters 449, DNF 31
+  Challenge Family: Challenge Weymouth 2015 (im, coachcox) [357]: records 430, starters 430, DNF 32
+  total: 5 races, records 5,754, starters 5,754, DNF 893
+
+Stopped or wholesale-coded editions (_common.STOPPED_EDITIONS): editions of either source whose in-race DNFs (no recorded finish time) are >= 40% of their starters, the rule evaluated on the editions left after the duplicates, the non-standard formats and the non-IRONMAN races are removed (load_dataset fails unless it flags exactly the editions listed):
+  2011 IRONMAN 70.3 Mallorca: Triathlon (official) [e116d0b1-4eae-e111-80ae-005056956277]: starters 1,631, in-race DNFs 1,631 (100.0000%)
+  2013 IRONMAN 70.3 Switzerland: Triathlon (official) [f4616994-3055-e211-b7a2-005056956277]: starters 1,188, in-race DNFs 1,188 (100.0000%)
+  2019 IRONMAN 70.3 Texas (official) [24dc0e64-dc91-e811-941f-005056951bf1]: starters 2,234, in-race DNFs 1,850 (82.8111%)
+  Ironman Japan 2007 (coachcox) [152]: starters 788, in-race DNFs 413 (52.4112%)
+  Ironman 70.3 Superfrog 2014 (coachcox) [1348]: starters 4, in-race DNFs 4 (100.0000%)
+  Ironman 70.3 Brazil 2008 (coachcox) [1126]: starters 588, in-race DNFs 271 (46.0884%)
+  Distribution of the in-race DNF share of starters, all editions, both sources (the scope of the rule): editions with starters 2,132; at or above 40%: 6; next-highest edition 34.9677% (Ironman Japan 2006); 99.5th percentile of the editions below the threshold 26.9442% (99th 25.4253%, median 4.8616%)
+  Distribution of the in-race DNF share of starters, official-source editions: editions with starters 1,448; at or above 40%: 3; next-highest edition 26.6798% (2018 IRONMAN 70.3 Pays D'Aix); 99.5th percentile of the editions below the threshold 22.8193% (99th 20.9213%, median 4.6072%)
+  Distribution of the in-race DNF share of starters, secondary-source editions: editions with starters 684; at or above 40%: 3; next-highest edition 34.9677% (Ironman Japan 2006); 99.5th percentile of the editions below the threshold 30.2321% (99th 28.2188%, median 5.7522%)
+
+Shortened editions (KEPT in every analysis): official-source event with its own course and a modal finisher
+total distance below 90% of nominal (distance), or median finisher overall time below 75% of the typical
+median of its event type, the median of the event medians (time; both sources), or an event name that
+declares a partial course (name):
+  typical median finisher time (h): him 5.9551, im 12.5124
+  IM: 4 editions (by criterion: time 2, distance 1, distance + time 1)
+    2012 IRONMAN New Zealand: Triathlon (official): median finish 5.587 h (44.7% of typical), 99.9% of nominal distance; criterion: time
+    2019 IRONMAN France (official): median finish 11.000 h (87.9% of typical), 82.3% of nominal distance; criterion: distance
+    2026 IRONMAN Frankfurt (official): median finish 7.589 h (60.7% of typical), 66.6% of nominal distance; criterion: distance + time
+    Ironman New Zealand 2006 (coachcox): median finish 7.849 h (62.7% of typical), no distance; criterion: time
+  HIM: 7 editions (by criterion: time 3, distance + time 2, distance 1, name 1)
+    2012 IRONMAN 70.3 Boise: Triathlon (official): median finish 3.483 h (58.5% of typical), 99.9% of nominal distance; criterion: time
+    2012 IRONMAN 70.3 Muncie: Triathlon (official): median finish 3.069 h (51.5% of typical), 99.9% of nominal distance; criterion: time
+    2018 IRONMAN 70.3 Zell am See Kaprun (official): median finish 2.479 h (41.6% of typical), 20.3% of nominal distance; criterion: distance + time
+    2021 IRONMAN 70.3 Des Moines (official): median finish 4.785 h (80.3% of typical), 59.4% of nominal distance; criterion: distance
+    2022 IRONMAN 70.3 Monterrey (official): median finish 3.680 h (61.8% of typical), 63.6% of nominal distance; criterion: distance + time
+    Ironman 70.3 Calgary (Partial Bike) 2025 (coachcox): median finish 5.227 h (87.8% of typical), no distance; criterion: name
+    Ironman 70.3 Racine 2016 (coachcox): median finish 3.789 h (63.6% of typical), no distance; criterion: time
+Shortened editions: 11 (IM 4, HIM 7)
+Editions held without a swim (official source, own course with a modal finisher swim distance of 0; kept, not counted as shortened): 33 (IM 9, HIM 24)
+
+Analysed population after the exclusions:
+  Records analysed: 3,586,149 (of 3,632,323 in the file)
+  IM: records 1,283,272, starters 1,159,245, DNF 106,810
+  HIM: records 2,302,877, starters 2,033,262, DNF 101,703
+  Race-years (event_ids) in the file: 2,181; excluded: 54; analysed: 2,127 (IM 678, HIM 1,449; official 1,446, secondary source 681)
+  Analysed race-years with at least one starter: 2,126
+  Race-years as (event name, year, event type) in the file: 2,180; event names that carry two event_ids: Ironman Arizona 2008 (two races in the same year, April and November 2008)
+
+Records without a finish status (excluded from every analysis): 10,342 (0.29% of the records analysed)
+Records with a finish status in FIN/DNF/DNS/DQ: 3,575,807
+
+============================================================
+SECTION 1: OVERALL FINISH STATUS
+============================================================
+
+All records (% relative to total records including DNS):
+                     N     %
+finish_status               
+FIN            2971402  83.1
+DNS             383300  10.7
+DNF             208513   5.8
+DQ               12592   0.4
+
+IM only (n=1,272,930, % relative to all records):
+                     N     %
+finish_status               
+FIN            1049092  82.4
+DNS             113685   8.9
+DNF             106810   8.4
+DQ                3343   0.3
+
+HIM only (n=2,302,877, % relative to all records):
+                     N     %
+finish_status               
+FIN            1922310  83.5
+DNS             269615  11.7
+DNF             101703   4.4
+DQ                9249   0.4
+
+--- DNF rates relative to STARTERS (excl DNS) ---
+  IM: 106,810 / 1,159,245 = 9.2138%
+  HIM: 101,703 / 2,033,262 = 5.0020%
+
+============================================================
+SECTION 2: DNF RATE BY SEX
+============================================================
+
+IM:
+         N_starts  N_DNF  DNF_rate
+gender                            
+Female     220801  23522   10.6530
+Male       937341  83018    8.8568
+Unknown      1103    270   24.4787
+
+HIM:
+         N_starts  N_DNF  DNF_rate
+gender                            
+Female     494948  30865    6.2360
+Male      1536113  70549    4.5927
+Unknown      2201    289   13.1304
+
+ALL DISTANCES:
+         N_starts   N_DNF  DNF_rate
+gender                             
+Female     715749   54387    7.5986
+Male      2473454  153567    6.2086
+Unknown      3304     559   16.9189
+
+============================================================
+SECTION 3: DNF RATE BY AGE GROUP
+============================================================
+
+IM — DNF rate by age group (5-year bins) × sex:
+                 N_starts  N_DNF  DNF_rate
+age_bin gender                            
+18-24   Female       6185    490    7.9224
+        Male        27483   1965    7.1499
+25-29   Female      21761   1559    7.1642
+        Male        77072   5000    6.4874
+30-34   Female      34322   2573    7.4966
+        Male       131073   8916    6.8023
+35-39   Female      36009   3098    8.6034
+        Male       160194  11994    7.4872
+40-44   Female      39493   3789    9.5941
+        Male       179011  13787    7.7018
+45-49   Female      32976   3736   11.3295
+        Male       147947  12507    8.4537
+50-54   Female      23827   3244   13.6148
+        Male       106095  10567    9.9599
+55-59   Female      11665   1881   16.1252
+        Male        54370   6850   12.5989
+60-64   Female       4970   1067   21.4688
+        Male        24489   4033   16.4686
+65-69   Female       1607    515   32.0473
+        Male         8368   1929   23.0521
+70+     Male            2      2  100.0000
+70-74   Female        377    179   47.4801
+        Male         2918    887   30.3975
+75-79   Female         60     39   65.0000
+        Male          767    378   49.2829
+80+     Male            5      5  100.0000
+80-84   Female          8      6   75.0000
+        Male          129     89   68.9922
+85+     Male            1      1  100.0000
+85-89   Male            5      4   80.0000
+Other   Female         72     25   34.7222
+        Male         3310    716   21.6314
+        Unknown      1103    270   24.4787
+PRO     Female       7469   1321   17.6864
+        Male        14102   3388   24.0250
+
+HIM — DNF rate by age group (5-year bins) × sex:
+                 N_starts  N_DNF  DNF_rate
+age_bin gender                            
+18-24   Female      23943   1072    4.4773
+        Male        73116   2902    3.9690
+25-29   Female      64752   2951    4.5574
+        Male       165070   5992    3.6300
+30-34   Female      79907   4038    5.0534
+        Male       235035   8724    3.7118
+35-39   Female      79027   4371    5.5310
+        Male       264431  10108    3.8225
+40-44   Female      80492   4838    6.0105
+        Male       265651  11047    4.1585
+45-49   Female      65854   4554    6.9153
+        Male       214223  10046    4.6895
+50-54   Female      46440   3566    7.6787
+        Male       150054   8051    5.3654
+55-59   Female      25868   2256    8.7212
+        Male        85249   5378    6.3086
+60-64   Female      11791   1237   10.4911
+        Male        40320   3065    7.6017
+65-69   Female       4005    582   14.5318
+        Male        15228   1514    9.9422
+70+     Male            2      0    0.0000
+70-74   Female       1085    216   19.9078
+        Male         5187    752   14.4978
+75-79   Female        168     48   28.5714
+        Male         1313    319   24.2955
+80-84   Female         47     13   27.6596
+        Male          276    117   42.3913
+85-89   Female          3      1   33.3333
+        Male           24     10   41.6667
+90+     Male            4      3   75.0000
+Other   Female        152     25   16.4474
+        Male          598     81   13.5452
+        Unknown      2201    289   13.1304
+PRO     Female      11414   1097    9.6110
+        Male        20332   2440   12.0008
+
+============================================================
+SECTION 3a: TABLE 1 BLOCK — FINISH STATUS BY EVENT TYPE × SEX
+============================================================
+
+Starters = FIN + DNF + DQ. DNF rate = DNF / starters. DNS and DQ shares are relative
+to all records of the event type (including DNS). Finish-time DNF share is relative to the
+DNFs of the same cell. PRO rate = DNF / starters among MPRO (male) or FPRO (female).
+Percentages are persisted at full precision in descriptives_table1.csv (rounded here for display).
+
+race_type gender  n_records  starters  finishers    dnf  dnf_rate_pct    dns  dns_pct_of_records   dq  dq_pct_of_records  finish_time_dnf  finish_time_pct_of_dnf  pro_starters  pro_dnf  pro_dnf_rate_pct
+       im   Male    1028792    937341     851502  83018        8.8568  91451              8.8892 2821             0.2742             1304                  1.5707         14102     3388           24.0250
+       im Female     242779    220801     196760  23522       10.6530  21978              9.0527  519             0.2138              468                  1.9896          7469     1321           17.6864
+       im  Total    1272930   1159245    1049092 106810        9.2138 113685              8.9310 3343             0.2626             1793                  1.6787         21571     4709           21.8302
+      him   Male    1737573   1536113    1457908  70549        4.5927 201460             11.5943 7656             0.4406             4594                  6.5118         20332     2440           12.0008
+      him Female     562658    494948     462502  30865        6.2360  67710             12.0340 1581             0.2810             2761                  8.9454         11414     1097            9.6110
+      him  Total    2302877   2033262    1922310 101703        5.0020 269615             11.7077 9249             0.4016             7406                  7.2820         31746     3537           11.1416
+
+============================================================
+SECTION 3b: FIGURE 1 BLOCK — DNF RATE BY AGE BIN (70+ CONSOLIDATED) × SEX
+============================================================
+
+Variant 'all': starters of known sex whose age-group code falls in one of the eleven age bins
+(professional categories and unrecognised codes fall outside them). Variant 'excl_pro_finish_time':
+the same with finish-time DNFs removed — the population of Figure 1, which plots this variant.
+The logistic regression starts from it and further drops athletes of unknown continent of origin
+and starters at unmapped race locations.
+
+Starters of known sex whose age-group code fits none of the eleven age bins ('Other'; excluded
+from Figure 1 and from the regression; professional categories not included):
+  IRONMAN: 3,382 (Female 72, Male 3,310; finish-time DNFs among them 3)
+  IRONMAN 70.3: 750 (Female 152, Male 598; finish-time DNFs among them 1)
+  codes: M (3,100), MPC (441), MGuide (112), MUNKNOWN (106), FPC (82), MPC/ID (68), FUNKNOWN (58), FGuide (46), MHC (34), MST (28), 12 more
+
+DNF rate (%) — variant 'all':
+race_type    him           im      
+gender    Female  Male Female  Male
+age_bin                            
+18-24        4.5   4.0    7.9   7.1
+25-29        4.6   3.6    7.2   6.5
+30-34        5.1   3.7    7.5   6.8
+35-39        5.5   3.8    8.6   7.5
+40-44        6.0   4.2    9.6   7.7
+45-49        6.9   4.7   11.3   8.5
+50-54        7.7   5.4   13.6  10.0
+55-59        8.7   6.3   16.1  12.6
+60-64       10.5   7.6   21.5  16.5
+65-69       14.5   9.9   32.0  23.1
+70+         21.3  17.6   50.3  35.7
+
+DNF rate (%) — variant 'excl_pro_finish_time':
+race_type    him           im      
+gender    Female  Male Female  Male
+age_bin                            
+18-24        4.2   3.7    7.8   7.0
+25-29        4.2   3.4    7.1   6.4
+30-34        4.6   3.5    7.4   6.7
+35-39        5.1   3.6    8.5   7.4
+40-44        5.5   3.9    9.4   7.6
+45-49        6.2   4.4   11.1   8.3
+50-54        7.0   5.0   13.3   9.8
+55-59        7.9   5.9   15.7  12.4
+60-64        9.3   7.1   21.1  16.2
+65-69       13.0   9.2   31.5  22.6
+70+         19.4  16.0   49.8  35.2
+
+============================================================
+SECTION 3c: CYCLING SPLIT AMONG AGE-GROUP FINISHERS (hours)
+============================================================
+  IM (n = 1,025,936): P10=5.234 P25=5.641 P50=6.206 P75=6.869 P90=7.491
+  HIM (n = 1,884,342): P10=2.530 P25=2.726 P50=2.981 P75=3.292 P90=3.616
+
+============================================================
+SECTION 4: DNF RATE BY ATHLETE ORIGIN (CONTINENTAL)
+============================================================
+
+Coverage: 3,128,842 mapped (98.0%), 63,665 Unknown (2.0%)
+Source: 'country' text field (athlete origin, not race location).
+
+DNF rate by athlete continent × distance:
+                         N_starts  N_DNF  DNF_rate
+continent     race_type                           
+North America him          890408  46783    5.2541
+Europe        him          618193  26270    4.2495
+North America im           461465  47428   10.2777
+Europe        im           453466  39467    8.7034
+South America him          165618   6571    3.9676
+Asia          him          135460   9756    7.2021
+Oceania       him          123982   5793    4.6725
+              im            85272   4946    5.8003
+Africa        him           61525   4221    6.8606
+Asia          im            60461   6951   11.4967
+South America im            48653   3129    6.4313
+Africa        im            24339   2125    8.7308

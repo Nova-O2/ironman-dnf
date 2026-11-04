@@ -1,0 +1,97 @@
+# RQ1 — Figure 1 block (age bin × sex × event type, two variants)
+# Generated: 2026-10-28 14:37:47
+# Python 3.12.13, pandas 3.0.1, numpy 2.4.3, statsmodels 0.14.6, scipy 1.17.1, scikit-learn 1.8.0, pymannkendall 1.4.3
+# Dataset: ironman_merged.csv (version 4.0.0)
+# Seed: 42
+# Reference counts of the merged dataset file (ironman_merged.csv, v4.0.0, whole file; constants, not counted from the file read): N = 3,632,323, DNF = 216,130
+# Analysis code: sha256 ecc7a0109c9fce44f371632752704b0b02cf0fce41db594816dc0fce4160849f (notebooks/*.py except generate_figures.py, generate_tables.py, manuscript_number_audit.py)
+# Analysed population: 14 duplicated race-years, 29 non-standard-format editions, 5 non-IRONMAN races and 6 stopped or wholesale-coded editions excluded at load (_common.load_dataset; descriptives.txt, Excluded records)
+variant,race_type,age_bin,gender,N_starts,N_DNF,DNF_rate_pct
+all,him,18-24,Female,23943,1072,4.477300255
+all,him,18-24,Male,73116,2902,3.969035505
+all,him,25-29,Female,64752,2951,4.557388189
+all,him,25-29,Male,165070,5992,3.629975162
+all,him,30-34,Female,79907,4038,5.053374548
+all,him,30-34,Male,235035,8724,3.711787606
+all,him,35-39,Female,79027,4371,5.531021043
+all,him,35-39,Male,264431,10108,3.822547281
+all,him,40-44,Female,80492,4838,6.010535208
+all,him,40-44,Male,265651,11047,4.158463548
+all,him,45-49,Female,65854,4554,6.915297476
+all,him,45-49,Male,214223,10046,4.689505795
+all,him,50-54,Female,46440,3566,7.678725237
+all,him,50-54,Male,150054,8051,5.365401789
+all,him,55-59,Female,25868,2256,8.721199938
+all,him,55-59,Male,85249,5378,6.3085784
+all,him,60-64,Female,11791,1237,10.4910525
+all,him,60-64,Male,40320,3065,7.601686508
+all,him,65-69,Female,4005,582,14.53183521
+all,him,65-69,Male,15228,1514,9.942211715
+all,him,70+,Female,1303,278,21.33537989
+all,him,70+,Male,6806,1201,17.64619453
+all,im,18-24,Female,6185,490,7.922392886
+all,im,18-24,Male,27483,1965,7.149874468
+all,im,25-29,Female,21761,1559,7.164192822
+all,im,25-29,Male,77072,5000,6.487440316
+all,im,30-34,Female,34322,2573,7.496649379
+all,im,30-34,Male,131073,8916,6.802316267
+all,im,35-39,Female,36009,3098,8.603404704
+all,im,35-39,Male,160194,11994,7.487171804
+all,im,40-44,Female,39493,3789,9.594105284
+all,im,40-44,Male,179011,13787,7.701761344
+all,im,45-49,Female,32976,3736,11.32945172
+all,im,45-49,Male,147947,12507,8.453703015
+all,im,50-54,Female,23827,3244,13.61480673
+all,im,50-54,Male,106095,10567,9.959941562
+all,im,55-59,Female,11665,1881,16.12516074
+all,im,55-59,Male,54370,6850,12.59885967
+all,im,60-64,Female,4970,1067,21.46881288
+all,im,60-64,Male,24489,4033,16.46861856
+all,im,65-69,Female,1607,515,32.04729309
+all,im,65-69,Male,8368,1929,23.05210325
+all,im,70+,Female,445,224,50.33707865
+all,im,70+,Male,3827,1366,35.6937549
+excl_pro_finish_time,him,18-24,Female,23878,1007,4.217271128
+excl_pro_finish_time,him,18-24,Male,72945,2731,3.74391665
+excl_pro_finish_time,him,25-29,Female,64535,2734,4.236460835
+excl_pro_finish_time,him,25-29,Male,164694,5616,3.40996029
+excl_pro_finish_time,him,30-34,Female,79553,3684,4.630875014
+excl_pro_finish_time,him,30-34,Male,234501,8190,3.49252242
+excl_pro_finish_time,him,35-39,Female,78657,4001,5.086642003
+excl_pro_finish_time,him,35-39,Male,263774,9451,3.5829915
+excl_pro_finish_time,him,40-44,Female,80045,4391,5.485664314
+excl_pro_finish_time,him,40-44,Male,264981,10377,3.916129836
+excl_pro_finish_time,him,45-49,Female,65385,4085,6.247610308
+excl_pro_finish_time,him,45-49,Male,213526,9349,4.378389517
+excl_pro_finish_time,him,50-54,Female,46083,3209,6.96352234
+excl_pro_finish_time,him,50-54,Male,149474,7471,4.998193666
+excl_pro_finish_time,him,55-59,Female,25641,2029,7.913107913
+excl_pro_finish_time,him,55-59,Male,84848,4977,5.865783519
+excl_pro_finish_time,him,60-64,Female,11640,1086,9.329896907
+excl_pro_finish_time,him,60-64,Male,40091,2836,7.073906862
+excl_pro_finish_time,him,65-69,Female,3936,513,13.03353659
+excl_pro_finish_time,him,65-69,Male,15102,1388,9.190835651
+excl_pro_finish_time,him,70+,Female,1271,246,19.35483871
+excl_pro_finish_time,him,70+,Male,6670,1065,15.96701649
+excl_pro_finish_time,im,18-24,Female,6176,481,7.788212435
+excl_pro_finish_time,im,18-24,Male,27438,1920,6.997594577
+excl_pro_finish_time,im,25-29,Female,21738,1536,7.06596743
+excl_pro_finish_time,im,25-29,Male,76997,4925,6.396353105
+excl_pro_finish_time,im,30-34,Female,34279,2530,7.380612037
+excl_pro_finish_time,im,30-34,Male,130952,8795,6.716201356
+excl_pro_finish_time,im,35-39,Female,35959,3048,8.476320254
+excl_pro_finish_time,im,35-39,Male,160020,11820,7.386576678
+excl_pro_finish_time,im,40-44,Female,39408,3704,9.39910678
+excl_pro_finish_time,im,40-44,Male,178823,13599,7.604726461
+excl_pro_finish_time,im,45-49,Female,32894,3654,11.10840883
+excl_pro_finish_time,im,45-49,Male,147723,12283,8.314886646
+excl_pro_finish_time,im,50-54,Female,23746,3163,13.32013813
+excl_pro_finish_time,im,50-54,Male,105899,10371,9.79329361
+excl_pro_finish_time,im,55-59,Female,11613,1829,15.74959098
+excl_pro_finish_time,im,55-59,Male,54257,6737,12.41683101
+excl_pro_finish_time,im,60-64,Female,4948,1045,21.1196443
+excl_pro_finish_time,im,60-64,Male,24409,3953,16.19484616
+excl_pro_finish_time,im,65-69,Female,1594,502,31.49309912
+excl_pro_finish_time,im,65-69,Male,8324,1885,22.64536281
+excl_pro_finish_time,im,70+,Female,440,219,49.77272727
+excl_pro_finish_time,im,70+,Male,3795,1334,35.15151515

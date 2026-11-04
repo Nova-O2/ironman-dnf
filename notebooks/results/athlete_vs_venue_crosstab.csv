@@ -1,0 +1,45 @@
+# Athlete origin × race location — all combinations (Table S1 reads N >= 1,000)
+# Generated: 2026-10-28 14:39:47
+# Python 3.12.13, pandas 3.0.1, numpy 2.4.3, statsmodels 0.14.6, scipy 1.17.1, scikit-learn 1.8.0, pymannkendall 1.4.3
+# Dataset: ironman_merged.csv (version 4.0.0)
+# Seed: 42
+# Reference counts of the merged dataset file (ironman_merged.csv, v4.0.0, whole file; constants, not counted from the file read): N = 3,632,323, DNF = 216,130
+# Analysis code: sha256 ecc7a0109c9fce44f371632752704b0b02cf0fce41db594816dc0fce4160849f (notebooks/*.py except generate_figures.py, generate_tables.py, manuscript_number_audit.py)
+# Analysed population: 14 duplicated race-years, 29 non-standard-format editions, 5 non-IRONMAN races and 6 stopped or wholesale-coded editions excluded at load (_common.load_dataset; descriptives.txt, Excluded records)
+athlete_continent,event_continent,N_starts,N_DNF,DNF_rate_pct
+Africa,Africa,67633,5181,7.6605
+Africa,Asia,3447,181,5.2509
+Africa,Europe,9612,674,7.0121
+Africa,North America,3359,211,6.2816
+Africa,Oceania,1603,79,4.9283
+Africa,South America,210,20,9.5238
+Asia,Africa,926,87,9.3952
+Asia,Asia,143539,11966,8.3364
+Asia,Europe,21204,2186,10.3094
+Asia,North America,16945,1277,7.5361
+Asia,Oceania,12860,1165,9.0591
+Asia,South America,447,26,5.8166
+Europe,Africa,9129,685,7.5036
+Europe,Asia,31723,1624,5.1193
+Europe,Europe,942963,58644,6.2191
+Europe,North America,67452,3841,5.6944
+Europe,Oceania,17336,762,4.3955
+Europe,South America,3056,181,5.9228
+North America,Africa,1984,159,8.0141
+North America,Asia,6770,544,8.0355
+North America,Europe,35093,3719,10.5976
+North America,North America,1292759,88664,6.8585
+North America,Oceania,9017,652,7.2308
+North America,South America,6250,473,7.568
+Oceania,Africa,547,33,6.0329
+Oceania,Asia,5988,470,7.849
+Oceania,Europe,7397,528,7.138
+Oceania,North America,12479,700,5.6094
+Oceania,Oceania,182613,8998,4.9274
+Oceania,South America,230,10,4.3478
+South America,Africa,1235,70,5.668
+South America,Asia,1341,70,5.22
+South America,Europe,13404,762,5.6849
+South America,North America,40451,2006,4.9591
+South America,Oceania,2201,78,3.5438
+South America,South America,155639,6714,4.3138

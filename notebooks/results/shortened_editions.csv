@@ -1,0 +1,20 @@
+# Analysed population — editions held over a shortened course (kept)
+# Generated: 2026-10-28 14:37:28
+# Python 3.12.13, pandas 3.0.1, numpy 2.4.3, statsmodels 0.14.6, scipy 1.17.1, scikit-learn 1.8.0, pymannkendall 1.4.3
+# Dataset: ironman_merged.csv (version 4.0.0)
+# Seed: 42
+# Reference counts of the merged dataset file (ironman_merged.csv, v4.0.0, whole file; constants, not counted from the file read): N = 3,632,323, DNF = 216,130
+# Analysis code: sha256 ecc7a0109c9fce44f371632752704b0b02cf0fce41db594816dc0fce4160849f (notebooks/*.py except generate_figures.py, generate_tables.py, manuscript_number_audit.py)
+# Analysed population: 14 duplicated race-years, 29 non-standard-format editions, 5 non-IRONMAN races and 6 stopped or wholesale-coded editions excluded at load (_common.load_dataset; descriptives.txt, Excluded records)
+event_id,event_name,source,race_type,n_finishers,median_finish_h,typical_median_h,time_ratio,basis,total,distance_share,criterion
+cb17d0b1-4eae-e111-80ae-005056956277,2012 IRONMAN 70.3 Boise: Triathlon,official,him,1234,3.483055556,5.955138889,0.5848823379,own,113,0.9986743261,time
+a317d0b1-4eae-e111-80ae-005056956277,2012 IRONMAN 70.3 Muncie: Triathlon,official,him,1492,3.068888889,5.955138889,0.5153345617,own,113,0.9986743261,time
+b3a20b0e-cdb5-e711-941b-005056951bf1,2018 IRONMAN 70.3 Zell am See Kaprun,official,him,1979,2.479444444,5.955138889,0.4163537561,own,23,0.2032699956,distance + time
+951360a4-3212-4a21-b99d-69bfb52d8215,2021 IRONMAN 70.3 Des Moines,official,him,2320,4.784722222,5.955138889,0.803461063,own,67.2077,0.5939699514,distance
+d42359ab-41ae-43e3-af57-be6a5815b762,2022 IRONMAN 70.3 Monterrey,official,him,862,3.679861111,5.955138889,0.6179303589,own,72.0007,0.6363296509,distance + time
+2596,Ironman 70.3 Calgary (Partial Bike) 2025,coachcox,him,451,5.227222222,5.955138889,0.8777666348,,,,name
+1401,Ironman 70.3 Racine 2016,coachcox,him,1471,3.789166667,5.955138889,0.6362851879,,,,time
+eb17d0b1-4eae-e111-80ae-005056956277,2012 IRONMAN New Zealand: Triathlon,official,im,1415,5.586944444,12.51236111,0.4465140028,own,226,0.9986301975,time
+3f7d3002-207a-e811-941f-005056951bf1,2019 IRONMAN France,official,im,2286,10.99958333,12.51236111,0.8790973371,own,186.3,0.8232071053,distance
+57af84bb-e6a7-4548-a1ed-9aafebc0d869,2026 IRONMAN Frankfurt,official,im,2475,7.589444444,12.51236111,0.6065557393,own,150.83,0.6664751889,distance + time
+1118,Ironman New Zealand 2006,coachcox,im,10,7.849166667,12.51236111,0.6273129905,,,,time

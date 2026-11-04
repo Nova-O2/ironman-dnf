@@ -1,0 +1,29 @@
+# RQ2 — section 3 segment shares of official in-race DNFs with a distance value (distance classification; variant t2_rule: the segments of the hazard's run-DNF definition, DNFs at or beyond the finish distance apart)
+# Generated: 2026-10-28 14:38:20
+# Python 3.12.13, pandas 3.0.1, numpy 2.4.3, statsmodels 0.14.6, scipy 1.17.1, scikit-learn 1.8.0, pymannkendall 1.4.3
+# Dataset: ironman_merged.csv (version 4.0.0)
+# Seed: 42
+# Reference counts of the merged dataset file (ironman_merged.csv, v4.0.0, whole file; constants, not counted from the file read): N = 3,632,323, DNF = 216,130
+# Analysis code: sha256 ecc7a0109c9fce44f371632752704b0b02cf0fce41db594816dc0fce4160849f (notebooks/*.py except generate_figures.py, generate_tables.py, manuscript_number_audit.py)
+# Analysed population: 14 duplicated race-years, 29 non-standard-format editions, 5 non-IRONMAN races and 6 stopped or wholesale-coded editions excluded at load (_common.load_dataset; descriptives.txt, Excluded records)
+race_type,variant,segment,n,n_with_distance,pct_of_with_distance,n_inrace_official,n_without_distance
+im,distance,no timing mat crossed,2185,35190,6.209150327,65037,29847
+im,distance,swim,2786,35190,7.917021881,65037,29847
+im,distance,bike,17067,35190,48.49957374,65037,29847
+im,distance,run,13152,35190,37.37425405,65037,29847
+im,t2_rule,no timing mat crossed,2185,35190,6.209150327,65037,29847
+im,t2_rule,swim,2786,35190,7.917021881,65037,29847
+im,t2_rule,bike,15395,35190,43.74822393,65037,29847
+im,t2_rule,run,14820,35190,42.114237,65037,29847
+im,t2_rule,at the finish distance,4,35190,0.01136686559,65037,29847
+im,t2_rule,beyond the finish distance,0,35190,0,65037,29847
+him,distance,no timing mat crossed,7413,43206,17.15733926,60843,17637
+him,distance,swim,6673,43206,15.44461417,60843,17637
+him,distance,bike,18525,43206,42.87598945,60843,17637
+him,distance,run,10595,43206,24.52205712,60843,17637
+him,t2_rule,no timing mat crossed,7413,43206,17.15733926,60843,17637
+him,t2_rule,swim,6673,43206,15.44461417,60843,17637
+him,t2_rule,bike,15307,43206,35.42794982,60843,17637
+him,t2_rule,run,13793,43206,31.92380688,60843,17637
+him,t2_rule,at the finish distance,20,43206,0.04628986715,60843,17637
+him,t2_rule,beyond the finish distance,0,43206,0,60843,17637

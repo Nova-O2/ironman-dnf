@@ -1,0 +1,35 @@
+# Sensitivity S2: Combined IM+HIM with race_type
+# Generated: 2026-10-28 14:42:05
+# Python 3.12.13, pandas 3.0.1, numpy 2.4.3, statsmodels 0.14.6, scipy 1.17.1, scikit-learn 1.8.0, pymannkendall 1.4.3
+# Dataset: ironman_merged.csv (version 4.0.0)
+# Seed: 42
+# Reference counts of the merged dataset file (ironman_merged.csv, v4.0.0, whole file; constants, not counted from the file read): N = 3,632,323, DNF = 216,130
+# Analysis code: sha256 ecc7a0109c9fce44f371632752704b0b02cf0fce41db594816dc0fce4160849f (notebooks/*.py except generate_figures.py, generate_tables.py, manuscript_number_audit.py)
+# Analysed population: 14 duplicated race-years, 29 non-standard-format editions, 5 non-IRONMAN races and 6 stopped or wholesale-coded editions excluded at load (_common.load_dataset; descriptives.txt, Excluded records)
+
+NOTE: 20% random sample (seed=42) for computational feasibility.
+Full population: 3,060,664. Sample: 612,133.
+
+======================================================================
+MODEL: Combined IM+HIM (20% sample)
+======================================================================
+N = 612,133, DNF = 37,245 (6.0845%)
+Converged: True
+AUC-ROC: 0.639220
+Standard errors: clustered by event (event_id), 2,090 clusters
+
+Key odds ratios:
+  female                    OR=1.312 (1.269–1.355) p=0.0000 ***
+  is_him                    OR=0.510 (0.472–0.551) p=0.0000 ***
+  ath_Africa                OR=0.870 (0.726–1.043) p=0.1325 
+  ath_Asia                  OR=0.990 (0.897–1.092) p=0.8344 
+  ath_Europe                OR=0.680 (0.627–0.738) p=0.0000 ***
+  ath_Oceania               OR=0.648 (0.565–0.743) p=0.0000 ***
+  ath_South_America         OR=0.688 (0.617–0.767) p=0.0000 ***
+  race_Africa               OR=1.533 (1.199–1.959) p=0.0007 ***
+  race_Asia                 OR=1.519 (1.332–1.733) p=0.0000 ***
+  race_Europe               OR=1.475 (1.311–1.660) p=0.0000 ***
+  race_Oceania              OR=0.999 (0.848–1.177) p=0.9895 
+  race_South_America        OR=1.121 (0.894–1.405) p=0.3225 
+  race_year                 OR=0.981 (0.974–0.989) p=0.0000 ***
+  age_70+                   OR=6.756 (6.075–7.512) p=0.0000 ***

@@ -1,0 +1,68 @@
+# PRO Curation / Integrity Statistics
+# Generated: 2026-10-28 14:40:29
+# Python 3.12.13, pandas 3.0.1, numpy 2.4.3, statsmodels 0.14.6, scipy 1.17.1, scikit-learn 1.8.0, pymannkendall 1.4.3
+# Dataset: ironman_merged.csv (version 4.0.0)
+# Seed: 42
+# Reference counts of the merged dataset file (ironman_merged.csv, v4.0.0, whole file; constants, not counted from the file read): N = 3,632,323, DNF = 216,130
+# Analysis code: sha256 ecc7a0109c9fce44f371632752704b0b02cf0fce41db594816dc0fce4160849f (notebooks/*.py except generate_figures.py, generate_tables.py, manuscript_number_audit.py)
+# Analysed population: 14 duplicated race-years, 29 non-standard-format editions, 5 non-IRONMAN races and 6 stopped or wholesale-coded editions excluded at load (_common.load_dataset; descriptives.txt, Excluded records)
+
+Subset: all professional (MPRO/FPRO) records in IRONMAN + IRONMAN 70.3.
+Splits considered: swim_sec, t1_sec, bike_sec, t2_sec, run_sec (>0 = present).
+
+============================================================
+SECTION 1: SWIM-SPLIT COVERAGE AMONG PROFESSIONAL DNFs
+============================================================
+
+Total professional DNFs (MPRO+FPRO, IM+HIM): 8,246
+  with recorded swim split (swim_sec > 0):       7,205 (87.3757%)
+  with any recorded split (any segment > 0):     7,308 (88.6248%)
+  with NO recorded splits (possible DNS→DNF):    938 (11.3752%)
+  [IRONMAN] n=4,709 | swim split: 4,283 (90.9535%) | no splits: 359 (7.6237%)
+  [IRONMAN 70.3] n=3,537 | swim split: 2,922 (82.6124%) | no splits: 579 (16.3698%)
+
+============================================================
+SECTION 2: IRONMAN MALE PRO DNF RATE — ADJUSTED
+============================================================
+
+Adjustment: exclude professional DNFs with NO recorded splits
+from BOTH numerator and denominator (treated as possible DNS miscoded as DNF).
+
+IRONMAN male PRO (MPRO, race_type=im):
+  Raw:      starts=14,102, DNF=3,388, rate=24.0250%
+  Excluded: DNFs with no recorded splits = 242
+  Adjusted: starts=13,860, DNF=3,146, rate=22.6984%
+
+Adjusted rates for all four PRO cells:
+            IRONMAN male: raw=24.0250% (n=14,102) | adjusted=22.6984% (n=13,860, excluded 242 no-split DNFs)
+          IRONMAN female: raw=17.6864% (n=7,469) | adjusted=16.3765% (n=7,352, excluded 117 no-split DNFs)
+       IRONMAN 70.3 male: raw=12.0008% (n=20,332) | adjusted=10.2528% (n=19,936, excluded 396 no-split DNFs)
+     IRONMAN 70.3 female: raw=9.6110% (n=11,414) | adjusted=8.1382% (n=11,231, excluded 183 no-split DNFs)
+
+============================================================
+SECTION 3: MEDIAN TOTAL DISTANCE — IRONMAN PROFESSIONAL IN-RACE DNFs
+============================================================
+
+Subset: IRONMAN PRO (MPRO+FPRO) in-race DNFs (no recorded finish time) with valid total_distance_km
+(i.e. total_distance_km not null after the course rule of _common.attach_course); finish-time DNFs excluded.
+
+IM PRO DNFs (total): 4,709; finish-time DNFs: 12
+IM PRO in-race DNFs (total):           4,697
+IM PRO in-race DNFs with total_distance_km: 1,393 (29.6572% of IM PRO in-race DNFs)
+  (recorded distances not used under the course rule, _common.attach_course: 11)
+Median total_distance_km:              183.8674 km
+Position relative to the event's cycling completion (km past it; event-specific, at two decimals): median 0.0000; P25 -89.6300; P75 14.6000
+  before the cycling completion: 574 (41.2060%); at it: 204 (14.6447%); beyond it: 615 (44.1493%)
+(Reference: the event's own cycling-completion distance; nominal 184.11 km where the event's finishers carry no distance)
+
+Distance distribution (km):
+  count    1393.0000
+  mean      146.4391
+  std        68.9673
+  min         0.0000
+  10%        17.3180
+  25%        94.0900
+  50%       183.8674
+  75%       198.7000
+  90%       208.0816
+  max       230.6000

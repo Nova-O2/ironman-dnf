@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+.env
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS / IDE
+desktop.ini
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+.claude/
+
+# Large data files (available on Zenodo)
+data/
+*.parquet
+
+# Figure fonts (Liberation Sans, not distributed)
+notebooks/_fonts/
+
+# Build artefacts (only the generated tables are shared)
+manuscript/*
+!manuscript/tables/
+Makefile
+scripts/
+*.docx
+
+# Working folders
+_*/
+bundles/
+*.tmp

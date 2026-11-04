@@ -1,0 +1,1195 @@
+# RQ2 — per-event summary of the hazard cohort (main, strict, t2_no_limit and including_stopped analyses)
+# Generated: 2026-10-28 14:39:09
+# Python 3.12.13, pandas 3.0.1, numpy 2.4.3, statsmodels 0.14.6, scipy 1.17.1, scikit-learn 1.8.0, pymannkendall 1.4.3
+# Dataset: ironman_merged.csv (version 4.0.0)
+# Seed: 42
+# Reference counts of the merged dataset file (ironman_merged.csv, v4.0.0, whole file; constants, not counted from the file read): N = 3,632,323, DNF = 216,130
+# Analysis code: sha256 ecc7a0109c9fce44f371632752704b0b02cf0fce41db594816dc0fce4160849f (notebooks/*.py except generate_figures.py, generate_tables.py, manuscript_number_audit.py)
+# Analysed population: 14 duplicated race-years, 29 non-standard-format editions, 5 non-IRONMAN races and 6 stopped or wholesale-coded editions excluded at load (_common.load_dataset; descriptives.txt, Excluded records)
+event_id,event_name,race_year,n_run_dnf,n_dnf_km0,n_mats,n_completed,run_len_km,has_start_mat,has_mat_at_km0,first_checkpoint_km,in_first_interval_contrasts,share_dnf_before_first_checkpoint,race_type,analysis
+2f990751-bf20-e511-9403-005056951bf1,2016 IRONMAN 70.3 Mallorca,2016,31,14,7,2565,21.1,True,True,3.1,True,0.4516129032,him,including_stopped
+49a595a5-fb4f-e511-9409-005056951bf1,2016 IRONMAN 70.3 Vichy,2016,44,3,6,1661,20.6,True,True,3.5,True,0.06818181818,him,including_stopped
+634e0277-52a4-e711-9419-005056951bf1,2018 IRONMAN 70.3 Asia-Pacific Championship Philippines,2018,41,4,6,1358,21.1,True,True,1,True,0.09756097561,him,including_stopped
+34400ea4-e6d6-e711-941b-005056951bf1,2018 IRONMAN 70.3 Augusta,2018,70,19,10,2668,21.08,True,True,1.77,True,0.2714285714,him,including_stopped
+39f3f709-13a2-e711-9419-005056951bf1,2018 IRONMAN 70.3 Boulder,2018,76,21,5,1921,21.1,True,True,4.9,True,0.2763157895,him,including_stopped
+fc62c23f-9b5a-e711-9418-005056951bf1,2018 IRONMAN 70.3 Campeche,2018,46,3,4,620,21.1,True,True,5.3,True,0.0652173913,him,including_stopped
+ca18f3c5-c2aa-e811-a961-000d3a3740b7,2018 IRONMAN 70.3 Cartagena,2018,63,8,6,1629,21.1,True,True,4.8,True,0.126984127,him,including_stopped
+338960da-71a7-e711-9419-005056951bf1,2018 IRONMAN 70.3 Cozumel,2018,33,7,4,1654,21.1,True,True,5.5,True,0.2121212121,him,including_stopped
+8b625e16-3e87-e711-9419-005056951bf1,2018 IRONMAN 70.3 Jonkoping,2018,32,5,8,1792,21.1,True,True,4.1,True,0.25,him,including_stopped
+df4e2f37-066b-e711-9418-005056951bf1,2018 IRONMAN 70.3 Mallorca,2018,65,14,6,2771,21.2,True,True,2,True,0.2153846154,him,including_stopped
+a75a0f1e-c5ad-e711-9419-005056951bf1,2018 IRONMAN 70.3 Nice,2018,49,19,4,2082,21.1,True,True,5.25,True,0.387755102,him,including_stopped
+a06af767-c26b-e711-9418-005056951bf1,2018 IRONMAN 70.3 Pays D'Aix,2018,44,16,6,1477,21.1,True,True,1.8,True,0.3636363636,him,including_stopped
+c133282d-6699-e711-9419-005056951bf1,2018 IRONMAN 70.3 Puerto Rico,2018,37,2,5,501,21.1,True,True,5.55,True,0.1351351351,him,including_stopped
+9bc13d16-9277-e711-9418-005056951bf1,2018 IRONMAN 70.3 Switzerland,2018,78,17,6,1953,21,True,True,3.7,True,0.2179487179,him,including_stopped
+a9375cc6-40ca-e711-941b-005056951bf1,2018 IRONMAN 70.3 Waco,2018,42,4,7,2096,21.08,True,True,4.44,True,0.09523809524,him,including_stopped
+6d575ec6-9303-e911-a968-000d3a3749bc,2019 IRONMAN 70.3 Augusta,2019,78,13,7,2584,21.0824,True,True,2.12,True,0.1666666667,him,including_stopped
+ae7ad45a-52b7-e811-a967-000d3a37468c,2019 IRONMAN 70.3 Boulder,2019,65,65,1,1982,21.08,True,True,,False,1,him,including_stopped
+56367699-dd91-e811-941f-005056951bf1,2019 IRONMAN 70.3 Chattanooga,2019,31,31,1,2747,21.08,True,True,,False,1,him,including_stopped
+6acabb00-4cc6-e811-a96a-000d3a35f53a,2019 IRONMAN 70.3 Cozumel,2019,59,19,4,1495,20.9557,True,True,5.23,True,0.3220338983,him,including_stopped
+105fb91d-18b8-e811-a967-000d3a37468c,2019 IRONMAN 70.3 Ecuador,2019,69,69,1,1068,21.1,True,True,,False,1,him,including_stopped
+7284cebd-4cfd-e811-a968-000d3a3749bc,2019 IRONMAN 70.3 Goa,2019,32,1,4,678,21.1,True,True,7.1,True,0.03125,him,including_stopped
+a752822c-a2b2-e811-a96c-000d3a364086,2019 IRONMAN 70.3 Les Sables d'Olonne,2019,40,11,8,2338,21.1,True,True,2.5,True,0.275,him,including_stopped
+8a6c6181-04f7-e811-a96d-000d3a35f53a,2019 IRONMAN 70.3 Los Cabos,2019,31,13,4,640,20.99,True,True,7.28,True,0.4193548387,him,including_stopped
+7a74a065-c889-e811-941f-005056951bf1,2019 IRONMAN 70.3 Mallorca,2019,76,16,9,2832,21.05,True,True,1.95,True,0.2631578947,him,including_stopped
+e39cd8e5-6e80-e811-941f-005056951bf1,2019 IRONMAN 70.3 Oceanside California,2019,60,60,1,2360,21.08,True,True,,False,1,him,including_stopped
+a0b5b8d6-52b7-e811-a967-000d3a37468c,2019 IRONMAN 70.3 Ohio,2019,34,34,1,1883,21.08,True,True,,False,1,him,including_stopped
+0110bd42-ef94-e811-9421-005056951bf1,2019 IRONMAN 70.3 Switzerland,2019,53,8,5,2064,21,True,True,3.7,True,0.1509433962,him,including_stopped
+24dc0e64-dc91-e811-941f-005056951bf1,2019 IRONMAN 70.3 Texas,2019,1570,1570,1,384,21.08,True,True,,False,1,him,including_stopped
+09df055b-5eb7-e811-a967-000d3a37468c,2019 IRONMAN 70.3 Traverse City,2019,46,6,10,2141,21.0985,True,True,1.69,True,0.152173913,him,including_stopped
+8bf835cd-4cc6-e811-a96a-000d3a35f53a,2019 IRONMAN 70.3 Vichy,2019,37,0,6,1698,21.1,False,False,1,True,0,him,including_stopped
+c9ad8486-9403-e911-a968-000d3a3749bc,2019 IRONMAN 70.3 Waco,2019,38,8,9,2127,21.0824,True,True,3.35,True,0.2105263158,him,including_stopped
+fc99809f-4dc6-e811-a96a-000d3a35f53a,2019 IRONMAN 70.3 Zell am See Kaprun,2019,39,10,4,2076,21,True,True,2.8,True,0.2564102564,him,including_stopped
+72c4014d-3c77-465f-9a2f-d9477cf5b146,2021 IRONMAN 70.3 Acapulco,2021,36,3,5,896,21.097,True,True,10.6,True,0.3055555556,him,including_stopped
+d5abbfc1-778d-47d8-9048-ea36a75fb885,2021 IRONMAN 70.3 Chattanooga,2021,39,2,9,1998,21.0824,True,True,1.13,True,0.1794871795,him,including_stopped
+93463968-5ae1-470a-81b4-e4a5f480306e,2021 IRONMAN 70.3 Cozumel Day 1,2021,40,8,4,1228,20.9557,True,True,5.23,True,0.2,him,including_stopped
+951360a4-3212-4a21-b99d-69bfb52d8215,2021 IRONMAN 70.3 Des Moines,2021,54,3,11,2347,21.1,True,True,3.15,True,0.07407407407,him,including_stopped
+819cd3fb-05a8-490c-adba-4d3001009339,2021 IRONMAN 70.3 Florida,2021,41,1,9,1237,21.2594,True,True,4.78,True,0.2195121951,him,including_stopped
+ecbcba01-8dbc-4765-8b40-c9c918f6be8a,2021 IRONMAN 70.3 Hawaii,2021,41,5,8,1078,21.2916,True,True,1.71,True,0.1219512195,him,including_stopped
+e1fbebe0-53f7-473c-ab44-40441dc2f557,2021 IRONMAN 70.3 Indian Wells La Quinta,2021,44,9,7,1549,21.3238,True,True,2.48,True,0.2045454545,him,including_stopped
+e22bebf3-f9cd-486a-8e53-270daeb02b59,2021 IRONMAN 70.3 Michigan,2021,40,14,8,3706,21.0341,True,True,2.46,True,0.4,him,including_stopped
+822c0309-8267-41e7-9d66-b4745e64fe2c,2021 IRONMAN 70.3 North Carolina,2021,40,12,6,3991,21.1468,True,True,1.19,True,0.3,him,including_stopped
+4836a4d3-7fbf-47dd-bf87-f6a6274cc9ff,2021 IRONMAN 70.3 Ohio,2021,35,5,5,1850,21.0663,True,True,3.64,True,0.1428571429,him,including_stopped
+76d2a06a-898b-4a43-a071-daaa37661f1e,2021 IRONMAN 70.3 Texas,2021,30,3,10,1743,21.7758,True,True,1.15,True,0.1,him,including_stopped
+974f44a5-ce5f-45be-aab8-1446cc3e5fd8,2021 IRONMAN 70.3 Waco,2021,78,18,7,3056,21.9032,True,True,4.72,True,0.2307692308,him,including_stopped
+1f0e33db-974b-4695-880d-f45cd34da2cb,2022 IRONMAN 70.3 Boulder,2022,66,14,8,1929,21.0824,True,True,2.7,True,0.3333333333,him,including_stopped
+71539573-68ac-483e-8ac6-b313cbfd42b0,2022 IRONMAN 70.3 Cartagena,2022,65,2,7,1652,21,True,True,5.38,True,0.07692307692,him,including_stopped
+8980bc3f-3694-4e37-b53f-d2378a26d7c9,2022 IRONMAN 70.3 Chattanooga,2022,67,5,11,2754,21.0824,True,True,1.13,True,0.1343283582,him,including_stopped
+d1a8bafe-7cb8-4043-9825-6a83ae768ea4,2022 IRONMAN 70.3 Coeur d'Alene,2022,39,6,5,2094,21.2434,True,True,3.46,True,0.1538461538,him,including_stopped
+f0a465d0-1b05-4bce-8b5d-e885a9e17997,2022 IRONMAN 70.3 Cozumel,2022,68,8,5,1704,20.9557,True,True,5.23,True,0.1176470588,him,including_stopped
+c9e159db-5f88-4cff-ac20-a06e4a8f8ea5,2022 IRONMAN 70.3 European Championship Elsinore,2022,45,3,7,2039,21.1,True,True,1.8,True,0.06666666667,him,including_stopped
+eb94f177-ed20-4fb1-80e7-3ac0e69d848a,2022 IRONMAN 70.3 Hawaii,2022,57,6,7,1244,21.2916,True,True,3.64,True,0.1052631579,him,including_stopped
+d978fa3e-b272-42e3-b544-7b4cfae73c1e,2022 IRONMAN 70.3 Indian Wells La Quinta,2022,35,4,6,1560,20.9376,True,True,2.75,True,0.1142857143,him,including_stopped
+640c30e8-d501-4d7c-8df8-15a6765adf74,2022 IRONMAN 70.3 Kenting,2022,49,12,6,696,20.75,True,True,7,True,0.2448979592,him,including_stopped
+02aef019-3e37-4afc-ae97-df7ba4f8a90e,2022 IRONMAN 70.3 Los Cabos,2022,37,11,7,939,20.99,True,True,4.81,True,0.2972972973,him,including_stopped
+8778c3e9-e5df-4279-bf51-bb00ef54be82,2022 IRONMAN 70.3 Luxembourg,2022,159,45,8,1879,21.1,True,True,3.1,True,0.2830188679,him,including_stopped
+f29efe58-05b8-4106-9c17-704fc2d80208,2022 IRONMAN 70.3 Mallorca,2022,53,12,9,2714,21.1,True,True,1.5,True,0.2452830189,him,including_stopped
+e67aa96d-bb2a-41f5-97d0-e3e5a9ed33f1,2022 IRONMAN 70.3 Mont-Tremblant,2022,42,16,5,1751,21.0824,True,True,3.85,True,0.380952381,him,including_stopped
+42e17e72-c272-41b6-8f47-f1e3d01b7a60,2022 IRONMAN 70.3 Oceanside,2022,43,3,9,2388,21.1468,True,True,2.11,True,0.2558139535,him,including_stopped
+604be70b-5d68-4166-b12b-2501183175d0,2022 IRONMAN 70.3 Ohio,2022,33,2,9,1390,21.1146,True,True,1.75,True,0.06060606061,him,including_stopped
+f3092057-1f84-447c-a909-2abf4c229445,2022 IRONMAN 70.3 Pays D'Aix,2022,31,9,8,1808,21.5,True,True,2.7,True,0.4193548387,him,including_stopped
+6dbd5095-1cd9-40fc-a069-c02ce455dc85,2022 IRONMAN 70.3 Puerto Rico,2022,40,17,4,1006,21.0825,True,True,5.49,True,0.425,him,including_stopped
+3b12b880-6fdb-45aa-99e9-29e1099143e4,2022 IRONMAN 70.3 Switzerland,2022,91,18,5,1603,21.1,True,True,3.4,True,0.1978021978,him,including_stopped
+459ee5b4-7fe7-44ee-8992-1bdd7743bc46,2022 IRONMAN 70.3 Texas,2022,33,3,12,2073,21.4526,True,True,3.54,True,0.2727272727,him,including_stopped
+a25be991-163a-453d-88e0-ef1304602060,2023 IRONMAN 70.3 Cartagena,2023,57,5,11,1728,21,True,True,3.03,True,0.1052631579,him,including_stopped
+91fa1be8-3002-4755-a8ef-01b8254d5d44,2023 IRONMAN 70.3 Chattanooga,2023,45,12,7,2888,21.1629,True,True,3.01,True,0.2666666667,him,including_stopped
+aebbf326-0ee8-4a0b-8db2-d5186dc9c835,2023 IRONMAN 70.3 Desaru Coast,2023,46,4,4,527,21,True,True,7.3,True,0.347826087,him,including_stopped
+492f4a98-d43f-4f8d-8817-05e59893d155,2023 IRONMAN 70.3 Eagleman,2023,32,0,8,1575,21.1307,True,False,2.22,True,0.125,him,including_stopped
+7dfbd00b-2bf2-49ad-8795-065df9e6b0b0,2023 IRONMAN 70.3 Hawaii,2023,46,2,9,998,21.2916,True,True,2.61,True,0.1086956522,him,including_stopped
+8d79205d-7f75-4618-a21c-d8361b88ed69,2023 IRONMAN 70.3 Italy Emilia Romagna,2023,79,32,7,1960,21.1,True,True,2.1,True,0.4050632911,him,including_stopped
+4d9d8903-3b94-4e48-9bc0-8363186ea89d,2023 IRONMAN 70.3 Kenting,2023,36,9,3,1263,21.1,True,True,7,True,0.25,him,including_stopped
+cf9cd1bd-c45b-4b80-9e94-bb07529df6f2,2023 IRONMAN 70.3 Kraichgau,2023,33,7,8,1974,21.1,True,True,1.34,True,0.2121212121,him,including_stopped
+8b5e285b-68da-4c26-b8cc-015c01ca8fb2,2023 IRONMAN 70.3 Luxembourg,2023,85,24,8,2038,21,True,True,3.1,True,0.2823529412,him,including_stopped
+969f5eca-6c39-47d1-955c-a0868ac38a58,2023 IRONMAN 70.3 New York,2023,34,6,8,2122,21.0985,True,True,1.13,True,0.1764705882,him,including_stopped
+99f76aa0-8c0f-4638-b4f7-909c0aa300ce,2023 IRONMAN 70.3 Nice,2023,44,6,4,2274,21.1,True,True,4.9,True,0.1363636364,him,including_stopped
+10365b96-0bae-4ccc-abdc-54535af3c224,2023 IRONMAN 70.3 Oceanside,2023,36,1,10,2220,21.1468,True,True,2.11,True,0.1944444444,him,including_stopped
+d3a4fcdc-bc4e-4422-ac03-5404edcbf683,2023 IRONMAN 70.3 Pucon,2023,51,10,6,1706,21.05,True,True,3.51,True,0.1960784314,him,including_stopped
+fdd29721-a47d-408b-b6c2-4bf0934a373c,2023 IRONMAN 70.3 Switzerland,2023,43,11,6,1896,21.1,True,True,3.4,True,0.2558139535,him,including_stopped
+9aa45f7c-9da2-4540-9a5a-b129c590ad29,2023 IRONMAN 70.3 Venice-Jesolo,2023,32,12,4,2369,20.97,True,True,2.35,True,0.375,him,including_stopped
+b69d77c6-8fda-41e3-9ec9-b73d922b75a0,2023 IRONMAN 70.3 Vietnam,2023,52,4,7,1240,21.1,True,True,2,True,0.07692307692,him,including_stopped
+65614825-bc08-495a-9d77-cab42c8265ae,2024 IRONMAN 70.3 Alcúdia-Mallorca,2024,33,7,8,2919,20.83,True,True,1.43,True,0.2121212121,him,including_stopped
+61ff0d49-aa03-41d0-bf53-7f159d9baa98,2024 IRONMAN 70.3 Cartagena,2024,88,5,12,1773,21,True,True,3.03,True,0.1477272727,him,including_stopped
+c644b569-80b0-4346-ab8d-42d46b037abc,2024 IRONMAN 70.3 Chattanooga,2024,53,10,6,3212,21.1629,True,True,4.83,True,0.1886792453,him,including_stopped
+6de385b2-6587-42f3-a58b-404fe0f60ba6,2024 IRONMAN 70.3 Cozumel,2024,45,11,4,1386,21.1,True,True,5.4,True,0.2444444444,him,including_stopped
+896b1717-f2b2-4fd4-a949-b2b2805d720e,2024 IRONMAN 70.3 Desaru Coast,2024,36,1,6,516,21.1,True,True,4.2,True,0.1944444444,him,including_stopped
+df642982-5fff-4460-8470-49efcb8fdc79,2024 IRONMAN 70.3 Goa,2024,35,0,5,520,20.67,False,False,3.62,True,0,him,including_stopped
+34e8c66b-a3d1-45ea-ad3a-b2fa037034dd,2024 IRONMAN 70.3 Goseong,2024,47,11,5,1069,20.862,True,True,3.25,True,0.2340425532,him,including_stopped
+1a391ebe-5138-4e54-9bf7-b14aa90c709b,2024 IRONMAN 70.3 Italy Emilia Romagna,2024,34,8,6,2378,21.25,True,True,2.09,True,0.2352941176,him,including_stopped
+3eef74eb-c459-4eff-9c9d-827bea775793,2024 IRONMAN 70.3 Kenting,2024,64,15,3,1058,21.1,True,True,7,True,0.234375,him,including_stopped
+971c5bb8-4616-4f21-8088-46d6265733f6,2024 IRONMAN 70.3 Kraichgau,2024,32,4,10,2101,21.6,True,True,2.65,True,0.125,him,including_stopped
+fe0101d8-7150-4e0a-839f-6b81ff6af3c6,2024 IRONMAN 70.3 Louisville,2024,36,10,6,2014,21.2594,True,True,1.34,True,0.2777777778,him,including_stopped
+930b0a89-4038-4945-ac93-77eea268bf6c,2024 IRONMAN 70.3 Mossel Bay,2024,32,5,7,1375,21.1,True,True,1.8,True,0.15625,him,including_stopped
+4a1ee310-0583-4649-953c-7042c73d6aa1,2024 IRONMAN 70.3 Oregon,2024,32,6,5,2205,21.1468,True,True,1.54,True,0.1875,him,including_stopped
+e42f12ce-2366-4beb-aadf-844c9142c76f,2024 IRONMAN 70.3 Waco,2024,42,8,4,1823,21.1146,True,True,3.77,True,0.1904761905,him,including_stopped
+4db17435-c87f-45ce-b8f8-64260d4ff21f,2025 IRONMAN 70.3 Alcúdia-Mallorca,2025,32,5,11,2784,20.79,True,True,1.46,True,0.25,him,including_stopped
+e1555ad0-d967-434a-bcbd-572d8ad2e74b,2025 IRONMAN 70.3 Boulder,2025,33,2,5,1621,21.0824,True,True,2.98,True,0.06060606061,him,including_stopped
+48541b5d-87fe-4b40-a5d9-e7da104aa77d,2025 IRONMAN 70.3 Cartagena,2025,52,3,11,1805,21,True,True,2.66,True,0.2115384615,him,including_stopped
+d4ab9ef4-8b7f-43c2-a594-c432415d8f90,2025 IRONMAN 70.3 Chattanooga,2025,38,10,7,2669,21.0663,True,True,3.01,True,0.2631578947,him,including_stopped
+1a236cb2-01bb-4493-8bb9-9c1e34656adb,2025 IRONMAN 70.3 Da Nang,2025,51,1,10,1505,21.1704,True,True,1.9,True,0.01960784314,him,including_stopped
+8f32c36f-ad87-43d9-a96c-2f3bd3f610d5,2025 IRONMAN 70.3 Gulf Coast,2025,178,3,8,1258,21.0631,True,True,1.87,True,0.01685393258,him,including_stopped
+ec5433ea-4907-47f4-b2ab-b6ba296725a3,2025 IRONMAN 70.3 Italy Emilia Romagna,2025,61,21,8,2071,21.25,True,True,2.09,True,0.3442622951,him,including_stopped
+e9856ee7-7672-4552-9e27-d9ab6f6e2935,2025 IRONMAN 70.3 Luxembourg Remich - Région Moselle,2025,42,1,12,2393,21.08,True,True,1.46,True,0.2142857143,him,including_stopped
+8db1ed51-d623-4ce8-8976-e5fc25d78f39,2025 IRONMAN 70.3 Mossel Bay,2025,45,24,8,1750,21.1,True,True,4.1,True,0.5333333333,him,including_stopped
+ca5c4954-e274-4358-b921-868097a625cb,2025 IRONMAN 70.3 Musselman,2025,46,9,7,1410,22.0963,True,True,2.22,True,0.1956521739,him,including_stopped
+9718158a-07b2-4ab6-99b8-d207c74cb432,2025 IRONMAN 70.3 Nice,2025,42,9,7,2016,20.6,True,True,2.3,True,0.2142857143,him,including_stopped
+b4395fca-89f0-48c9-80ee-82bb750145ed,2025 IRONMAN 70.3 Rockford,2025,76,3,9,1763,21.5491,True,True,2.29,True,0.1578947368,him,including_stopped
+a34c72f5-d303-4b85-bd36-bcc44f46c1c7,2025 IRONMAN 70.3 Waco,2025,45,5,9,1796,21.2916,True,True,2.17,True,0.1111111111,him,including_stopped
+646075b9-b1b7-4144-b33b-8faa4ab118d5,2026 IRONMAN 70.3 Alcúdia-Mallorca,2026,31,9,10,2717,21.09,True,True,1.26,True,0.2903225806,him,including_stopped
+812bab5c-40a5-4c0e-8e9b-933902ce7035,2026 IRONMAN 70.3 Alghero,2026,36,9,9,2257,21.0696,True,True,1.4,True,0.2777777778,him,including_stopped
+82cf961d-85e6-40bb-8e86-209517a2602d,2026 IRONMAN 70.3 Chattanooga,2026,41,6,6,2498,21.0985,True,True,1.11,True,0.1463414634,him,including_stopped
+f77ac398-ef29-4c13-8fd5-06bd4cd1151b,2026 IRONMAN 70.3 Cozumel,2026,31,6,3,1635,21.1,True,True,5.4,True,0.1935483871,him,including_stopped
+70c84787-b0ca-437f-b169-834d337f9ad1,2026 IRONMAN 70.3 Dallas-Little Elm,2026,36,6,7,1685,21.2272,True,True,1.8,True,0.1666666667,him,including_stopped
+f8a995ff-b881-4d9f-b869-51426c020ba1,2026 IRONMAN 70.3 Eagleman,2026,50,7,10,2245,21.1505,True,True,2.09,True,0.14,him,including_stopped
+54d56e50-9c53-48bc-a317-86313efe3938,2026 IRONMAN 70.3 Italy Emilia Romagna,2026,56,16,10,2615,21.25,True,True,2.09,True,0.2857142857,him,including_stopped
+8abbf5d3-4be5-42a4-b40d-c2b126f9ad4d,2026 IRONMAN 70.3 Kraichgau,2026,40,16,7,2228,22.8828,True,True,3.46,True,0.4,him,including_stopped
+5552214b-c1f5-4a02-a4c1-7032d66bc903,2026 IRONMAN 70.3 Les Sables d'Olonne - Vendée,2026,34,5,6,2620,21.154,True,True,2.14,True,0.1470588235,him,including_stopped
+4a2ee31f-6dbe-427b-af1f-27692f166951,2026 IRONMAN 70.3 Luxembourg,2026,52,2,10,2167,21.08,True,True,1.46,True,0.1153846154,him,including_stopped
+fef7c2f6-6938-4a94-8909-135d45b3743b,2026 IRONMAN 70.3 San Salvador,2026,30,9,7,654,21.34,True,True,5.52,True,0.3,him,including_stopped
+ec84135c-bae0-4567-be8f-d3582f16e43b,2026 IRONMAN 70.3 Swansea,2026,30,14,5,1752,21.008,True,True,8.58,True,0.4666666667,him,including_stopped
+bdb39d6d-3dcb-4c7e-b4d0-bad1efbfbbcf,2026 IRONMAN 70.3 Westfriesland,2026,31,12,9,1673,20.6,True,True,2.98,True,0.3870967742,him,including_stopped
+b753115b-701a-420d-8e61-b6c642333303,2026 IRONMAN 70.3 World Championship - Men,2026,40,0,13,3162,21.0293,True,False,1.79,True,0.525,him,including_stopped
+a199a3a5-6674-e611-9410-005056951bf1,2017 IRONMAN World Championship,2017,71,16,13,2234,42.16,True,True,4.71,True,0.2253521127,im,including_stopped
+ecb0249c-925a-e711-9418-005056951bf1,2018 IRONMAN Austria,2018,107,23,11,2315,42.2,True,True,1.5,True,0.214953271,im,including_stopped
+b51269e6-49a5-e711-9419-005056951bf1,2018 IRONMAN Barcelona,2018,96,12,7,2470,42.2,True,True,1.6,True,0.125,im,including_stopped
+94ddc8cf-1a4a-e711-9418-005056951bf1,2018 IRONMAN Brazil,2018,32,16,4,1798,42.2,True,True,13,True,0.5,im,including_stopped
+10a0b97c-9152-e711-9418-005056951bf1,2018 IRONMAN Cairns,2018,41,0,9,965,42.2,True,False,4.5,True,0.1951219512,im,including_stopped
+324aba02-08a2-e711-9419-005056951bf1,2018 IRONMAN Chattanooga,2018,184,14,8,1909,42.16,True,True,3.22,True,0.07608695652,im,including_stopped
+2f9635a9-4187-e711-9419-005056951bf1,2018 IRONMAN Copenhagen,2018,62,2,16,2247,42.2,True,True,2.4,True,0.03225806452,im,including_stopped
+ad41c04d-cdb5-e711-941b-005056951bf1,2018 IRONMAN Cozumel,2018,74,9,6,1490,42.2,True,True,7,True,0.1216216216,im,including_stopped
+98f707e1-c6a2-e711-9419-005056951bf1,2018 IRONMAN Emilia Romagna,2018,145,40,9,2078,42.2,True,True,4.4,True,0.275862069,im,including_stopped
+eed3d75c-c961-e711-9418-005056951bf1,2018 IRONMAN European Championship Frankfurt,2018,179,22,20,2267,42.2,True,True,3.1,True,0.1229050279,im,including_stopped
+3d59d1a9-abc5-e711-941b-005056951bf1,2018 IRONMAN Florida,2018,117,4,21,1654,42.16,True,True,1.42,True,0.03418803419,im,including_stopped
+2762e142-1972-e711-9418-005056951bf1,2018 IRONMAN France,2018,79,8,9,2387,42.2,True,True,5.25,True,0.1012658228,im,including_stopped
+bb2effd1-35bf-e711-941b-005056951bf1,2018 IRONMAN Gurye Korea,2018,40,0,8,1262,42,True,False,5.1,True,0.15,im,including_stopped
+7ae98e84-f680-e711-9418-005056951bf1,2018 IRONMAN Hamburg,2018,93,18,11,1974,42.2,True,True,4.1,True,0.1935483871,im,including_stopped
+77b45a74-3f87-e711-9419-005056951bf1,2018 IRONMAN Kalmar-Sweden,2018,68,3,14,2009,42.2,True,True,1.5,True,0.04411764706,im,including_stopped
+1a8af6a6-1072-e711-9418-005056951bf1,2018 IRONMAN Lake Placid,2018,53,4,6,2091,42.2,True,True,13.2,True,0.07547169811,im,including_stopped
+0b67a500-a544-e811-941e-005056951bf1,2018 IRONMAN Malaysia,2018,66,0,7,980,42.2,True,False,8,True,0.07575757576,im,including_stopped
+9ba75f9b-f6ac-e711-9419-005056951bf1,2018 IRONMAN Maryland,2018,42,1,15,1380,42.16,True,True,2.43,True,0.02380952381,im,including_stopped
+7f57d401-9352-e711-9418-005056951bf1,2018 IRONMAN North American Championship Texas,2018,120,15,15,2355,42.16,True,True,2.8,True,0.125,im,including_stopped
+03194d68-0831-e711-9415-005056951bf1,2018 IRONMAN South Africa,2018,49,9,14,1720,42.2,True,True,2.6,True,0.1836734694,im,including_stopped
+1fbbeca2-cc61-e711-9418-005056951bf1,2018 IRONMAN Subic Bay Philippines,2018,52,6,8,1082,42.2,True,True,8.79,True,0.1153846154,im,including_stopped
+570945c8-d893-e711-9419-005056951bf1,2018 IRONMAN Vichy,2018,46,4,13,1281,41.6,True,True,3.5,True,0.08695652174,im,including_stopped
+9c1ad20a-5c99-e711-9419-005056951bf1,2018 IRONMAN Wales,2018,34,1,12,2046,42.2,True,True,3.8,True,0.02941176471,im,including_stopped
+406b4079-5c99-e711-9419-005056951bf1,2018 IRONMAN Wisconsin,2018,42,9,7,1928,42.16,True,True,6.81,True,0.2142857143,im,including_stopped
+19c48b66-758e-e711-9419-005056951bf1,2018 IRONMAN World Championship,2018,39,0,13,2306,42.16,True,False,5.86,True,0.05128205128,im,including_stopped
+ac3dcc5f-c047-e811-941e-005056951bf1,2019 IRONMAN African Championship South Africa,2019,32,1,10,1671,42.2,True,True,2.6,True,0.03125,im,including_stopped
+5a58f70f-df7a-e811-941f-005056951bf1,2019 IRONMAN Austria,2019,98,28,14,2490,42.2,True,True,3.2,True,0.2857142857,im,including_stopped
+c4cc10f9-88b6-e811-a967-000d3a37468c,2019 IRONMAN Barcelona,2019,72,9,9,2772,42.2,True,True,1.6,True,0.125,im,including_stopped
+e9a0289c-7a72-e811-941f-005056951bf1,2019 IRONMAN Cairns,2019,44,5,17,1070,41.5,True,True,4.5,True,0.1590909091,im,including_stopped
+acdabbde-4ec6-e811-a96a-000d3a35f53a,2019 IRONMAN Chattanooga,2019,155,7,10,1359,42.4545,True,True,7.5,True,0.1419354839,im,including_stopped
+d7b6268d-64a5-e811-a966-000d3a37468c,2019 IRONMAN Copenhagen,2019,63,3,13,2556,42.2,True,True,2.9,True,0.04761904762,im,including_stopped
+f1489aae-cc44-e811-941e-005056951bf1,2019 IRONMAN Cozumel,2019,87,15,6,1557,42.2,True,True,7,True,0.1724137931,im,including_stopped
+f2f381dd-edc0-e811-a96d-000d3a364086,2019 IRONMAN Emilia Romagna,2019,89,5,14,2561,42.2,True,True,4.8,True,0.191011236,im,including_stopped
+9201dd9a-e17a-e811-941f-005056951bf1,2019 IRONMAN European Championship Frankfurt,2019,452,112,20,2025,42.2,True,True,1.8,True,0.2477876106,im,including_stopped
+5694d9df-c3e1-e811-a965-000d3a3749bc,2019 IRONMAN Florida,2019,65,6,14,2283,42.4867,True,True,2.3,True,0.09230769231,im,including_stopped
+3f7d3002-207a-e811-941f-005056951bf1,2019 IRONMAN France,2019,101,25,6,2286,30,True,True,5,True,0.2475247525,im,including_stopped
+03b71de8-0795-e811-9421-005056951bf1,2019 IRONMAN Hamburg,2019,118,9,11,2006,42.2,True,True,4.1,True,0.07627118644,im,including_stopped
+e0911607-66a5-e811-a966-000d3a37468c,2019 IRONMAN Kalmar-Sweden,2019,62,3,13,2161,42.2,True,True,1.9,True,0.04838709677,im,including_stopped
+b913a822-3764-e811-941e-005056951bf1,2019 IRONMAN Lanzarote,2019,58,18,8,1360,41.8,True,True,5.16,True,0.3103448276,im,including_stopped
+30ae2cd8-5e3b-e911-a96d-000d3a3740b7,2019 IRONMAN Malaysia,2019,77,3,12,982,42.2,True,True,2.8,True,0.05194805195,im,including_stopped
+96950619-4ac6-e811-a96a-000d3a35f53a,2019 IRONMAN Maryland,2019,89,5,18,1726,41.7786,True,True,2.17,True,0.05617977528,im,including_stopped
+033e4941-e422-e811-941d-005056951bf1,2019 IRONMAN New Zealand,2019,51,0,10,1337,42.2,True,False,7.4,True,0.1176470588,im,including_stopped
+e41a9f82-c989-e811-941f-005056951bf1,2019 IRONMAN North American Championship Texas,2019,122,122,1,2045,42.16,True,True,,False,1,im,including_stopped
+cbc9793b-c1aa-e811-a961-000d3a3740b7,2019 IRONMAN Vichy,2019,105,7,18,1240,42.2,True,True,1,True,0.06666666667,im,including_stopped
+c8f3ef02-72ba-e811-a967-000d3a37468c,2019 IRONMAN Vitoria-Gasteiz,2019,69,1,11,1604,42,True,True,4.4,True,0.1014492754,im,including_stopped
+800d63c0-f5b4-e811-a964-000d3a36478d,2019 IRONMAN Wales,2019,30,0,10,1878,42.2,False,False,3.8,True,0,im,including_stopped
+9a200e74-1af7-e811-a96d-000d3a35f53a,2019 IRONMAN Western Australia,2019,44,4,8,1169,42.2,True,True,1.4,True,0.09090909091,im,including_stopped
+52455708-bcb5-e811-a967-000d3a37468c,2019 IRONMAN Wisconsin,2019,50,3,12,1825,41.8429,True,True,7.61,True,0.14,im,including_stopped
+7d5d5ba8-fd38-e911-a974-000d3a36478d,2020 IRONMAN Cozumel,2020,40,8,6,777,42.6314,True,True,6.81,True,0.2,im,including_stopped
+4c54363c-c8fc-e911-a812-000d3a5a1477,2020 IRONMAN Florida,2020,46,0,14,1146,41.2636,True,False,3.83,True,0.08695652174,im,including_stopped
+1ec4ff9e-e91f-42e0-825b-3ee0aa27cbd8,2021 IRONMAN Austria,2021,40,8,10,1032,42.2,True,True,2,True,0.2,im,including_stopped
+0c82c066-8f9e-4d6d-b8a9-a452c14dfa50,2021 IRONMAN Barcelona,2021,108,6,6,3008,42.2,True,True,1.6,True,0.05555555556,im,including_stopped
+2cceae96-8e89-4ef3-8b62-6e7aefe879f2,2021 IRONMAN Cairns,2021,30,2,14,1105,42.1,True,True,6,True,0.06666666667,im,including_stopped
+e7c5b87f-7b8b-4bfe-8989-c9f65ece83e5,2021 IRONMAN Chattanooga,2021,97,2,10,1868,42.4545,True,True,7.51,True,0.09278350515,im,including_stopped
+d475d4af-8721-4f69-949f-e8e187d5544e,2021 IRONMAN Copenhagen,2021,53,1,15,1350,42.2,True,True,1.8,True,0.01886792453,im,including_stopped
+fe5ce325-4545-4029-92d7-06b041bd3327,2021 IRONMAN Cozumel,2021,77,12,6,2209,42.1004,True,True,7.1,True,0.1558441558,im,including_stopped
+28d151b2-0f82-4945-b853-5de5b70c3fd1,2021 IRONMAN European Championship Frankfurt,2021,67,3,18,1026,42.2,True,True,1.75,True,0.0447761194,im,including_stopped
+d8df0b33-0809-4507-bcbc-611067a517ca,2021 IRONMAN Florida,2021,65,6,19,1766,41.9395,True,True,1.61,True,0.09230769231,im,including_stopped
+59b5f3e2-891e-4ef0-9d20-e301e7ad5edf,2021 IRONMAN France,2021,56,5,9,936,42.2,True,True,5,True,0.08928571429,im,including_stopped
+47af6768-2329-48da-99d0-cd6808e82204,2021 IRONMAN Hamburg,2021,31,4,9,976,42.2,True,True,4,True,0.1290322581,im,including_stopped
+a0f9d06a-82a5-4a5e-915b-f2689a03447e,2021 IRONMAN Lake Placid,2021,75,4,12,1524,42.2,True,True,2.44,True,0.05333333333,im,including_stopped
+c73a0924-d713-4926-aecf-91911f350ccf,2021 IRONMAN Lanzarote,2021,46,4,10,692,42.2,True,True,7.35,True,0.08695652174,im,including_stopped
+525754c0-dae5-4e6c-ac4f-0f034a9b1719,2021 IRONMAN Maryland,2021,93,5,19,1692,42.0039,True,True,2.14,True,0.05376344086,im,including_stopped
+d1921b2b-d5dc-4057-9887-e296c114d0ee,2021 IRONMAN Switzerland Thun,2021,35,2,9,967,42.2,True,True,2.6,True,0.05714285714,im,including_stopped
+37a255ce-58a5-4f54-a47d-d6ee047ba487,2021 IRONMAN Texas,2021,42,5,14,687,42.0522,True,True,2.64,True,0.119047619,im,including_stopped
+b875ce5c-6880-4577-ba6a-1dafc2fdd371,2021 IRONMAN Vichy,2021,38,1,15,1077,42.2,True,True,7.6,True,0.05263157895,im,including_stopped
+b57965c1-e903-4d02-a14b-1d8e14223d1d,2021 IRONMAN Vitoria-Gasteiz,2021,71,2,15,569,46.1,True,True,5.3,True,0.02816901408,im,including_stopped
+9d7fc5ab-e7ed-40fd-b46d-36eef2fe3fae,2021 IRONMAN Wisconsin,2021,108,4,9,3506,42.3579,True,True,6.94,True,0.07407407407,im,including_stopped
+0a7ac8ac-3bf4-4615-94f7-51ae16220699,2021 IRONMAN World Championship,2021,199,24,23,2325,42.2614,True,True,2.69,True,0.1206030151,im,including_stopped
+f78281c1-1732-4295-9515-cf5dac4af423,2022 IRONMAN Austria,2022,150,30,12,2171,42.2,True,True,2,True,0.2,im,including_stopped
+15d0cb98-aa9d-4bdf-8824-73820b017bf4,2022 IRONMAN Barcelona,2022,105,11,9,1838,42.2,True,True,1.7,True,0.1047619048,im,including_stopped
+d65cf230-9959-4305-89e0-1a6742d2547a,2022 IRONMAN California,2022,129,0,12,2610,42.2935,False,False,1.37,True,0,im,including_stopped
+71a620f4-b009-492e-b42d-ef4de60ef792,2022 IRONMAN Chattanooga,2022,70,4,10,1497,42.4545,True,True,7.51,True,0.1571428571,im,including_stopped
+0295e570-64dd-47d8-b244-0449ca8d1b0b,2022 IRONMAN Copenhagen,2022,64,3,12,2075,42.2,True,True,2.9,True,0.046875,im,including_stopped
+b74ca66a-5739-40c3-a2a2-31ac31615dee,2022 IRONMAN Cozumel,2022,74,16,6,1188,42.1004,True,True,7.1,True,0.2162162162,im,including_stopped
+bd315cf1-68d4-44a7-95ef-de17ef57a380,2022 IRONMAN Emilia Romagna,2022,54,5,14,2183,42.2,True,True,2.2,True,0.09259259259,im,including_stopped
+11fe6921-4571-4e19-bdf7-9c482fd64f89,2022 IRONMAN European Championship Frankfurt,2022,155,19,14,2249,42.2,True,True,1.75,True,0.1225806452,im,including_stopped
+f1d7fbf8-7bd7-44cf-bd37-9492d1eddc1e,2022 IRONMAN Florida,2022,102,5,20,1718,41.8429,True,True,1.61,True,0.04901960784,im,including_stopped
+bbe1551d-7662-49e2-85b1-1e91c4477375,2022 IRONMAN France,2022,109,17,8,1569,40.7,True,True,4.9,True,0.1559633028,im,including_stopped
+6d1bcb1f-2d6a-4d21-a16c-43c7cfd614ee,2022 IRONMAN Hamburg,2022,70,6,10,1817,42.7,True,True,4,True,0.08571428571,im,including_stopped
+8bdf6429-96d0-4873-a5bc-dd5e9fb1b09e,2022 IRONMAN Kalmar-Sweden,2022,81,3,17,1800,42.2,True,True,2,True,0.08641975309,im,including_stopped
+a008904e-57a7-4da8-a7e9-d7da56635040,2022 IRONMAN Lake Placid,2022,110,6,12,1833,42.02,True,True,4.83,True,0.1727272727,im,including_stopped
+ea0a1444-5c00-46b1-9e42-cdcbcff93030,2022 IRONMAN Lanzarote,2022,51,12,8,897,42.1,True,True,4.7,True,0.2352941176,im,including_stopped
+59b45753-2b07-4b24-a32e-2f72b7c47023,2022 IRONMAN Maryland,2022,64,2,12,1377,42.3097,True,True,2.11,True,0.03125,im,including_stopped
+18c339e7-0515-4932-bc6e-13f848d8034c,2022 IRONMAN Portugal-Cascais,2022,38,5,11,1198,42.2,True,True,3.8,True,0.1315789474,im,including_stopped
+ee41f426-f8ac-42a3-8c0c-4fd3f9fdd20b,2022 IRONMAN Switzerland Thun,2022,74,8,11,1160,42.2,True,True,2.9,True,0.1081081081,im,including_stopped
+5a04e184-d243-4bcc-bc91-bd974505e80f,2022 IRONMAN Texas,2022,146,10,17,1861,42.0522,True,True,2.64,True,0.1232876712,im,including_stopped
+ec84450a-49f0-47a7-9f23-52370d58ec19,2022 IRONMAN Vichy,2022,33,2,11,907,41.9,True,True,2.5,True,0.06060606061,im,including_stopped
+097775d2-ea7b-44da-a6f2-f7c0b064b010,2022 IRONMAN Vitoria-Gasteiz,2022,146,11,15,1438,42.3,True,True,1.05,True,0.07534246575,im,including_stopped
+bc03fa33-f1fc-4f3d-a126-19ef088bf407,2022 IRONMAN Wales,2022,55,19,10,1713,42.3,True,True,3.8,True,0.3454545455,im,including_stopped
+00d24264-8938-4a98-a10f-56dc3473e541,2022 IRONMAN Wisconsin,2022,62,5,10,1023,42.3579,True,True,2.6,True,0.08064516129,im,including_stopped
+1c0caffb-36cf-46f6-8f67-c1e7f7f428b8,2022 IRONMAN World Championship Thursday,2022,70,8,20,2319,42.6315,True,True,1.17,True,0.1142857143,im,including_stopped
+0a3940cf-3793-4d08-aa72-176a27830c3e,2023 IRONMAN Barcelona,2023,110,9,10,1955,42.2,True,True,1.7,True,0.08181818182,im,including_stopped
+53389811-79d1-4935-90b0-4b099b224b7b,2023 IRONMAN Brazil,2023,32,6,7,1307,42.076,True,True,9.2,True,0.1875,im,including_stopped
+a19ca236-64cb-4260-89b2-3235f8de33d2,2023 IRONMAN California,2023,68,0,9,2122,41.8912,False,False,1.93,True,0,im,including_stopped
+d4796fc3-d1ac-4c69-9dc8-215d1ecb3853,2023 IRONMAN Chattanooga,2023,72,4,7,1242,42.4062,True,True,11.47,True,0.2222222222,im,including_stopped
+8be47099-e69a-444b-98c5-f5be134ebacc,2023 IRONMAN Copenhagen,2023,52,2,16,1943,42.195,True,True,1.8,True,0.03846153846,im,including_stopped
+0c1a200f-69d5-46e6-98d6-c164a63a9fb9,2023 IRONMAN Cozumel,2023,94,24,5,1259,42.1004,True,True,7.1,True,0.2553191489,im,including_stopped
+811402c9-91a1-4ebb-b102-e083a44876e7,2023 IRONMAN Florida,2023,76,10,11,1820,42.0361,True,True,3.51,True,0.1315789474,im,including_stopped
+2ab0d9c7-defa-46a0-91b7-9f5e58c718cc,2023 IRONMAN France,2023,114,23,7,1416,42.2,True,True,4.9,True,0.201754386,im,including_stopped
+d1227cc7-9f5f-4175-bf31-f1dfb0fee93d,2023 IRONMAN Frankfurt,2023,103,3,17,2076,42.2,True,True,1.75,True,0.02912621359,im,including_stopped
+b3efc195-b502-4fbf-bf5b-1dd031249e25,2023 IRONMAN Hamburg,2023,78,4,12,2061,41,True,True,3.8,True,0.05128205128,im,including_stopped
+8f2109e4-6d97-494c-9d54-ea42a5666dae,2023 IRONMAN Italy Emilia Romagna,2023,102,28,11,1923,42.2,True,True,2.1,True,0.2745098039,im,including_stopped
+63ba0c5c-89e1-4646-a38c-55bda838e32a,"2023 IRONMAN Kaernten-Klagenfurt, Austria",2023,109,15,11,1887,42.2,True,True,2,True,0.1376146789,im,including_stopped
+757a8a81-51f7-4c0c-a7f7-d240e8271a73,2023 IRONMAN Lake Placid,2023,78,5,12,1676,42.02,True,True,4.83,True,0.1794871795,im,including_stopped
+98eb36dd-6a46-4a80-92ac-2b599b57516e,2023 IRONMAN Lanzarote,2023,40,5,7,843,42.2,True,True,11.8,True,0.35,im,including_stopped
+6dba0484-f141-42bb-bb95-0aac8f47844c,2023 IRONMAN Malaysia,2023,42,0,10,456,42.12,False,False,2.7,True,0,im,including_stopped
+4a35d978-53d0-4897-b718-ce8299b53a92,2023 IRONMAN Maryland,2023,58,1,15,1042,42.3579,True,True,4.22,True,0.01724137931,im,including_stopped
+ab9f0371-c93f-4256-b734-eae3c3f45bb2,2023 IRONMAN New Zealand,2023,35,3,9,708,42.2,True,True,1.2,True,0.08571428571,im,including_stopped
+d8bb4897-273e-4c7f-9a5e-a510b6fc63ca,2023 IRONMAN Portugal-Cascais,2023,51,12,6,1250,42.2,True,True,7.76,True,0.2352941176,im,including_stopped
+89d248a9-cc2e-4d96-8949-d8526f500995,2023 IRONMAN Switzerland Thun,2023,81,10,11,989,42.3,True,True,2.9,True,0.1234567901,im,including_stopped
+33c67f48-ba3c-472c-b696-2d8cad67b46e,2023 IRONMAN Texas,2023,101,4,17,1859,42.1648,True,True,2.64,True,0.06930693069,im,including_stopped
+9cfd25be-4ea6-4269-b56b-9119e6f54ad2,2023 IRONMAN Vichy,2023,48,6,14,476,42.2,True,True,2.2,True,0.125,im,including_stopped
+a6aa560d-66a2-473c-ae0a-d6be004b8372,2023 IRONMAN Vitoria-Gasteiz,2023,53,1,14,1142,42.3,True,True,1.05,True,0.01886792453,im,including_stopped
+6efe6715-269e-491c-99a0-f86817a4d2b9,2023 IRONMAN Wales,2023,42,9,7,1634,42.2,True,True,3.8,True,0.2142857143,im,including_stopped
+f81b2e11-ec16-43ac-941b-4386106a9a28,2023 IRONMAN Wisconsin,2023,56,7,11,1067,42.1648,True,True,2.74,True,0.125,im,including_stopped
+c0a881f6-dead-4fdf-9dd3-cebd6fa4b83b,2024 IRONMAN Cairns,2024,33,2,17,887,42.313,True,True,1.26,True,0.06060606061,im,including_stopped
+8613dae2-83f4-4dcd-b7db-deb752f5cd90,2024 IRONMAN Calella-Barcelona,2024,78,3,13,2741,42.07,True,True,1.7,True,0.03846153846,im,including_stopped
+ae0e5d71-3d79-4515-a179-11f044dccb61,2024 IRONMAN California,2024,86,4,9,2433,41.4728,True,True,4.97,True,0.1046511628,im,including_stopped
+f7ea583a-e06f-4f4d-a19e-bfa325dce97c,2024 IRONMAN Copenhagen,2024,36,2,13,2373,42.489,True,True,1.1,True,0.05555555556,im,including_stopped
+9af45ff9-1802-4aa5-88bc-0090d1df6513,2024 IRONMAN Cozumel,2024,48,6,6,1071,42.1648,True,True,6.76,True,0.125,im,including_stopped
+fea6dadb-93a9-42c9-ba4e-3dfc6d024b22,2024 IRONMAN Emilia Romagna,2024,75,13,12,2244,42.2,True,True,2.14,True,0.1733333333,im,including_stopped
+af3f560c-494c-464d-9ed9-c0fbd05ef73b,2024 IRONMAN Florida,2024,67,7,11,1500,42.0361,True,True,3.51,True,0.2089552239,im,including_stopped
+66511861-b71e-44fd-8c65-cd282323354c,2024 IRONMAN France Nice,2024,74,11,13,1893,43.125,True,True,2.38,True,0.1486486486,im,including_stopped
+d3e4c293-9d14-4be0-9167-d9f6b886f26d,2024 IRONMAN Frankfurt,2024,81,6,15,2213,42.86,True,True,3.11,True,0.07407407407,im,including_stopped
+7aeeee79-b2fc-4bbd-b723-cc1193bde63f,2024 IRONMAN Hamburg,2024,60,9,10,2338,42.012,True,True,3.92,True,0.15,im,including_stopped
+74f7a320-3cb3-4e1f-a860-faebaa6e0e61,"2024 IRONMAN Kaernten-Klagenfurt, Austria",2024,70,4,12,2650,42.262,True,True,1.2,True,0.05714285714,im,including_stopped
+9ca4223e-fee3-4583-a796-4f360a13cfc4,2024 IRONMAN Kalmar-Sweden,2024,48,3,15,1825,42.6,True,True,1,True,0.0625,im,including_stopped
+708d7255-c4fa-4ed2-96a4-5a350f1dacb0,2024 IRONMAN Lake Placid,2024,75,3,18,2156,42.3418,True,True,3.75,True,0.06666666667,im,including_stopped
+182022fd-4f7a-41b1-a636-b3d6da402ec3,2024 IRONMAN Lanzarote,2024,39,10,4,900,42.634,True,True,15.4,True,0.2564102564,im,including_stopped
+03dfe11c-4973-41e1-8489-89ad1af4e3bc,2024 IRONMAN Malaysia,2024,36,2,14,454,42.12,True,True,2.7,True,0.08333333333,im,including_stopped
+d4fd21c6-c504-42fa-b9a6-bfa3e66231bb,2024 IRONMAN Maryland,2024,46,3,14,1082,42.3579,True,True,2.11,True,0.0652173913,im,including_stopped
+c446d5ec-661d-4d03-9e9c-08c821027476,2024 IRONMAN Switzerland Thun,2024,30,3,11,1292,42.286,True,True,2.89,True,0.1,im,including_stopped
+86a0e55c-989f-4d25-bfff-cfb49e044797,2024 IRONMAN Texas,2024,151,15,20,2302,42.4545,True,True,2.86,True,0.1456953642,im,including_stopped
+c5770170-0d51-4d0e-a6f5-c2a35a7b48b0,2024 IRONMAN Vitoria-Gasteiz,2024,95,6,19,1401,41.69,True,True,1.02,True,0.09473684211,im,including_stopped
+cf78e723-848d-4d18-be36-1a83174549af,2024 IRONMAN Wales,2024,55,12,10,1643,42.2,True,True,3.51,True,0.2181818182,im,including_stopped
+2589106a-7c4e-4218-9922-fc5443c1b29e,2024 IRONMAN Wisconsin,2024,48,3,14,1224,42.2775,True,True,2.24,True,0.0625,im,including_stopped
+633f40fa-698f-4380-bb5f-9b50fe173849,2025 IRONMAN Calella-Barcelona,2025,47,2,13,2440,42.048,True,True,1.77,True,0.04255319149,im,including_stopped
+1fc58eb1-18fc-417d-bd3b-5aa674132777,2025 IRONMAN California,2025,65,12,8,2336,41.4728,True,True,5.68,True,0.1846153846,im,including_stopped
+4435b4ed-8e34-4703-9a77-50e43201412b,2025 IRONMAN Canada-Ottawa,2025,67,3,14,1911,42.1004,True,True,1.85,True,0.0447761194,im,including_stopped
+eecbddcc-fec9-4c52-ab35-28f77cb1c81b,2025 IRONMAN Chattanooga,2025,97,4,13,1351,42.0683,True,True,5.1,True,0.0824742268,im,including_stopped
+e76951cf-c3df-4295-8cee-a41b118a33ff,2025 IRONMAN Copenhagen,2025,36,0,13,2449,42.599,True,False,1.65,True,0.02777777778,im,including_stopped
+f35fbd8f-28bd-4dbb-b940-1b7e1dff7117,2025 IRONMAN Cozumel,2025,73,13,5,1457,42.1648,True,True,6.76,True,0.1780821918,im,including_stopped
+261dd41f-3a15-4684-bbe4-1a0284bad7e5,2025 IRONMAN Emilia Romagna,2025,102,16,19,2227,42.2,True,True,2.14,True,0.1568627451,im,including_stopped
+83af8238-4ace-4d88-a3d3-0371f9b88294,2025 IRONMAN Florida,2025,47,1,11,1482,42.0361,True,True,3.51,True,0.1276595745,im,including_stopped
+f3a6cf4c-e9d5-4c6f-a425-86b3b8ba0524,2025 IRONMAN France Nice,2025,112,12,15,1466,41.2,True,True,2.3,True,0.1071428571,im,including_stopped
+dcfae363-4480-4c9c-b8af-bbdeea0b00ef,2025 IRONMAN Frankfurt,2025,135,9,17,2195,42.86,True,True,1.74,True,0.06666666667,im,including_stopped
+b25a3825-7c68-4442-a4d2-ea887b2fb50e,2025 IRONMAN Hamburg,2025,73,14,10,2346,42.133,True,True,3.95,True,0.1917808219,im,including_stopped
+9526bfb3-167a-4fa4-9808-39753c55eb90,2025 IRONMAN Japan South Hokkaido,2025,47,3,10,1077,42.2,True,True,3.6,True,0.06382978723,im,including_stopped
+9e9018ff-c307-447c-a26c-5927df800fdd,"2025 IRONMAN Kaernten-Klagenfurt, Austria",2025,125,10,12,2265,42.352,True,True,1.28,True,0.08,im,including_stopped
+b5c5197c-0040-425d-93f7-fa5d0c4edf8e,2025 IRONMAN Kalmar-Sweden,2025,52,0,14,2027,42.3,False,False,1,True,0,im,including_stopped
+b22a23ca-da28-464a-9dbe-89d86510c4ab,2025 IRONMAN Lake Placid,2025,38,2,13,1979,42.3418,True,True,7.64,True,0.1052631579,im,including_stopped
+15de8d69-e94d-4fff-b456-97da49f8d00d,2025 IRONMAN Lanzarote,2025,43,16,8,883,42.03,True,True,5.6,True,0.3720930233,im,including_stopped
+d6047ad1-824f-45a2-b70c-a757cc9ea609,2025 IRONMAN Les Sables d'Olonne-Vendee,2025,41,8,10,2557,42.05,True,True,2.93,True,0.1951219512,im,including_stopped
+93ffab28-3521-4d33-904b-97b02f5cc40e,2025 IRONMAN Malaysia,2025,35,1,13,610,42.12,True,True,2.7,True,0.08571428571,im,including_stopped
+a407a3d4-6076-441c-abac-be93484f40a8,2025 IRONMAN Portugal-Cascais,2025,55,15,8,1407,42.19,True,True,7.6,True,0.2727272727,im,including_stopped
+e9345d08-ebd3-481d-948f-2cb3b9833189,2025 IRONMAN Switzerland Thun,2025,53,5,18,1452,42.286,True,True,4.92,True,0.09433962264,im,including_stopped
+0a34c991-b758-4d40-bf60-d6138ed86336,2025 IRONMAN Texas,2025,122,5,28,1799,42.2704,True,True,1.66,True,0.04098360656,im,including_stopped
+78cc342f-5383-4d91-8299-fb7f0ec0339a,2025 IRONMAN Vitoria-Gasteiz,2025,62,1,19,1466,41.69,True,True,1.02,True,0.03225806452,im,including_stopped
+2a497ecb-1f5e-49b0-ad8e-f44dfd891922,2025 IRONMAN Wales,2025,49,14,10,1659,42.2,True,True,3.51,True,0.2857142857,im,including_stopped
+f87c8bbe-cb97-4f2c-83a7-e25d629870b1,2026 IRONMAN Cairns,2026,33,2,17,1078,42.313,True,True,2.48,True,0.06060606061,im,including_stopped
+bf442555-30b5-4228-bfa4-5f8e621b6dd4,2026 IRONMAN Canada-Ottawa,2026,42,1,13,2314,43.3074,True,True,1.77,True,0.02380952381,im,including_stopped
+002a44d9-34a7-4f44-bb46-dc254e3fcee9,2026 IRONMAN Chattanooga,2026,46,1,10,1184,42.0683,True,True,1.95,True,0.02173913043,im,including_stopped
+be0a788d-bcd7-4710-a756-fb096a5e1591,2026 IRONMAN Hamburg,2026,56,9,9,2214,42.151,True,True,3.9,True,0.1607142857,im,including_stopped
+29e186db-f6bc-4393-93cd-992737521f2a,2026 IRONMAN Italy Emilia Romagna,2026,74,19,18,2476,42.2,True,True,2,True,0.2567567568,im,including_stopped
+5ff2cb61-c76e-45d4-963f-25ee7280977f,2026 IRONMAN Jacksonville,2026,77,3,11,1290,41.9395,True,True,3.14,True,0.03896103896,im,including_stopped
+389379d7-4d81-45fc-a8f7-ddf825780d2c,2026 IRONMAN Japan South Hokkaido,2026,34,3,8,1110,42.2,True,True,3.6,True,0.08823529412,im,including_stopped
+96ad7c20-c2be-4b96-acf1-430bb12f348d,"2026 IRONMAN Kaernten-Klagenfurt, Austria",2026,88,8,13,2606,42.352,True,True,1.35,True,0.09090909091,im,including_stopped
+59f3b68c-c706-4a5c-b028-3ed9389d5422,2026 IRONMAN Kalmar-Sweden,2026,85,9,16,2456,42.5,True,True,1,True,0.1058823529,im,including_stopped
+a20c39b2-2f1b-40dc-ae85-3e2f41e5ab07,2026 IRONMAN Lake Placid,2026,55,4,16,1947,42.3418,True,True,3.75,True,0.1818181818,im,including_stopped
+9bbac2c1-3eeb-4086-956e-c58892513a89,2026 IRONMAN Lanzarote,2026,55,15,8,1102,42.03,True,True,5.6,True,0.2727272727,im,including_stopped
+46e754db-2cb0-4a75-b9ad-2b9d0140a90e,2026 IRONMAN Maryland,2026,50,4,18,1266,42.4545,True,True,2.11,True,0.08,im,including_stopped
+d7a58ffe-52bb-47a3-bc71-8c243ea143ec,2026 IRONMAN New Zealand,2026,35,0,15,995,41.941,False,False,1.43,True,0,im,including_stopped
+864fb423-8283-471e-bb2d-b032050f853a,2026 IRONMAN Penghu,2026,34,3,15,564,42.2,True,True,2.1,True,0.08823529412,im,including_stopped
+89d3cdad-317c-471e-9325-32cf4bce3fde,2026 IRONMAN South Africa,2026,30,2,8,783,42.61,True,True,2.5,True,0.06666666667,im,including_stopped
+3b3bd0bd-a1ce-4c96-85e6-cf6eff6cf31f,2026 IRONMAN Switzerland Thun,2026,63,4,17,1931,42.286,True,True,4.92,True,0.06349206349,im,including_stopped
+48b74ff4-543a-4a3d-b1e5-937a91902e9b,2026 IRONMAN Tallinn,2026,55,6,11,1565,42.236,True,True,3.98,True,0.1090909091,im,including_stopped
+31e73a5b-a79d-4847-9083-8dd15cc242b3,2026 IRONMAN Texas,2026,54,5,18,2217,43.5488,True,True,5.71,True,0.09259259259,im,including_stopped
+8cefb85b-a803-48be-af51-e0285a8dd11c,2026 IRONMAN Tours Metropole - Loire Valley,2026,126,2,15,2587,42.13,True,True,3.37,True,0.126984127,im,including_stopped
+c087c96c-783f-4142-bc21-52d4cfc31532,2026 IRONMAN Vichy,2026,36,2,10,901,41.08,True,True,6.35,True,0.2222222222,im,including_stopped
+0418e60d-ca78-4f73-a2c2-76816190d293,2026 IRONMAN Vietnam,2026,39,2,11,710,42.0865,True,True,2.46,True,0.05128205128,im,including_stopped
+96a2ed72-934a-4942-b8e8-d483e286e1c1,2026 IRONMAN Vitoria-Gasteiz,2026,117,7,24,1233,42.276,True,True,2.9,True,0.1709401709,im,including_stopped
+c116f798-7f84-4d9c-a513-2603642b90ce,2026 IRONMAN Wales,2026,54,27,10,1944,42.2,True,True,3.51,True,0.5,im,including_stopped
+d168bf62-9088-4d48-b46a-9c6f968f24da,2026 IRONMAN World Championship,2026,55,3,20,2266,42.2891,True,True,1.15,True,0.05454545455,im,including_stopped
+2f990751-bf20-e511-9403-005056951bf1,2016 IRONMAN 70.3 Mallorca,2016,31,14,7,2565,21.1,True,True,3.1,True,0.4516129032,him,main
+49a595a5-fb4f-e511-9409-005056951bf1,2016 IRONMAN 70.3 Vichy,2016,44,3,6,1661,20.6,True,True,3.5,True,0.06818181818,him,main
+634e0277-52a4-e711-9419-005056951bf1,2018 IRONMAN 70.3 Asia-Pacific Championship Philippines,2018,41,4,6,1358,21.1,True,True,1,True,0.09756097561,him,main
+34400ea4-e6d6-e711-941b-005056951bf1,2018 IRONMAN 70.3 Augusta,2018,70,19,10,2668,21.08,True,True,1.77,True,0.2714285714,him,main
+39f3f709-13a2-e711-9419-005056951bf1,2018 IRONMAN 70.3 Boulder,2018,76,21,5,1921,21.1,True,True,4.9,True,0.2763157895,him,main
+fc62c23f-9b5a-e711-9418-005056951bf1,2018 IRONMAN 70.3 Campeche,2018,46,3,4,620,21.1,True,True,5.3,True,0.0652173913,him,main
+ca18f3c5-c2aa-e811-a961-000d3a3740b7,2018 IRONMAN 70.3 Cartagena,2018,63,8,6,1629,21.1,True,True,4.8,True,0.126984127,him,main
+338960da-71a7-e711-9419-005056951bf1,2018 IRONMAN 70.3 Cozumel,2018,33,7,4,1654,21.1,True,True,5.5,True,0.2121212121,him,main
+8b625e16-3e87-e711-9419-005056951bf1,2018 IRONMAN 70.3 Jonkoping,2018,32,5,8,1792,21.1,True,True,4.1,True,0.25,him,main
+df4e2f37-066b-e711-9418-005056951bf1,2018 IRONMAN 70.3 Mallorca,2018,65,14,6,2771,21.2,True,True,2,True,0.2153846154,him,main
+a75a0f1e-c5ad-e711-9419-005056951bf1,2018 IRONMAN 70.3 Nice,2018,49,19,4,2082,21.1,True,True,5.25,True,0.387755102,him,main
+a06af767-c26b-e711-9418-005056951bf1,2018 IRONMAN 70.3 Pays D'Aix,2018,44,16,6,1477,21.1,True,True,1.8,True,0.3636363636,him,main
+c133282d-6699-e711-9419-005056951bf1,2018 IRONMAN 70.3 Puerto Rico,2018,37,2,5,501,21.1,True,True,5.55,True,0.1351351351,him,main
+9bc13d16-9277-e711-9418-005056951bf1,2018 IRONMAN 70.3 Switzerland,2018,78,17,6,1953,21,True,True,3.7,True,0.2179487179,him,main
+a9375cc6-40ca-e711-941b-005056951bf1,2018 IRONMAN 70.3 Waco,2018,42,4,7,2096,21.08,True,True,4.44,True,0.09523809524,him,main
+6d575ec6-9303-e911-a968-000d3a3749bc,2019 IRONMAN 70.3 Augusta,2019,78,13,7,2584,21.0824,True,True,2.12,True,0.1666666667,him,main
+ae7ad45a-52b7-e811-a967-000d3a37468c,2019 IRONMAN 70.3 Boulder,2019,65,65,1,1982,21.08,True,True,,False,1,him,main
+56367699-dd91-e811-941f-005056951bf1,2019 IRONMAN 70.3 Chattanooga,2019,31,31,1,2747,21.08,True,True,,False,1,him,main
+6acabb00-4cc6-e811-a96a-000d3a35f53a,2019 IRONMAN 70.3 Cozumel,2019,59,19,4,1495,20.9557,True,True,5.23,True,0.3220338983,him,main
+105fb91d-18b8-e811-a967-000d3a37468c,2019 IRONMAN 70.3 Ecuador,2019,69,69,1,1068,21.1,True,True,,False,1,him,main
+7284cebd-4cfd-e811-a968-000d3a3749bc,2019 IRONMAN 70.3 Goa,2019,32,1,4,678,21.1,True,True,7.1,True,0.03125,him,main
+a752822c-a2b2-e811-a96c-000d3a364086,2019 IRONMAN 70.3 Les Sables d'Olonne,2019,40,11,8,2338,21.1,True,True,2.5,True,0.275,him,main
+8a6c6181-04f7-e811-a96d-000d3a35f53a,2019 IRONMAN 70.3 Los Cabos,2019,31,13,4,640,20.99,True,True,7.28,True,0.4193548387,him,main
+7a74a065-c889-e811-941f-005056951bf1,2019 IRONMAN 70.3 Mallorca,2019,76,16,9,2832,21.05,True,True,1.95,True,0.2631578947,him,main
+e39cd8e5-6e80-e811-941f-005056951bf1,2019 IRONMAN 70.3 Oceanside California,2019,60,60,1,2360,21.08,True,True,,False,1,him,main
+a0b5b8d6-52b7-e811-a967-000d3a37468c,2019 IRONMAN 70.3 Ohio,2019,34,34,1,1883,21.08,True,True,,False,1,him,main
+0110bd42-ef94-e811-9421-005056951bf1,2019 IRONMAN 70.3 Switzerland,2019,53,8,5,2064,21,True,True,3.7,True,0.1509433962,him,main
+09df055b-5eb7-e811-a967-000d3a37468c,2019 IRONMAN 70.3 Traverse City,2019,46,6,10,2141,21.0985,True,True,1.69,True,0.152173913,him,main
+8bf835cd-4cc6-e811-a96a-000d3a35f53a,2019 IRONMAN 70.3 Vichy,2019,37,0,6,1698,21.1,False,False,1,True,0,him,main
+c9ad8486-9403-e911-a968-000d3a3749bc,2019 IRONMAN 70.3 Waco,2019,38,8,9,2127,21.0824,True,True,3.35,True,0.2105263158,him,main
+fc99809f-4dc6-e811-a96a-000d3a35f53a,2019 IRONMAN 70.3 Zell am See Kaprun,2019,39,10,4,2076,21,True,True,2.8,True,0.2564102564,him,main
+72c4014d-3c77-465f-9a2f-d9477cf5b146,2021 IRONMAN 70.3 Acapulco,2021,36,3,5,896,21.097,True,True,10.6,True,0.3055555556,him,main
+d5abbfc1-778d-47d8-9048-ea36a75fb885,2021 IRONMAN 70.3 Chattanooga,2021,39,2,9,1998,21.0824,True,True,1.13,True,0.1794871795,him,main
+93463968-5ae1-470a-81b4-e4a5f480306e,2021 IRONMAN 70.3 Cozumel Day 1,2021,40,8,4,1228,20.9557,True,True,5.23,True,0.2,him,main
+951360a4-3212-4a21-b99d-69bfb52d8215,2021 IRONMAN 70.3 Des Moines,2021,54,3,11,2347,21.1,True,True,3.15,True,0.07407407407,him,main
+819cd3fb-05a8-490c-adba-4d3001009339,2021 IRONMAN 70.3 Florida,2021,41,1,9,1237,21.2594,True,True,4.78,True,0.2195121951,him,main
+ecbcba01-8dbc-4765-8b40-c9c918f6be8a,2021 IRONMAN 70.3 Hawaii,2021,41,5,8,1078,21.2916,True,True,1.71,True,0.1219512195,him,main
+e1fbebe0-53f7-473c-ab44-40441dc2f557,2021 IRONMAN 70.3 Indian Wells La Quinta,2021,44,9,7,1549,21.3238,True,True,2.48,True,0.2045454545,him,main
+e22bebf3-f9cd-486a-8e53-270daeb02b59,2021 IRONMAN 70.3 Michigan,2021,40,14,8,3706,21.0341,True,True,2.46,True,0.4,him,main
+822c0309-8267-41e7-9d66-b4745e64fe2c,2021 IRONMAN 70.3 North Carolina,2021,40,12,6,3991,21.1468,True,True,1.19,True,0.3,him,main
+4836a4d3-7fbf-47dd-bf87-f6a6274cc9ff,2021 IRONMAN 70.3 Ohio,2021,35,5,5,1850,21.0663,True,True,3.64,True,0.1428571429,him,main
+76d2a06a-898b-4a43-a071-daaa37661f1e,2021 IRONMAN 70.3 Texas,2021,30,3,10,1743,21.7758,True,True,1.15,True,0.1,him,main
+974f44a5-ce5f-45be-aab8-1446cc3e5fd8,2021 IRONMAN 70.3 Waco,2021,78,18,7,3056,21.9032,True,True,4.72,True,0.2307692308,him,main
+1f0e33db-974b-4695-880d-f45cd34da2cb,2022 IRONMAN 70.3 Boulder,2022,66,14,8,1929,21.0824,True,True,2.7,True,0.3333333333,him,main
+71539573-68ac-483e-8ac6-b313cbfd42b0,2022 IRONMAN 70.3 Cartagena,2022,65,2,7,1652,21,True,True,5.38,True,0.07692307692,him,main
+8980bc3f-3694-4e37-b53f-d2378a26d7c9,2022 IRONMAN 70.3 Chattanooga,2022,67,5,11,2754,21.0824,True,True,1.13,True,0.1343283582,him,main
+d1a8bafe-7cb8-4043-9825-6a83ae768ea4,2022 IRONMAN 70.3 Coeur d'Alene,2022,39,6,5,2094,21.2434,True,True,3.46,True,0.1538461538,him,main
+f0a465d0-1b05-4bce-8b5d-e885a9e17997,2022 IRONMAN 70.3 Cozumel,2022,68,8,5,1704,20.9557,True,True,5.23,True,0.1176470588,him,main
+c9e159db-5f88-4cff-ac20-a06e4a8f8ea5,2022 IRONMAN 70.3 European Championship Elsinore,2022,45,3,7,2039,21.1,True,True,1.8,True,0.06666666667,him,main
+eb94f177-ed20-4fb1-80e7-3ac0e69d848a,2022 IRONMAN 70.3 Hawaii,2022,57,6,7,1244,21.2916,True,True,3.64,True,0.1052631579,him,main
+d978fa3e-b272-42e3-b544-7b4cfae73c1e,2022 IRONMAN 70.3 Indian Wells La Quinta,2022,35,4,6,1560,20.9376,True,True,2.75,True,0.1142857143,him,main
+640c30e8-d501-4d7c-8df8-15a6765adf74,2022 IRONMAN 70.3 Kenting,2022,49,12,6,696,20.75,True,True,7,True,0.2448979592,him,main
+02aef019-3e37-4afc-ae97-df7ba4f8a90e,2022 IRONMAN 70.3 Los Cabos,2022,37,11,7,939,20.99,True,True,4.81,True,0.2972972973,him,main
+8778c3e9-e5df-4279-bf51-bb00ef54be82,2022 IRONMAN 70.3 Luxembourg,2022,159,45,8,1879,21.1,True,True,3.1,True,0.2830188679,him,main
+f29efe58-05b8-4106-9c17-704fc2d80208,2022 IRONMAN 70.3 Mallorca,2022,53,12,9,2714,21.1,True,True,1.5,True,0.2452830189,him,main
+e67aa96d-bb2a-41f5-97d0-e3e5a9ed33f1,2022 IRONMAN 70.3 Mont-Tremblant,2022,42,16,5,1751,21.0824,True,True,3.85,True,0.380952381,him,main
+42e17e72-c272-41b6-8f47-f1e3d01b7a60,2022 IRONMAN 70.3 Oceanside,2022,43,3,9,2388,21.1468,True,True,2.11,True,0.2558139535,him,main
+604be70b-5d68-4166-b12b-2501183175d0,2022 IRONMAN 70.3 Ohio,2022,33,2,9,1390,21.1146,True,True,1.75,True,0.06060606061,him,main
+f3092057-1f84-447c-a909-2abf4c229445,2022 IRONMAN 70.3 Pays D'Aix,2022,31,9,8,1808,21.5,True,True,2.7,True,0.4193548387,him,main
+6dbd5095-1cd9-40fc-a069-c02ce455dc85,2022 IRONMAN 70.3 Puerto Rico,2022,40,17,4,1006,21.0825,True,True,5.49,True,0.425,him,main
+3b12b880-6fdb-45aa-99e9-29e1099143e4,2022 IRONMAN 70.3 Switzerland,2022,91,18,5,1603,21.1,True,True,3.4,True,0.1978021978,him,main
+459ee5b4-7fe7-44ee-8992-1bdd7743bc46,2022 IRONMAN 70.3 Texas,2022,33,3,12,2073,21.4526,True,True,3.54,True,0.2727272727,him,main
+a25be991-163a-453d-88e0-ef1304602060,2023 IRONMAN 70.3 Cartagena,2023,57,5,11,1728,21,True,True,3.03,True,0.1052631579,him,main
+91fa1be8-3002-4755-a8ef-01b8254d5d44,2023 IRONMAN 70.3 Chattanooga,2023,45,12,7,2888,21.1629,True,True,3.01,True,0.2666666667,him,main
+aebbf326-0ee8-4a0b-8db2-d5186dc9c835,2023 IRONMAN 70.3 Desaru Coast,2023,46,4,4,527,21,True,True,7.3,True,0.347826087,him,main
+492f4a98-d43f-4f8d-8817-05e59893d155,2023 IRONMAN 70.3 Eagleman,2023,32,0,8,1575,21.1307,True,False,2.22,True,0.125,him,main
+7dfbd00b-2bf2-49ad-8795-065df9e6b0b0,2023 IRONMAN 70.3 Hawaii,2023,46,2,9,998,21.2916,True,True,2.61,True,0.1086956522,him,main
+8d79205d-7f75-4618-a21c-d8361b88ed69,2023 IRONMAN 70.3 Italy Emilia Romagna,2023,79,32,7,1960,21.1,True,True,2.1,True,0.4050632911,him,main
+4d9d8903-3b94-4e48-9bc0-8363186ea89d,2023 IRONMAN 70.3 Kenting,2023,36,9,3,1263,21.1,True,True,7,True,0.25,him,main
+cf9cd1bd-c45b-4b80-9e94-bb07529df6f2,2023 IRONMAN 70.3 Kraichgau,2023,33,7,8,1974,21.1,True,True,1.34,True,0.2121212121,him,main
+8b5e285b-68da-4c26-b8cc-015c01ca8fb2,2023 IRONMAN 70.3 Luxembourg,2023,85,24,8,2038,21,True,True,3.1,True,0.2823529412,him,main
+969f5eca-6c39-47d1-955c-a0868ac38a58,2023 IRONMAN 70.3 New York,2023,34,6,8,2122,21.0985,True,True,1.13,True,0.1764705882,him,main
+99f76aa0-8c0f-4638-b4f7-909c0aa300ce,2023 IRONMAN 70.3 Nice,2023,44,6,4,2274,21.1,True,True,4.9,True,0.1363636364,him,main
+10365b96-0bae-4ccc-abdc-54535af3c224,2023 IRONMAN 70.3 Oceanside,2023,36,1,10,2220,21.1468,True,True,2.11,True,0.1944444444,him,main
+d3a4fcdc-bc4e-4422-ac03-5404edcbf683,2023 IRONMAN 70.3 Pucon,2023,51,10,6,1706,21.05,True,True,3.51,True,0.1960784314,him,main
+fdd29721-a47d-408b-b6c2-4bf0934a373c,2023 IRONMAN 70.3 Switzerland,2023,43,11,6,1896,21.1,True,True,3.4,True,0.2558139535,him,main
+9aa45f7c-9da2-4540-9a5a-b129c590ad29,2023 IRONMAN 70.3 Venice-Jesolo,2023,32,12,4,2369,20.97,True,True,2.35,True,0.375,him,main
+b69d77c6-8fda-41e3-9ec9-b73d922b75a0,2023 IRONMAN 70.3 Vietnam,2023,52,4,7,1240,21.1,True,True,2,True,0.07692307692,him,main
+65614825-bc08-495a-9d77-cab42c8265ae,2024 IRONMAN 70.3 Alcúdia-Mallorca,2024,33,7,8,2919,20.83,True,True,1.43,True,0.2121212121,him,main
+61ff0d49-aa03-41d0-bf53-7f159d9baa98,2024 IRONMAN 70.3 Cartagena,2024,88,5,12,1773,21,True,True,3.03,True,0.1477272727,him,main
+c644b569-80b0-4346-ab8d-42d46b037abc,2024 IRONMAN 70.3 Chattanooga,2024,53,10,6,3212,21.1629,True,True,4.83,True,0.1886792453,him,main
+6de385b2-6587-42f3-a58b-404fe0f60ba6,2024 IRONMAN 70.3 Cozumel,2024,45,11,4,1386,21.1,True,True,5.4,True,0.2444444444,him,main
+896b1717-f2b2-4fd4-a949-b2b2805d720e,2024 IRONMAN 70.3 Desaru Coast,2024,36,1,6,516,21.1,True,True,4.2,True,0.1944444444,him,main
+df642982-5fff-4460-8470-49efcb8fdc79,2024 IRONMAN 70.3 Goa,2024,35,0,5,520,20.67,False,False,3.62,True,0,him,main
+34e8c66b-a3d1-45ea-ad3a-b2fa037034dd,2024 IRONMAN 70.3 Goseong,2024,47,11,5,1069,20.862,True,True,3.25,True,0.2340425532,him,main
+1a391ebe-5138-4e54-9bf7-b14aa90c709b,2024 IRONMAN 70.3 Italy Emilia Romagna,2024,34,8,6,2378,21.25,True,True,2.09,True,0.2352941176,him,main
+3eef74eb-c459-4eff-9c9d-827bea775793,2024 IRONMAN 70.3 Kenting,2024,64,15,3,1058,21.1,True,True,7,True,0.234375,him,main
+971c5bb8-4616-4f21-8088-46d6265733f6,2024 IRONMAN 70.3 Kraichgau,2024,32,4,10,2101,21.6,True,True,2.65,True,0.125,him,main
+fe0101d8-7150-4e0a-839f-6b81ff6af3c6,2024 IRONMAN 70.3 Louisville,2024,36,10,6,2014,21.2594,True,True,1.34,True,0.2777777778,him,main
+930b0a89-4038-4945-ac93-77eea268bf6c,2024 IRONMAN 70.3 Mossel Bay,2024,32,5,7,1375,21.1,True,True,1.8,True,0.15625,him,main
+4a1ee310-0583-4649-953c-7042c73d6aa1,2024 IRONMAN 70.3 Oregon,2024,32,6,5,2205,21.1468,True,True,1.54,True,0.1875,him,main
+e42f12ce-2366-4beb-aadf-844c9142c76f,2024 IRONMAN 70.3 Waco,2024,42,8,4,1823,21.1146,True,True,3.77,True,0.1904761905,him,main
+4db17435-c87f-45ce-b8f8-64260d4ff21f,2025 IRONMAN 70.3 Alcúdia-Mallorca,2025,32,5,11,2784,20.79,True,True,1.46,True,0.25,him,main
+e1555ad0-d967-434a-bcbd-572d8ad2e74b,2025 IRONMAN 70.3 Boulder,2025,33,2,5,1621,21.0824,True,True,2.98,True,0.06060606061,him,main
+48541b5d-87fe-4b40-a5d9-e7da104aa77d,2025 IRONMAN 70.3 Cartagena,2025,52,3,11,1805,21,True,True,2.66,True,0.2115384615,him,main
+d4ab9ef4-8b7f-43c2-a594-c432415d8f90,2025 IRONMAN 70.3 Chattanooga,2025,38,10,7,2669,21.0663,True,True,3.01,True,0.2631578947,him,main
+1a236cb2-01bb-4493-8bb9-9c1e34656adb,2025 IRONMAN 70.3 Da Nang,2025,51,1,10,1505,21.1704,True,True,1.9,True,0.01960784314,him,main
+8f32c36f-ad87-43d9-a96c-2f3bd3f610d5,2025 IRONMAN 70.3 Gulf Coast,2025,178,3,8,1258,21.0631,True,True,1.87,True,0.01685393258,him,main
+ec5433ea-4907-47f4-b2ab-b6ba296725a3,2025 IRONMAN 70.3 Italy Emilia Romagna,2025,61,21,8,2071,21.25,True,True,2.09,True,0.3442622951,him,main
+e9856ee7-7672-4552-9e27-d9ab6f6e2935,2025 IRONMAN 70.3 Luxembourg Remich - Région Moselle,2025,42,1,12,2393,21.08,True,True,1.46,True,0.2142857143,him,main
+8db1ed51-d623-4ce8-8976-e5fc25d78f39,2025 IRONMAN 70.3 Mossel Bay,2025,45,24,8,1750,21.1,True,True,4.1,True,0.5333333333,him,main
+ca5c4954-e274-4358-b921-868097a625cb,2025 IRONMAN 70.3 Musselman,2025,46,9,7,1410,22.0963,True,True,2.22,True,0.1956521739,him,main
+9718158a-07b2-4ab6-99b8-d207c74cb432,2025 IRONMAN 70.3 Nice,2025,42,9,7,2016,20.6,True,True,2.3,True,0.2142857143,him,main
+b4395fca-89f0-48c9-80ee-82bb750145ed,2025 IRONMAN 70.3 Rockford,2025,76,3,9,1763,21.5491,True,True,2.29,True,0.1578947368,him,main
+a34c72f5-d303-4b85-bd36-bcc44f46c1c7,2025 IRONMAN 70.3 Waco,2025,45,5,9,1796,21.2916,True,True,2.17,True,0.1111111111,him,main
+646075b9-b1b7-4144-b33b-8faa4ab118d5,2026 IRONMAN 70.3 Alcúdia-Mallorca,2026,31,9,10,2717,21.09,True,True,1.26,True,0.2903225806,him,main
+812bab5c-40a5-4c0e-8e9b-933902ce7035,2026 IRONMAN 70.3 Alghero,2026,36,9,9,2257,21.0696,True,True,1.4,True,0.2777777778,him,main
+82cf961d-85e6-40bb-8e86-209517a2602d,2026 IRONMAN 70.3 Chattanooga,2026,41,6,6,2498,21.0985,True,True,1.11,True,0.1463414634,him,main
+f77ac398-ef29-4c13-8fd5-06bd4cd1151b,2026 IRONMAN 70.3 Cozumel,2026,31,6,3,1635,21.1,True,True,5.4,True,0.1935483871,him,main
+70c84787-b0ca-437f-b169-834d337f9ad1,2026 IRONMAN 70.3 Dallas-Little Elm,2026,36,6,7,1685,21.2272,True,True,1.8,True,0.1666666667,him,main
+f8a995ff-b881-4d9f-b869-51426c020ba1,2026 IRONMAN 70.3 Eagleman,2026,50,7,10,2245,21.1505,True,True,2.09,True,0.14,him,main
+54d56e50-9c53-48bc-a317-86313efe3938,2026 IRONMAN 70.3 Italy Emilia Romagna,2026,56,16,10,2615,21.25,True,True,2.09,True,0.2857142857,him,main
+8abbf5d3-4be5-42a4-b40d-c2b126f9ad4d,2026 IRONMAN 70.3 Kraichgau,2026,40,16,7,2228,22.8828,True,True,3.46,True,0.4,him,main
+5552214b-c1f5-4a02-a4c1-7032d66bc903,2026 IRONMAN 70.3 Les Sables d'Olonne - Vendée,2026,34,5,6,2620,21.154,True,True,2.14,True,0.1470588235,him,main
+4a2ee31f-6dbe-427b-af1f-27692f166951,2026 IRONMAN 70.3 Luxembourg,2026,52,2,10,2167,21.08,True,True,1.46,True,0.1153846154,him,main
+fef7c2f6-6938-4a94-8909-135d45b3743b,2026 IRONMAN 70.3 San Salvador,2026,30,9,7,654,21.34,True,True,5.52,True,0.3,him,main
+ec84135c-bae0-4567-be8f-d3582f16e43b,2026 IRONMAN 70.3 Swansea,2026,30,14,5,1752,21.008,True,True,8.58,True,0.4666666667,him,main
+bdb39d6d-3dcb-4c7e-b4d0-bad1efbfbbcf,2026 IRONMAN 70.3 Westfriesland,2026,31,12,9,1673,20.6,True,True,2.98,True,0.3870967742,him,main
+b753115b-701a-420d-8e61-b6c642333303,2026 IRONMAN 70.3 World Championship - Men,2026,40,0,13,3162,21.0293,True,False,1.79,True,0.525,him,main
+a199a3a5-6674-e611-9410-005056951bf1,2017 IRONMAN World Championship,2017,71,16,13,2234,42.16,True,True,4.71,True,0.2253521127,im,main
+ecb0249c-925a-e711-9418-005056951bf1,2018 IRONMAN Austria,2018,107,23,11,2315,42.2,True,True,1.5,True,0.214953271,im,main
+b51269e6-49a5-e711-9419-005056951bf1,2018 IRONMAN Barcelona,2018,96,12,7,2470,42.2,True,True,1.6,True,0.125,im,main
+94ddc8cf-1a4a-e711-9418-005056951bf1,2018 IRONMAN Brazil,2018,32,16,4,1798,42.2,True,True,13,True,0.5,im,main
+10a0b97c-9152-e711-9418-005056951bf1,2018 IRONMAN Cairns,2018,41,0,9,965,42.2,True,False,4.5,True,0.1951219512,im,main
+324aba02-08a2-e711-9419-005056951bf1,2018 IRONMAN Chattanooga,2018,184,14,8,1909,42.16,True,True,3.22,True,0.07608695652,im,main
+2f9635a9-4187-e711-9419-005056951bf1,2018 IRONMAN Copenhagen,2018,62,2,16,2247,42.2,True,True,2.4,True,0.03225806452,im,main
+ad41c04d-cdb5-e711-941b-005056951bf1,2018 IRONMAN Cozumel,2018,74,9,6,1490,42.2,True,True,7,True,0.1216216216,im,main
+98f707e1-c6a2-e711-9419-005056951bf1,2018 IRONMAN Emilia Romagna,2018,145,40,9,2078,42.2,True,True,4.4,True,0.275862069,im,main
+eed3d75c-c961-e711-9418-005056951bf1,2018 IRONMAN European Championship Frankfurt,2018,179,22,20,2267,42.2,True,True,3.1,True,0.1229050279,im,main
+3d59d1a9-abc5-e711-941b-005056951bf1,2018 IRONMAN Florida,2018,117,4,21,1654,42.16,True,True,1.42,True,0.03418803419,im,main
+2762e142-1972-e711-9418-005056951bf1,2018 IRONMAN France,2018,79,8,9,2387,42.2,True,True,5.25,True,0.1012658228,im,main
+bb2effd1-35bf-e711-941b-005056951bf1,2018 IRONMAN Gurye Korea,2018,40,0,8,1262,42,True,False,5.1,True,0.15,im,main
+7ae98e84-f680-e711-9418-005056951bf1,2018 IRONMAN Hamburg,2018,93,18,11,1974,42.2,True,True,4.1,True,0.1935483871,im,main
+77b45a74-3f87-e711-9419-005056951bf1,2018 IRONMAN Kalmar-Sweden,2018,68,3,14,2009,42.2,True,True,1.5,True,0.04411764706,im,main
+1a8af6a6-1072-e711-9418-005056951bf1,2018 IRONMAN Lake Placid,2018,53,4,6,2091,42.2,True,True,13.2,True,0.07547169811,im,main
+0b67a500-a544-e811-941e-005056951bf1,2018 IRONMAN Malaysia,2018,66,0,7,980,42.2,True,False,8,True,0.07575757576,im,main
+9ba75f9b-f6ac-e711-9419-005056951bf1,2018 IRONMAN Maryland,2018,42,1,15,1380,42.16,True,True,2.43,True,0.02380952381,im,main
+7f57d401-9352-e711-9418-005056951bf1,2018 IRONMAN North American Championship Texas,2018,120,15,15,2355,42.16,True,True,2.8,True,0.125,im,main
+03194d68-0831-e711-9415-005056951bf1,2018 IRONMAN South Africa,2018,49,9,14,1720,42.2,True,True,2.6,True,0.1836734694,im,main
+1fbbeca2-cc61-e711-9418-005056951bf1,2018 IRONMAN Subic Bay Philippines,2018,52,6,8,1082,42.2,True,True,8.79,True,0.1153846154,im,main
+570945c8-d893-e711-9419-005056951bf1,2018 IRONMAN Vichy,2018,46,4,13,1281,41.6,True,True,3.5,True,0.08695652174,im,main
+9c1ad20a-5c99-e711-9419-005056951bf1,2018 IRONMAN Wales,2018,34,1,12,2046,42.2,True,True,3.8,True,0.02941176471,im,main
+406b4079-5c99-e711-9419-005056951bf1,2018 IRONMAN Wisconsin,2018,42,9,7,1928,42.16,True,True,6.81,True,0.2142857143,im,main
+19c48b66-758e-e711-9419-005056951bf1,2018 IRONMAN World Championship,2018,39,0,13,2306,42.16,True,False,5.86,True,0.05128205128,im,main
+ac3dcc5f-c047-e811-941e-005056951bf1,2019 IRONMAN African Championship South Africa,2019,32,1,10,1671,42.2,True,True,2.6,True,0.03125,im,main
+5a58f70f-df7a-e811-941f-005056951bf1,2019 IRONMAN Austria,2019,98,28,14,2490,42.2,True,True,3.2,True,0.2857142857,im,main
+c4cc10f9-88b6-e811-a967-000d3a37468c,2019 IRONMAN Barcelona,2019,72,9,9,2772,42.2,True,True,1.6,True,0.125,im,main
+e9a0289c-7a72-e811-941f-005056951bf1,2019 IRONMAN Cairns,2019,44,5,17,1070,41.5,True,True,4.5,True,0.1590909091,im,main
+acdabbde-4ec6-e811-a96a-000d3a35f53a,2019 IRONMAN Chattanooga,2019,155,7,10,1359,42.4545,True,True,7.5,True,0.1419354839,im,main
+d7b6268d-64a5-e811-a966-000d3a37468c,2019 IRONMAN Copenhagen,2019,63,3,13,2556,42.2,True,True,2.9,True,0.04761904762,im,main
+f1489aae-cc44-e811-941e-005056951bf1,2019 IRONMAN Cozumel,2019,87,15,6,1557,42.2,True,True,7,True,0.1724137931,im,main
+f2f381dd-edc0-e811-a96d-000d3a364086,2019 IRONMAN Emilia Romagna,2019,89,5,14,2561,42.2,True,True,4.8,True,0.191011236,im,main
+9201dd9a-e17a-e811-941f-005056951bf1,2019 IRONMAN European Championship Frankfurt,2019,452,112,20,2025,42.2,True,True,1.8,True,0.2477876106,im,main
+5694d9df-c3e1-e811-a965-000d3a3749bc,2019 IRONMAN Florida,2019,65,6,14,2283,42.4867,True,True,2.3,True,0.09230769231,im,main
+3f7d3002-207a-e811-941f-005056951bf1,2019 IRONMAN France,2019,101,25,6,2286,30,True,True,5,True,0.2475247525,im,main
+03b71de8-0795-e811-9421-005056951bf1,2019 IRONMAN Hamburg,2019,118,9,11,2006,42.2,True,True,4.1,True,0.07627118644,im,main
+e0911607-66a5-e811-a966-000d3a37468c,2019 IRONMAN Kalmar-Sweden,2019,62,3,13,2161,42.2,True,True,1.9,True,0.04838709677,im,main
+b913a822-3764-e811-941e-005056951bf1,2019 IRONMAN Lanzarote,2019,58,18,8,1360,41.8,True,True,5.16,True,0.3103448276,im,main
+30ae2cd8-5e3b-e911-a96d-000d3a3740b7,2019 IRONMAN Malaysia,2019,77,3,12,982,42.2,True,True,2.8,True,0.05194805195,im,main
+96950619-4ac6-e811-a96a-000d3a35f53a,2019 IRONMAN Maryland,2019,89,5,18,1726,41.7786,True,True,2.17,True,0.05617977528,im,main
+033e4941-e422-e811-941d-005056951bf1,2019 IRONMAN New Zealand,2019,51,0,10,1337,42.2,True,False,7.4,True,0.1176470588,im,main
+e41a9f82-c989-e811-941f-005056951bf1,2019 IRONMAN North American Championship Texas,2019,122,122,1,2045,42.16,True,True,,False,1,im,main
+cbc9793b-c1aa-e811-a961-000d3a3740b7,2019 IRONMAN Vichy,2019,105,7,18,1240,42.2,True,True,1,True,0.06666666667,im,main
+c8f3ef02-72ba-e811-a967-000d3a37468c,2019 IRONMAN Vitoria-Gasteiz,2019,69,1,11,1604,42,True,True,4.4,True,0.1014492754,im,main
+800d63c0-f5b4-e811-a964-000d3a36478d,2019 IRONMAN Wales,2019,30,0,10,1878,42.2,False,False,3.8,True,0,im,main
+9a200e74-1af7-e811-a96d-000d3a35f53a,2019 IRONMAN Western Australia,2019,44,4,8,1169,42.2,True,True,1.4,True,0.09090909091,im,main
+52455708-bcb5-e811-a967-000d3a37468c,2019 IRONMAN Wisconsin,2019,50,3,12,1825,41.8429,True,True,7.61,True,0.14,im,main
+7d5d5ba8-fd38-e911-a974-000d3a36478d,2020 IRONMAN Cozumel,2020,40,8,6,777,42.6314,True,True,6.81,True,0.2,im,main
+4c54363c-c8fc-e911-a812-000d3a5a1477,2020 IRONMAN Florida,2020,46,0,14,1146,41.2636,True,False,3.83,True,0.08695652174,im,main
+1ec4ff9e-e91f-42e0-825b-3ee0aa27cbd8,2021 IRONMAN Austria,2021,40,8,10,1032,42.2,True,True,2,True,0.2,im,main
+0c82c066-8f9e-4d6d-b8a9-a452c14dfa50,2021 IRONMAN Barcelona,2021,108,6,6,3008,42.2,True,True,1.6,True,0.05555555556,im,main
+2cceae96-8e89-4ef3-8b62-6e7aefe879f2,2021 IRONMAN Cairns,2021,30,2,14,1105,42.1,True,True,6,True,0.06666666667,im,main
+e7c5b87f-7b8b-4bfe-8989-c9f65ece83e5,2021 IRONMAN Chattanooga,2021,97,2,10,1868,42.4545,True,True,7.51,True,0.09278350515,im,main
+d475d4af-8721-4f69-949f-e8e187d5544e,2021 IRONMAN Copenhagen,2021,53,1,15,1350,42.2,True,True,1.8,True,0.01886792453,im,main
+fe5ce325-4545-4029-92d7-06b041bd3327,2021 IRONMAN Cozumel,2021,77,12,6,2209,42.1004,True,True,7.1,True,0.1558441558,im,main
+28d151b2-0f82-4945-b853-5de5b70c3fd1,2021 IRONMAN European Championship Frankfurt,2021,67,3,18,1026,42.2,True,True,1.75,True,0.0447761194,im,main
+d8df0b33-0809-4507-bcbc-611067a517ca,2021 IRONMAN Florida,2021,65,6,19,1766,41.9395,True,True,1.61,True,0.09230769231,im,main
+59b5f3e2-891e-4ef0-9d20-e301e7ad5edf,2021 IRONMAN France,2021,56,5,9,936,42.2,True,True,5,True,0.08928571429,im,main
+47af6768-2329-48da-99d0-cd6808e82204,2021 IRONMAN Hamburg,2021,31,4,9,976,42.2,True,True,4,True,0.1290322581,im,main
+a0f9d06a-82a5-4a5e-915b-f2689a03447e,2021 IRONMAN Lake Placid,2021,75,4,12,1524,42.2,True,True,2.44,True,0.05333333333,im,main
+c73a0924-d713-4926-aecf-91911f350ccf,2021 IRONMAN Lanzarote,2021,46,4,10,692,42.2,True,True,7.35,True,0.08695652174,im,main
+525754c0-dae5-4e6c-ac4f-0f034a9b1719,2021 IRONMAN Maryland,2021,93,5,19,1692,42.0039,True,True,2.14,True,0.05376344086,im,main
+d1921b2b-d5dc-4057-9887-e296c114d0ee,2021 IRONMAN Switzerland Thun,2021,35,2,9,967,42.2,True,True,2.6,True,0.05714285714,im,main
+37a255ce-58a5-4f54-a47d-d6ee047ba487,2021 IRONMAN Texas,2021,42,5,14,687,42.0522,True,True,2.64,True,0.119047619,im,main
+b875ce5c-6880-4577-ba6a-1dafc2fdd371,2021 IRONMAN Vichy,2021,38,1,15,1077,42.2,True,True,7.6,True,0.05263157895,im,main
+b57965c1-e903-4d02-a14b-1d8e14223d1d,2021 IRONMAN Vitoria-Gasteiz,2021,71,2,15,569,46.1,True,True,5.3,True,0.02816901408,im,main
+9d7fc5ab-e7ed-40fd-b46d-36eef2fe3fae,2021 IRONMAN Wisconsin,2021,108,4,9,3506,42.3579,True,True,6.94,True,0.07407407407,im,main
+0a7ac8ac-3bf4-4615-94f7-51ae16220699,2021 IRONMAN World Championship,2021,199,24,23,2325,42.2614,True,True,2.69,True,0.1206030151,im,main
+f78281c1-1732-4295-9515-cf5dac4af423,2022 IRONMAN Austria,2022,150,30,12,2171,42.2,True,True,2,True,0.2,im,main
+15d0cb98-aa9d-4bdf-8824-73820b017bf4,2022 IRONMAN Barcelona,2022,105,11,9,1838,42.2,True,True,1.7,True,0.1047619048,im,main
+d65cf230-9959-4305-89e0-1a6742d2547a,2022 IRONMAN California,2022,129,0,12,2610,42.2935,False,False,1.37,True,0,im,main
+71a620f4-b009-492e-b42d-ef4de60ef792,2022 IRONMAN Chattanooga,2022,70,4,10,1497,42.4545,True,True,7.51,True,0.1571428571,im,main
+0295e570-64dd-47d8-b244-0449ca8d1b0b,2022 IRONMAN Copenhagen,2022,64,3,12,2075,42.2,True,True,2.9,True,0.046875,im,main
+b74ca66a-5739-40c3-a2a2-31ac31615dee,2022 IRONMAN Cozumel,2022,74,16,6,1188,42.1004,True,True,7.1,True,0.2162162162,im,main
+bd315cf1-68d4-44a7-95ef-de17ef57a380,2022 IRONMAN Emilia Romagna,2022,54,5,14,2183,42.2,True,True,2.2,True,0.09259259259,im,main
+11fe6921-4571-4e19-bdf7-9c482fd64f89,2022 IRONMAN European Championship Frankfurt,2022,155,19,14,2249,42.2,True,True,1.75,True,0.1225806452,im,main
+f1d7fbf8-7bd7-44cf-bd37-9492d1eddc1e,2022 IRONMAN Florida,2022,102,5,20,1718,41.8429,True,True,1.61,True,0.04901960784,im,main
+bbe1551d-7662-49e2-85b1-1e91c4477375,2022 IRONMAN France,2022,109,17,8,1569,40.7,True,True,4.9,True,0.1559633028,im,main
+6d1bcb1f-2d6a-4d21-a16c-43c7cfd614ee,2022 IRONMAN Hamburg,2022,70,6,10,1817,42.7,True,True,4,True,0.08571428571,im,main
+8bdf6429-96d0-4873-a5bc-dd5e9fb1b09e,2022 IRONMAN Kalmar-Sweden,2022,81,3,17,1800,42.2,True,True,2,True,0.08641975309,im,main
+a008904e-57a7-4da8-a7e9-d7da56635040,2022 IRONMAN Lake Placid,2022,110,6,12,1833,42.02,True,True,4.83,True,0.1727272727,im,main
+ea0a1444-5c00-46b1-9e42-cdcbcff93030,2022 IRONMAN Lanzarote,2022,51,12,8,897,42.1,True,True,4.7,True,0.2352941176,im,main
+59b45753-2b07-4b24-a32e-2f72b7c47023,2022 IRONMAN Maryland,2022,64,2,12,1377,42.3097,True,True,2.11,True,0.03125,im,main
+18c339e7-0515-4932-bc6e-13f848d8034c,2022 IRONMAN Portugal-Cascais,2022,38,5,11,1198,42.2,True,True,3.8,True,0.1315789474,im,main
+ee41f426-f8ac-42a3-8c0c-4fd3f9fdd20b,2022 IRONMAN Switzerland Thun,2022,74,8,11,1160,42.2,True,True,2.9,True,0.1081081081,im,main
+5a04e184-d243-4bcc-bc91-bd974505e80f,2022 IRONMAN Texas,2022,146,10,17,1861,42.0522,True,True,2.64,True,0.1232876712,im,main
+ec84450a-49f0-47a7-9f23-52370d58ec19,2022 IRONMAN Vichy,2022,33,2,11,907,41.9,True,True,2.5,True,0.06060606061,im,main
+097775d2-ea7b-44da-a6f2-f7c0b064b010,2022 IRONMAN Vitoria-Gasteiz,2022,146,11,15,1438,42.3,True,True,1.05,True,0.07534246575,im,main
+bc03fa33-f1fc-4f3d-a126-19ef088bf407,2022 IRONMAN Wales,2022,55,19,10,1713,42.3,True,True,3.8,True,0.3454545455,im,main
+00d24264-8938-4a98-a10f-56dc3473e541,2022 IRONMAN Wisconsin,2022,62,5,10,1023,42.3579,True,True,2.6,True,0.08064516129,im,main
+1c0caffb-36cf-46f6-8f67-c1e7f7f428b8,2022 IRONMAN World Championship Thursday,2022,70,8,20,2319,42.6315,True,True,1.17,True,0.1142857143,im,main
+0a3940cf-3793-4d08-aa72-176a27830c3e,2023 IRONMAN Barcelona,2023,110,9,10,1955,42.2,True,True,1.7,True,0.08181818182,im,main
+53389811-79d1-4935-90b0-4b099b224b7b,2023 IRONMAN Brazil,2023,32,6,7,1307,42.076,True,True,9.2,True,0.1875,im,main
+a19ca236-64cb-4260-89b2-3235f8de33d2,2023 IRONMAN California,2023,68,0,9,2122,41.8912,False,False,1.93,True,0,im,main
+d4796fc3-d1ac-4c69-9dc8-215d1ecb3853,2023 IRONMAN Chattanooga,2023,72,4,7,1242,42.4062,True,True,11.47,True,0.2222222222,im,main
+8be47099-e69a-444b-98c5-f5be134ebacc,2023 IRONMAN Copenhagen,2023,52,2,16,1943,42.195,True,True,1.8,True,0.03846153846,im,main
+0c1a200f-69d5-46e6-98d6-c164a63a9fb9,2023 IRONMAN Cozumel,2023,94,24,5,1259,42.1004,True,True,7.1,True,0.2553191489,im,main
+811402c9-91a1-4ebb-b102-e083a44876e7,2023 IRONMAN Florida,2023,76,10,11,1820,42.0361,True,True,3.51,True,0.1315789474,im,main
+2ab0d9c7-defa-46a0-91b7-9f5e58c718cc,2023 IRONMAN France,2023,114,23,7,1416,42.2,True,True,4.9,True,0.201754386,im,main
+d1227cc7-9f5f-4175-bf31-f1dfb0fee93d,2023 IRONMAN Frankfurt,2023,103,3,17,2076,42.2,True,True,1.75,True,0.02912621359,im,main
+b3efc195-b502-4fbf-bf5b-1dd031249e25,2023 IRONMAN Hamburg,2023,78,4,12,2061,41,True,True,3.8,True,0.05128205128,im,main
+8f2109e4-6d97-494c-9d54-ea42a5666dae,2023 IRONMAN Italy Emilia Romagna,2023,102,28,11,1923,42.2,True,True,2.1,True,0.2745098039,im,main
+63ba0c5c-89e1-4646-a38c-55bda838e32a,"2023 IRONMAN Kaernten-Klagenfurt, Austria",2023,109,15,11,1887,42.2,True,True,2,True,0.1376146789,im,main
+757a8a81-51f7-4c0c-a7f7-d240e8271a73,2023 IRONMAN Lake Placid,2023,78,5,12,1676,42.02,True,True,4.83,True,0.1794871795,im,main
+98eb36dd-6a46-4a80-92ac-2b599b57516e,2023 IRONMAN Lanzarote,2023,40,5,7,843,42.2,True,True,11.8,True,0.35,im,main
+6dba0484-f141-42bb-bb95-0aac8f47844c,2023 IRONMAN Malaysia,2023,42,0,10,456,42.12,False,False,2.7,True,0,im,main
+4a35d978-53d0-4897-b718-ce8299b53a92,2023 IRONMAN Maryland,2023,58,1,15,1042,42.3579,True,True,4.22,True,0.01724137931,im,main
+ab9f0371-c93f-4256-b734-eae3c3f45bb2,2023 IRONMAN New Zealand,2023,35,3,9,708,42.2,True,True,1.2,True,0.08571428571,im,main
+d8bb4897-273e-4c7f-9a5e-a510b6fc63ca,2023 IRONMAN Portugal-Cascais,2023,51,12,6,1250,42.2,True,True,7.76,True,0.2352941176,im,main
+89d248a9-cc2e-4d96-8949-d8526f500995,2023 IRONMAN Switzerland Thun,2023,81,10,11,989,42.3,True,True,2.9,True,0.1234567901,im,main
+33c67f48-ba3c-472c-b696-2d8cad67b46e,2023 IRONMAN Texas,2023,101,4,17,1859,42.1648,True,True,2.64,True,0.06930693069,im,main
+9cfd25be-4ea6-4269-b56b-9119e6f54ad2,2023 IRONMAN Vichy,2023,48,6,14,476,42.2,True,True,2.2,True,0.125,im,main
+a6aa560d-66a2-473c-ae0a-d6be004b8372,2023 IRONMAN Vitoria-Gasteiz,2023,53,1,14,1142,42.3,True,True,1.05,True,0.01886792453,im,main
+6efe6715-269e-491c-99a0-f86817a4d2b9,2023 IRONMAN Wales,2023,42,9,7,1634,42.2,True,True,3.8,True,0.2142857143,im,main
+f81b2e11-ec16-43ac-941b-4386106a9a28,2023 IRONMAN Wisconsin,2023,56,7,11,1067,42.1648,True,True,2.74,True,0.125,im,main
+c0a881f6-dead-4fdf-9dd3-cebd6fa4b83b,2024 IRONMAN Cairns,2024,33,2,17,887,42.313,True,True,1.26,True,0.06060606061,im,main
+8613dae2-83f4-4dcd-b7db-deb752f5cd90,2024 IRONMAN Calella-Barcelona,2024,78,3,13,2741,42.07,True,True,1.7,True,0.03846153846,im,main
+ae0e5d71-3d79-4515-a179-11f044dccb61,2024 IRONMAN California,2024,86,4,9,2433,41.4728,True,True,4.97,True,0.1046511628,im,main
+f7ea583a-e06f-4f4d-a19e-bfa325dce97c,2024 IRONMAN Copenhagen,2024,36,2,13,2373,42.489,True,True,1.1,True,0.05555555556,im,main
+9af45ff9-1802-4aa5-88bc-0090d1df6513,2024 IRONMAN Cozumel,2024,48,6,6,1071,42.1648,True,True,6.76,True,0.125,im,main
+fea6dadb-93a9-42c9-ba4e-3dfc6d024b22,2024 IRONMAN Emilia Romagna,2024,75,13,12,2244,42.2,True,True,2.14,True,0.1733333333,im,main
+af3f560c-494c-464d-9ed9-c0fbd05ef73b,2024 IRONMAN Florida,2024,67,7,11,1500,42.0361,True,True,3.51,True,0.2089552239,im,main
+66511861-b71e-44fd-8c65-cd282323354c,2024 IRONMAN France Nice,2024,74,11,13,1893,43.125,True,True,2.38,True,0.1486486486,im,main
+d3e4c293-9d14-4be0-9167-d9f6b886f26d,2024 IRONMAN Frankfurt,2024,81,6,15,2213,42.86,True,True,3.11,True,0.07407407407,im,main
+7aeeee79-b2fc-4bbd-b723-cc1193bde63f,2024 IRONMAN Hamburg,2024,60,9,10,2338,42.012,True,True,3.92,True,0.15,im,main
+74f7a320-3cb3-4e1f-a860-faebaa6e0e61,"2024 IRONMAN Kaernten-Klagenfurt, Austria",2024,70,4,12,2650,42.262,True,True,1.2,True,0.05714285714,im,main
+9ca4223e-fee3-4583-a796-4f360a13cfc4,2024 IRONMAN Kalmar-Sweden,2024,48,3,15,1825,42.6,True,True,1,True,0.0625,im,main
+708d7255-c4fa-4ed2-96a4-5a350f1dacb0,2024 IRONMAN Lake Placid,2024,75,3,18,2156,42.3418,True,True,3.75,True,0.06666666667,im,main
+182022fd-4f7a-41b1-a636-b3d6da402ec3,2024 IRONMAN Lanzarote,2024,39,10,4,900,42.634,True,True,15.4,True,0.2564102564,im,main
+03dfe11c-4973-41e1-8489-89ad1af4e3bc,2024 IRONMAN Malaysia,2024,36,2,14,454,42.12,True,True,2.7,True,0.08333333333,im,main
+d4fd21c6-c504-42fa-b9a6-bfa3e66231bb,2024 IRONMAN Maryland,2024,46,3,14,1082,42.3579,True,True,2.11,True,0.0652173913,im,main
+c446d5ec-661d-4d03-9e9c-08c821027476,2024 IRONMAN Switzerland Thun,2024,30,3,11,1292,42.286,True,True,2.89,True,0.1,im,main
+86a0e55c-989f-4d25-bfff-cfb49e044797,2024 IRONMAN Texas,2024,151,15,20,2302,42.4545,True,True,2.86,True,0.1456953642,im,main
+c5770170-0d51-4d0e-a6f5-c2a35a7b48b0,2024 IRONMAN Vitoria-Gasteiz,2024,95,6,19,1401,41.69,True,True,1.02,True,0.09473684211,im,main
+cf78e723-848d-4d18-be36-1a83174549af,2024 IRONMAN Wales,2024,55,12,10,1643,42.2,True,True,3.51,True,0.2181818182,im,main
+2589106a-7c4e-4218-9922-fc5443c1b29e,2024 IRONMAN Wisconsin,2024,48,3,14,1224,42.2775,True,True,2.24,True,0.0625,im,main
+633f40fa-698f-4380-bb5f-9b50fe173849,2025 IRONMAN Calella-Barcelona,2025,47,2,13,2440,42.048,True,True,1.77,True,0.04255319149,im,main
+1fc58eb1-18fc-417d-bd3b-5aa674132777,2025 IRONMAN California,2025,65,12,8,2336,41.4728,True,True,5.68,True,0.1846153846,im,main
+4435b4ed-8e34-4703-9a77-50e43201412b,2025 IRONMAN Canada-Ottawa,2025,67,3,14,1911,42.1004,True,True,1.85,True,0.0447761194,im,main
+eecbddcc-fec9-4c52-ab35-28f77cb1c81b,2025 IRONMAN Chattanooga,2025,97,4,13,1351,42.0683,True,True,5.1,True,0.0824742268,im,main
+e76951cf-c3df-4295-8cee-a41b118a33ff,2025 IRONMAN Copenhagen,2025,36,0,13,2449,42.599,True,False,1.65,True,0.02777777778,im,main
+f35fbd8f-28bd-4dbb-b940-1b7e1dff7117,2025 IRONMAN Cozumel,2025,73,13,5,1457,42.1648,True,True,6.76,True,0.1780821918,im,main
+261dd41f-3a15-4684-bbe4-1a0284bad7e5,2025 IRONMAN Emilia Romagna,2025,102,16,19,2227,42.2,True,True,2.14,True,0.1568627451,im,main
+83af8238-4ace-4d88-a3d3-0371f9b88294,2025 IRONMAN Florida,2025,47,1,11,1482,42.0361,True,True,3.51,True,0.1276595745,im,main
+f3a6cf4c-e9d5-4c6f-a425-86b3b8ba0524,2025 IRONMAN France Nice,2025,112,12,15,1466,41.2,True,True,2.3,True,0.1071428571,im,main
+dcfae363-4480-4c9c-b8af-bbdeea0b00ef,2025 IRONMAN Frankfurt,2025,135,9,17,2195,42.86,True,True,1.74,True,0.06666666667,im,main
+b25a3825-7c68-4442-a4d2-ea887b2fb50e,2025 IRONMAN Hamburg,2025,73,14,10,2346,42.133,True,True,3.95,True,0.1917808219,im,main
+9526bfb3-167a-4fa4-9808-39753c55eb90,2025 IRONMAN Japan South Hokkaido,2025,47,3,10,1077,42.2,True,True,3.6,True,0.06382978723,im,main
+9e9018ff-c307-447c-a26c-5927df800fdd,"2025 IRONMAN Kaernten-Klagenfurt, Austria",2025,125,10,12,2265,42.352,True,True,1.28,True,0.08,im,main
+b5c5197c-0040-425d-93f7-fa5d0c4edf8e,2025 IRONMAN Kalmar-Sweden,2025,52,0,14,2027,42.3,False,False,1,True,0,im,main
+b22a23ca-da28-464a-9dbe-89d86510c4ab,2025 IRONMAN Lake Placid,2025,38,2,13,1979,42.3418,True,True,7.64,True,0.1052631579,im,main
+15de8d69-e94d-4fff-b456-97da49f8d00d,2025 IRONMAN Lanzarote,2025,43,16,8,883,42.03,True,True,5.6,True,0.3720930233,im,main
+d6047ad1-824f-45a2-b70c-a757cc9ea609,2025 IRONMAN Les Sables d'Olonne-Vendee,2025,41,8,10,2557,42.05,True,True,2.93,True,0.1951219512,im,main
+93ffab28-3521-4d33-904b-97b02f5cc40e,2025 IRONMAN Malaysia,2025,35,1,13,610,42.12,True,True,2.7,True,0.08571428571,im,main
+a407a3d4-6076-441c-abac-be93484f40a8,2025 IRONMAN Portugal-Cascais,2025,55,15,8,1407,42.19,True,True,7.6,True,0.2727272727,im,main
+e9345d08-ebd3-481d-948f-2cb3b9833189,2025 IRONMAN Switzerland Thun,2025,53,5,18,1452,42.286,True,True,4.92,True,0.09433962264,im,main
+0a34c991-b758-4d40-bf60-d6138ed86336,2025 IRONMAN Texas,2025,122,5,28,1799,42.2704,True,True,1.66,True,0.04098360656,im,main
+78cc342f-5383-4d91-8299-fb7f0ec0339a,2025 IRONMAN Vitoria-Gasteiz,2025,62,1,19,1466,41.69,True,True,1.02,True,0.03225806452,im,main
+2a497ecb-1f5e-49b0-ad8e-f44dfd891922,2025 IRONMAN Wales,2025,49,14,10,1659,42.2,True,True,3.51,True,0.2857142857,im,main
+f87c8bbe-cb97-4f2c-83a7-e25d629870b1,2026 IRONMAN Cairns,2026,33,2,17,1078,42.313,True,True,2.48,True,0.06060606061,im,main
+bf442555-30b5-4228-bfa4-5f8e621b6dd4,2026 IRONMAN Canada-Ottawa,2026,42,1,13,2314,43.3074,True,True,1.77,True,0.02380952381,im,main
+002a44d9-34a7-4f44-bb46-dc254e3fcee9,2026 IRONMAN Chattanooga,2026,46,1,10,1184,42.0683,True,True,1.95,True,0.02173913043,im,main
+be0a788d-bcd7-4710-a756-fb096a5e1591,2026 IRONMAN Hamburg,2026,56,9,9,2214,42.151,True,True,3.9,True,0.1607142857,im,main
+29e186db-f6bc-4393-93cd-992737521f2a,2026 IRONMAN Italy Emilia Romagna,2026,74,19,18,2476,42.2,True,True,2,True,0.2567567568,im,main
+5ff2cb61-c76e-45d4-963f-25ee7280977f,2026 IRONMAN Jacksonville,2026,77,3,11,1290,41.9395,True,True,3.14,True,0.03896103896,im,main
+389379d7-4d81-45fc-a8f7-ddf825780d2c,2026 IRONMAN Japan South Hokkaido,2026,34,3,8,1110,42.2,True,True,3.6,True,0.08823529412,im,main
+96ad7c20-c2be-4b96-acf1-430bb12f348d,"2026 IRONMAN Kaernten-Klagenfurt, Austria",2026,88,8,13,2606,42.352,True,True,1.35,True,0.09090909091,im,main
+59f3b68c-c706-4a5c-b028-3ed9389d5422,2026 IRONMAN Kalmar-Sweden,2026,85,9,16,2456,42.5,True,True,1,True,0.1058823529,im,main
+a20c39b2-2f1b-40dc-ae85-3e2f41e5ab07,2026 IRONMAN Lake Placid,2026,55,4,16,1947,42.3418,True,True,3.75,True,0.1818181818,im,main
+9bbac2c1-3eeb-4086-956e-c58892513a89,2026 IRONMAN Lanzarote,2026,55,15,8,1102,42.03,True,True,5.6,True,0.2727272727,im,main
+46e754db-2cb0-4a75-b9ad-2b9d0140a90e,2026 IRONMAN Maryland,2026,50,4,18,1266,42.4545,True,True,2.11,True,0.08,im,main
+d7a58ffe-52bb-47a3-bc71-8c243ea143ec,2026 IRONMAN New Zealand,2026,35,0,15,995,41.941,False,False,1.43,True,0,im,main
+864fb423-8283-471e-bb2d-b032050f853a,2026 IRONMAN Penghu,2026,34,3,15,564,42.2,True,True,2.1,True,0.08823529412,im,main
+89d3cdad-317c-471e-9325-32cf4bce3fde,2026 IRONMAN South Africa,2026,30,2,8,783,42.61,True,True,2.5,True,0.06666666667,im,main
+3b3bd0bd-a1ce-4c96-85e6-cf6eff6cf31f,2026 IRONMAN Switzerland Thun,2026,63,4,17,1931,42.286,True,True,4.92,True,0.06349206349,im,main
+48b74ff4-543a-4a3d-b1e5-937a91902e9b,2026 IRONMAN Tallinn,2026,55,6,11,1565,42.236,True,True,3.98,True,0.1090909091,im,main
+31e73a5b-a79d-4847-9083-8dd15cc242b3,2026 IRONMAN Texas,2026,54,5,18,2217,43.5488,True,True,5.71,True,0.09259259259,im,main
+8cefb85b-a803-48be-af51-e0285a8dd11c,2026 IRONMAN Tours Metropole - Loire Valley,2026,126,2,15,2587,42.13,True,True,3.37,True,0.126984127,im,main
+c087c96c-783f-4142-bc21-52d4cfc31532,2026 IRONMAN Vichy,2026,36,2,10,901,41.08,True,True,6.35,True,0.2222222222,im,main
+0418e60d-ca78-4f73-a2c2-76816190d293,2026 IRONMAN Vietnam,2026,39,2,11,710,42.0865,True,True,2.46,True,0.05128205128,im,main
+96a2ed72-934a-4942-b8e8-d483e286e1c1,2026 IRONMAN Vitoria-Gasteiz,2026,117,7,24,1233,42.276,True,True,2.9,True,0.1709401709,im,main
+c116f798-7f84-4d9c-a513-2603642b90ce,2026 IRONMAN Wales,2026,54,27,10,1944,42.2,True,True,3.51,True,0.5,im,main
+d168bf62-9088-4d48-b46a-9c6f968f24da,2026 IRONMAN World Championship,2026,55,3,20,2266,42.2891,True,True,1.15,True,0.05454545455,im,main
+49a595a5-fb4f-e511-9409-005056951bf1,2016 IRONMAN 70.3 Vichy,2016,41,0,5,1661,20.6,False,False,3.5,True,0,him,strict
+634e0277-52a4-e711-9419-005056951bf1,2018 IRONMAN 70.3 Asia-Pacific Championship Philippines,2018,37,0,5,1358,21.1,False,False,1,True,0,him,strict
+34400ea4-e6d6-e711-941b-005056951bf1,2018 IRONMAN 70.3 Augusta,2018,51,0,9,2668,21.08,False,False,1.77,True,0,him,strict
+39f3f709-13a2-e711-9419-005056951bf1,2018 IRONMAN 70.3 Boulder,2018,55,0,4,1921,21.1,False,False,4.9,True,0,him,strict
+fc62c23f-9b5a-e711-9418-005056951bf1,2018 IRONMAN 70.3 Campeche,2018,43,0,3,620,21.1,False,False,5.3,True,0,him,strict
+ca18f3c5-c2aa-e811-a961-000d3a3740b7,2018 IRONMAN 70.3 Cartagena,2018,55,0,5,1629,21.1,False,False,4.8,True,0,him,strict
+df4e2f37-066b-e711-9418-005056951bf1,2018 IRONMAN 70.3 Mallorca,2018,51,0,5,2771,21.2,False,False,2,True,0,him,strict
+a75a0f1e-c5ad-e711-9419-005056951bf1,2018 IRONMAN 70.3 Nice,2018,30,0,3,2082,21.1,False,False,5.25,True,0,him,strict
+c133282d-6699-e711-9419-005056951bf1,2018 IRONMAN 70.3 Puerto Rico,2018,35,0,4,501,21.1,True,False,5.55,True,0.08571428571,him,strict
+9bc13d16-9277-e711-9418-005056951bf1,2018 IRONMAN 70.3 Switzerland,2018,61,0,5,1953,21,False,False,3.7,True,0,him,strict
+a9375cc6-40ca-e711-941b-005056951bf1,2018 IRONMAN 70.3 Waco,2018,38,0,6,2096,21.08,False,False,4.44,True,0,him,strict
+6d575ec6-9303-e911-a968-000d3a3749bc,2019 IRONMAN 70.3 Augusta,2019,65,0,6,2584,21.0824,False,False,2.12,True,0,him,strict
+6acabb00-4cc6-e811-a96a-000d3a35f53a,2019 IRONMAN 70.3 Cozumel,2019,40,0,3,1495,20.9557,False,False,5.23,True,0,him,strict
+7284cebd-4cfd-e811-a968-000d3a3749bc,2019 IRONMAN 70.3 Goa,2019,31,0,3,678,21.1,False,False,7.1,True,0,him,strict
+7a74a065-c889-e811-941f-005056951bf1,2019 IRONMAN 70.3 Mallorca,2019,60,0,8,2832,21.05,True,False,1.95,True,0.06666666667,him,strict
+0110bd42-ef94-e811-9421-005056951bf1,2019 IRONMAN 70.3 Switzerland,2019,45,0,4,2064,21,False,False,3.7,True,0,him,strict
+09df055b-5eb7-e811-a967-000d3a37468c,2019 IRONMAN 70.3 Traverse City,2019,40,0,9,2141,21.0985,True,False,1.69,True,0.025,him,strict
+8bf835cd-4cc6-e811-a96a-000d3a35f53a,2019 IRONMAN 70.3 Vichy,2019,37,0,6,1698,21.1,False,False,1,True,0,him,strict
+c9ad8486-9403-e911-a968-000d3a3749bc,2019 IRONMAN 70.3 Waco,2019,30,0,8,2127,21.0824,False,False,3.35,True,0,him,strict
+72c4014d-3c77-465f-9a2f-d9477cf5b146,2021 IRONMAN 70.3 Acapulco,2021,33,0,4,896,21.097,True,False,10.6,True,0.2424242424,him,strict
+d5abbfc1-778d-47d8-9048-ea36a75fb885,2021 IRONMAN 70.3 Chattanooga,2021,37,0,8,1998,21.0824,True,False,1.13,True,0.1351351351,him,strict
+93463968-5ae1-470a-81b4-e4a5f480306e,2021 IRONMAN 70.3 Cozumel Day 1,2021,32,0,3,1228,20.9557,False,False,5.23,True,0,him,strict
+951360a4-3212-4a21-b99d-69bfb52d8215,2021 IRONMAN 70.3 Des Moines,2021,51,0,10,2347,21.1,True,False,3.15,True,0.01960784314,him,strict
+819cd3fb-05a8-490c-adba-4d3001009339,2021 IRONMAN 70.3 Florida,2021,40,0,8,1237,21.2594,True,False,4.78,True,0.2,him,strict
+ecbcba01-8dbc-4765-8b40-c9c918f6be8a,2021 IRONMAN 70.3 Hawaii,2021,36,0,7,1078,21.2916,False,False,1.71,True,0,him,strict
+e1fbebe0-53f7-473c-ab44-40441dc2f557,2021 IRONMAN 70.3 Indian Wells La Quinta,2021,35,0,6,1549,21.3238,False,False,2.48,True,0,him,strict
+4836a4d3-7fbf-47dd-bf87-f6a6274cc9ff,2021 IRONMAN 70.3 Ohio,2021,30,0,4,1850,21.0663,False,False,3.64,True,0,him,strict
+974f44a5-ce5f-45be-aab8-1446cc3e5fd8,2021 IRONMAN 70.3 Waco,2021,60,0,6,3056,21.9032,False,False,4.72,True,0,him,strict
+1f0e33db-974b-4695-880d-f45cd34da2cb,2022 IRONMAN 70.3 Boulder,2022,52,0,7,1929,21.0824,True,False,2.7,True,0.1538461538,him,strict
+71539573-68ac-483e-8ac6-b313cbfd42b0,2022 IRONMAN 70.3 Cartagena,2022,63,0,6,1652,21,True,False,5.38,True,0.04761904762,him,strict
+8980bc3f-3694-4e37-b53f-d2378a26d7c9,2022 IRONMAN 70.3 Chattanooga,2022,62,0,10,2754,21.0824,True,False,1.13,True,0.06451612903,him,strict
+d1a8bafe-7cb8-4043-9825-6a83ae768ea4,2022 IRONMAN 70.3 Coeur d'Alene,2022,33,0,4,2094,21.2434,False,False,3.46,True,0,him,strict
+f0a465d0-1b05-4bce-8b5d-e885a9e17997,2022 IRONMAN 70.3 Cozumel,2022,60,0,4,1704,20.9557,False,False,5.23,True,0,him,strict
+c9e159db-5f88-4cff-ac20-a06e4a8f8ea5,2022 IRONMAN 70.3 European Championship Elsinore,2022,42,0,6,2039,21.1,False,False,1.8,True,0,him,strict
+eb94f177-ed20-4fb1-80e7-3ac0e69d848a,2022 IRONMAN 70.3 Hawaii,2022,51,0,6,1244,21.2916,False,False,3.64,True,0,him,strict
+d978fa3e-b272-42e3-b544-7b4cfae73c1e,2022 IRONMAN 70.3 Indian Wells La Quinta,2022,31,0,5,1560,20.9376,False,False,2.75,True,0,him,strict
+640c30e8-d501-4d7c-8df8-15a6765adf74,2022 IRONMAN 70.3 Kenting,2022,37,0,5,696,20.75,False,False,7,True,0,him,strict
+8778c3e9-e5df-4279-bf51-bb00ef54be82,2022 IRONMAN 70.3 Luxembourg,2022,114,0,7,1879,21.1,False,False,3.1,True,0,him,strict
+f29efe58-05b8-4106-9c17-704fc2d80208,2022 IRONMAN 70.3 Mallorca,2022,41,0,8,2714,21.1,True,False,1.5,True,0.0243902439,him,strict
+42e17e72-c272-41b6-8f47-f1e3d01b7a60,2022 IRONMAN 70.3 Oceanside,2022,40,0,8,2388,21.1468,True,False,2.11,True,0.2,him,strict
+604be70b-5d68-4166-b12b-2501183175d0,2022 IRONMAN 70.3 Ohio,2022,31,0,8,1390,21.1146,False,False,1.75,True,0,him,strict
+3b12b880-6fdb-45aa-99e9-29e1099143e4,2022 IRONMAN 70.3 Switzerland,2022,73,0,4,1603,21.1,False,False,3.4,True,0,him,strict
+459ee5b4-7fe7-44ee-8992-1bdd7743bc46,2022 IRONMAN 70.3 Texas,2022,30,0,11,2073,21.4526,True,False,3.54,True,0.2,him,strict
+a25be991-163a-453d-88e0-ef1304602060,2023 IRONMAN 70.3 Cartagena,2023,52,0,10,1728,21,True,False,3.03,True,0.01923076923,him,strict
+91fa1be8-3002-4755-a8ef-01b8254d5d44,2023 IRONMAN 70.3 Chattanooga,2023,33,0,6,2888,21.1629,False,False,3.01,True,0,him,strict
+aebbf326-0ee8-4a0b-8db2-d5186dc9c835,2023 IRONMAN 70.3 Desaru Coast,2023,42,0,3,527,21,True,False,7.3,True,0.2857142857,him,strict
+492f4a98-d43f-4f8d-8817-05e59893d155,2023 IRONMAN 70.3 Eagleman,2023,32,0,8,1575,21.1307,True,False,2.22,True,0.125,him,strict
+7dfbd00b-2bf2-49ad-8795-065df9e6b0b0,2023 IRONMAN 70.3 Hawaii,2023,44,0,8,998,21.2916,True,False,2.61,True,0.06818181818,him,strict
+8d79205d-7f75-4618-a21c-d8361b88ed69,2023 IRONMAN 70.3 Italy Emilia Romagna,2023,47,0,6,1960,21.1,False,False,2.1,True,0,him,strict
+8b5e285b-68da-4c26-b8cc-015c01ca8fb2,2023 IRONMAN 70.3 Luxembourg,2023,61,0,7,2038,21,False,False,3.1,True,0,him,strict
+99f76aa0-8c0f-4638-b4f7-909c0aa300ce,2023 IRONMAN 70.3 Nice,2023,38,0,3,2274,21.1,False,False,4.9,True,0,him,strict
+10365b96-0bae-4ccc-abdc-54535af3c224,2023 IRONMAN 70.3 Oceanside,2023,35,0,9,2220,21.1468,True,False,2.11,True,0.1714285714,him,strict
+d3a4fcdc-bc4e-4422-ac03-5404edcbf683,2023 IRONMAN 70.3 Pucon,2023,41,0,5,1706,21.05,False,False,3.51,True,0,him,strict
+fdd29721-a47d-408b-b6c2-4bf0934a373c,2023 IRONMAN 70.3 Switzerland,2023,32,0,5,1896,21.1,False,False,3.4,True,0,him,strict
+b69d77c6-8fda-41e3-9ec9-b73d922b75a0,2023 IRONMAN 70.3 Vietnam,2023,48,0,6,1240,21.1,False,False,2,True,0,him,strict
+61ff0d49-aa03-41d0-bf53-7f159d9baa98,2024 IRONMAN 70.3 Cartagena,2024,83,0,11,1773,21,True,False,3.03,True,0.09638554217,him,strict
+c644b569-80b0-4346-ab8d-42d46b037abc,2024 IRONMAN 70.3 Chattanooga,2024,43,0,5,3212,21.1629,False,False,4.83,True,0,him,strict
+6de385b2-6587-42f3-a58b-404fe0f60ba6,2024 IRONMAN 70.3 Cozumel,2024,34,0,3,1386,21.1,False,False,5.4,True,0,him,strict
+896b1717-f2b2-4fd4-a949-b2b2805d720e,2024 IRONMAN 70.3 Desaru Coast,2024,35,0,5,516,21.1,True,False,4.2,True,0.1714285714,him,strict
+df642982-5fff-4460-8470-49efcb8fdc79,2024 IRONMAN 70.3 Goa,2024,35,0,5,520,20.67,False,False,3.62,True,0,him,strict
+34e8c66b-a3d1-45ea-ad3a-b2fa037034dd,2024 IRONMAN 70.3 Goseong,2024,36,0,4,1069,20.862,False,False,3.25,True,0,him,strict
+3eef74eb-c459-4eff-9c9d-827bea775793,2024 IRONMAN 70.3 Kenting,2024,49,0,2,1058,21.1,False,False,7,True,0,him,strict
+e42f12ce-2366-4beb-aadf-844c9142c76f,2024 IRONMAN 70.3 Waco,2024,34,0,3,1823,21.1146,False,False,3.77,True,0,him,strict
+e1555ad0-d967-434a-bcbd-572d8ad2e74b,2025 IRONMAN 70.3 Boulder,2025,31,0,4,1621,21.0824,False,False,2.98,True,0,him,strict
+48541b5d-87fe-4b40-a5d9-e7da104aa77d,2025 IRONMAN 70.3 Cartagena,2025,49,0,10,1805,21,True,False,2.66,True,0.1632653061,him,strict
+1a236cb2-01bb-4493-8bb9-9c1e34656adb,2025 IRONMAN 70.3 Da Nang,2025,50,0,9,1505,21.1704,False,False,1.9,True,0,him,strict
+8f32c36f-ad87-43d9-a96c-2f3bd3f610d5,2025 IRONMAN 70.3 Gulf Coast,2025,175,0,7,1258,21.0631,False,False,1.87,True,0,him,strict
+ec5433ea-4907-47f4-b2ab-b6ba296725a3,2025 IRONMAN 70.3 Italy Emilia Romagna,2025,40,0,7,2071,21.25,False,False,2.09,True,0,him,strict
+e9856ee7-7672-4552-9e27-d9ab6f6e2935,2025 IRONMAN 70.3 Luxembourg Remich - Région Moselle,2025,41,0,11,2393,21.08,True,False,1.46,True,0.1951219512,him,strict
+ca5c4954-e274-4358-b921-868097a625cb,2025 IRONMAN 70.3 Musselman,2025,37,0,6,1410,22.0963,False,False,2.22,True,0,him,strict
+9718158a-07b2-4ab6-99b8-d207c74cb432,2025 IRONMAN 70.3 Nice,2025,33,0,6,2016,20.6,False,False,2.3,True,0,him,strict
+b4395fca-89f0-48c9-80ee-82bb750145ed,2025 IRONMAN 70.3 Rockford,2025,73,0,8,1763,21.5491,True,False,2.29,True,0.1232876712,him,strict
+a34c72f5-d303-4b85-bd36-bcc44f46c1c7,2025 IRONMAN 70.3 Waco,2025,40,0,8,1796,21.2916,False,False,2.17,True,0,him,strict
+82cf961d-85e6-40bb-8e86-209517a2602d,2026 IRONMAN 70.3 Chattanooga,2026,35,0,5,2498,21.0985,False,False,1.11,True,0,him,strict
+70c84787-b0ca-437f-b169-834d337f9ad1,2026 IRONMAN 70.3 Dallas-Little Elm,2026,30,0,6,1685,21.2272,False,False,1.8,True,0,him,strict
+f8a995ff-b881-4d9f-b869-51426c020ba1,2026 IRONMAN 70.3 Eagleman,2026,43,0,9,2245,21.1505,False,False,2.09,True,0,him,strict
+54d56e50-9c53-48bc-a317-86313efe3938,2026 IRONMAN 70.3 Italy Emilia Romagna,2026,40,0,9,2615,21.25,False,False,2.09,True,0,him,strict
+4a2ee31f-6dbe-427b-af1f-27692f166951,2026 IRONMAN 70.3 Luxembourg,2026,50,0,9,2167,21.08,True,False,1.46,True,0.08,him,strict
+b753115b-701a-420d-8e61-b6c642333303,2026 IRONMAN 70.3 World Championship - Men,2026,40,0,13,3162,21.0293,True,False,1.79,True,0.525,him,strict
+a199a3a5-6674-e611-9410-005056951bf1,2017 IRONMAN World Championship,2017,55,0,12,2234,42.16,False,False,4.71,True,0,im,strict
+ecb0249c-925a-e711-9418-005056951bf1,2018 IRONMAN Austria,2018,84,0,10,2315,42.2,False,False,1.5,True,0,im,strict
+b51269e6-49a5-e711-9419-005056951bf1,2018 IRONMAN Barcelona,2018,84,0,6,2470,42.2,False,False,1.6,True,0,im,strict
+10a0b97c-9152-e711-9418-005056951bf1,2018 IRONMAN Cairns,2018,41,0,9,965,42.2,True,False,4.5,True,0.1951219512,im,strict
+324aba02-08a2-e711-9419-005056951bf1,2018 IRONMAN Chattanooga,2018,170,0,7,1909,42.16,False,False,3.22,True,0,im,strict
+2f9635a9-4187-e711-9419-005056951bf1,2018 IRONMAN Copenhagen,2018,60,0,15,2247,42.2,False,False,2.4,True,0,im,strict
+ad41c04d-cdb5-e711-941b-005056951bf1,2018 IRONMAN Cozumel,2018,65,0,5,1490,42.2,False,False,7,True,0,im,strict
+98f707e1-c6a2-e711-9419-005056951bf1,2018 IRONMAN Emilia Romagna,2018,105,0,8,2078,42.2,False,False,4.4,True,0,im,strict
+eed3d75c-c961-e711-9418-005056951bf1,2018 IRONMAN European Championship Frankfurt,2018,157,0,19,2267,42.2,False,False,3.1,True,0,im,strict
+3d59d1a9-abc5-e711-941b-005056951bf1,2018 IRONMAN Florida,2018,113,0,20,1654,42.16,False,False,1.42,True,0,im,strict
+2762e142-1972-e711-9418-005056951bf1,2018 IRONMAN France,2018,71,0,8,2387,42.2,False,False,5.25,True,0,im,strict
+bb2effd1-35bf-e711-941b-005056951bf1,2018 IRONMAN Gurye Korea,2018,40,0,8,1262,42,True,False,5.1,True,0.15,im,strict
+7ae98e84-f680-e711-9418-005056951bf1,2018 IRONMAN Hamburg,2018,75,0,10,1974,42.2,False,False,4.1,True,0,im,strict
+77b45a74-3f87-e711-9419-005056951bf1,2018 IRONMAN Kalmar-Sweden,2018,65,0,13,2009,42.2,False,False,1.5,True,0,im,strict
+1a8af6a6-1072-e711-9418-005056951bf1,2018 IRONMAN Lake Placid,2018,49,0,5,2091,42.2,False,False,13.2,True,0,im,strict
+0b67a500-a544-e811-941e-005056951bf1,2018 IRONMAN Malaysia,2018,66,0,7,980,42.2,True,False,8,True,0.07575757576,im,strict
+9ba75f9b-f6ac-e711-9419-005056951bf1,2018 IRONMAN Maryland,2018,41,0,14,1380,42.16,False,False,2.43,True,0,im,strict
+7f57d401-9352-e711-9418-005056951bf1,2018 IRONMAN North American Championship Texas,2018,105,0,14,2355,42.16,False,False,2.8,True,0,im,strict
+03194d68-0831-e711-9415-005056951bf1,2018 IRONMAN South Africa,2018,40,0,13,1720,42.2,False,False,2.6,True,0,im,strict
+1fbbeca2-cc61-e711-9418-005056951bf1,2018 IRONMAN Subic Bay Philippines,2018,46,0,7,1082,42.2,False,False,8.79,True,0,im,strict
+570945c8-d893-e711-9419-005056951bf1,2018 IRONMAN Vichy,2018,42,0,12,1281,41.6,False,False,3.5,True,0,im,strict
+9c1ad20a-5c99-e711-9419-005056951bf1,2018 IRONMAN Wales,2018,33,0,11,2046,42.2,False,False,3.8,True,0,im,strict
+406b4079-5c99-e711-9419-005056951bf1,2018 IRONMAN Wisconsin,2018,33,0,6,1928,42.16,False,False,6.81,True,0,im,strict
+19c48b66-758e-e711-9419-005056951bf1,2018 IRONMAN World Championship,2018,39,0,13,2306,42.16,True,False,5.86,True,0.05128205128,im,strict
+ac3dcc5f-c047-e811-941e-005056951bf1,2019 IRONMAN African Championship South Africa,2019,31,0,9,1671,42.2,False,False,2.6,True,0,im,strict
+5a58f70f-df7a-e811-941f-005056951bf1,2019 IRONMAN Austria,2019,70,0,13,2490,42.2,False,False,3.2,True,0,im,strict
+c4cc10f9-88b6-e811-a967-000d3a37468c,2019 IRONMAN Barcelona,2019,63,0,8,2772,42.2,False,False,1.6,True,0,im,strict
+e9a0289c-7a72-e811-941f-005056951bf1,2019 IRONMAN Cairns,2019,39,0,16,1070,41.5,True,False,4.5,True,0.05128205128,im,strict
+acdabbde-4ec6-e811-a96a-000d3a35f53a,2019 IRONMAN Chattanooga,2019,148,0,9,1359,42.4545,True,False,7.5,True,0.1013513514,im,strict
+d7b6268d-64a5-e811-a966-000d3a37468c,2019 IRONMAN Copenhagen,2019,60,0,12,2556,42.2,False,False,2.9,True,0,im,strict
+f1489aae-cc44-e811-941e-005056951bf1,2019 IRONMAN Cozumel,2019,72,0,5,1557,42.2,False,False,7,True,0,im,strict
+f2f381dd-edc0-e811-a96d-000d3a364086,2019 IRONMAN Emilia Romagna,2019,84,0,13,2561,42.2,True,False,4.8,True,0.1428571429,im,strict
+9201dd9a-e17a-e811-941f-005056951bf1,2019 IRONMAN European Championship Frankfurt,2019,340,0,19,2025,42.2,False,False,1.8,True,0,im,strict
+5694d9df-c3e1-e811-a965-000d3a3749bc,2019 IRONMAN Florida,2019,59,0,13,2283,42.4867,False,False,2.3,True,0,im,strict
+3f7d3002-207a-e811-941f-005056951bf1,2019 IRONMAN France,2019,76,0,5,2286,30,False,False,5,True,0,im,strict
+03b71de8-0795-e811-9421-005056951bf1,2019 IRONMAN Hamburg,2019,109,0,10,2006,42.2,False,False,4.1,True,0,im,strict
+e0911607-66a5-e811-a966-000d3a37468c,2019 IRONMAN Kalmar-Sweden,2019,59,0,12,2161,42.2,False,False,1.9,True,0,im,strict
+b913a822-3764-e811-941e-005056951bf1,2019 IRONMAN Lanzarote,2019,40,0,7,1360,41.8,False,False,5.16,True,0,im,strict
+30ae2cd8-5e3b-e911-a96d-000d3a3740b7,2019 IRONMAN Malaysia,2019,74,0,11,982,42.2,True,False,2.8,True,0.01351351351,im,strict
+96950619-4ac6-e811-a96a-000d3a35f53a,2019 IRONMAN Maryland,2019,84,0,17,1726,41.7786,False,False,2.17,True,0,im,strict
+033e4941-e422-e811-941d-005056951bf1,2019 IRONMAN New Zealand,2019,51,0,10,1337,42.2,True,False,7.4,True,0.1176470588,im,strict
+cbc9793b-c1aa-e811-a961-000d3a3740b7,2019 IRONMAN Vichy,2019,98,0,17,1240,42.2,False,False,1,True,0,im,strict
+c8f3ef02-72ba-e811-a967-000d3a37468c,2019 IRONMAN Vitoria-Gasteiz,2019,68,0,10,1604,42,True,False,4.4,True,0.08823529412,im,strict
+800d63c0-f5b4-e811-a964-000d3a36478d,2019 IRONMAN Wales,2019,30,0,10,1878,42.2,False,False,3.8,True,0,im,strict
+9a200e74-1af7-e811-a96d-000d3a35f53a,2019 IRONMAN Western Australia,2019,40,0,7,1169,42.2,False,False,1.4,True,0,im,strict
+52455708-bcb5-e811-a967-000d3a37468c,2019 IRONMAN Wisconsin,2019,47,0,11,1825,41.8429,True,False,7.61,True,0.08510638298,im,strict
+7d5d5ba8-fd38-e911-a974-000d3a36478d,2020 IRONMAN Cozumel,2020,32,0,5,777,42.6314,False,False,6.81,True,0,im,strict
+4c54363c-c8fc-e911-a812-000d3a5a1477,2020 IRONMAN Florida,2020,46,0,14,1146,41.2636,True,False,3.83,True,0.08695652174,im,strict
+1ec4ff9e-e91f-42e0-825b-3ee0aa27cbd8,2021 IRONMAN Austria,2021,32,0,9,1032,42.2,False,False,2,True,0,im,strict
+0c82c066-8f9e-4d6d-b8a9-a452c14dfa50,2021 IRONMAN Barcelona,2021,102,0,5,3008,42.2,False,False,1.6,True,0,im,strict
+e7c5b87f-7b8b-4bfe-8989-c9f65ece83e5,2021 IRONMAN Chattanooga,2021,95,0,9,1868,42.4545,True,False,7.51,True,0.07368421053,im,strict
+d475d4af-8721-4f69-949f-e8e187d5544e,2021 IRONMAN Copenhagen,2021,52,0,14,1350,42.2,False,False,1.8,True,0,im,strict
+fe5ce325-4545-4029-92d7-06b041bd3327,2021 IRONMAN Cozumel,2021,65,0,5,2209,42.1004,False,False,7.1,True,0,im,strict
+28d151b2-0f82-4945-b853-5de5b70c3fd1,2021 IRONMAN European Championship Frankfurt,2021,64,0,17,1026,42.2,False,False,1.75,True,0,im,strict
+d8df0b33-0809-4507-bcbc-611067a517ca,2021 IRONMAN Florida,2021,59,0,18,1766,41.9395,False,False,1.61,True,0,im,strict
+59b5f3e2-891e-4ef0-9d20-e301e7ad5edf,2021 IRONMAN France,2021,51,0,8,936,42.2,False,False,5,True,0,im,strict
+a0f9d06a-82a5-4a5e-915b-f2689a03447e,2021 IRONMAN Lake Placid,2021,71,0,11,1524,42.2,False,False,2.44,True,0,im,strict
+c73a0924-d713-4926-aecf-91911f350ccf,2021 IRONMAN Lanzarote,2021,42,0,9,692,42.2,False,False,7.35,True,0,im,strict
+525754c0-dae5-4e6c-ac4f-0f034a9b1719,2021 IRONMAN Maryland,2021,88,0,18,1692,42.0039,False,False,2.14,True,0,im,strict
+d1921b2b-d5dc-4057-9887-e296c114d0ee,2021 IRONMAN Switzerland Thun,2021,33,0,8,967,42.2,False,False,2.6,True,0,im,strict
+37a255ce-58a5-4f54-a47d-d6ee047ba487,2021 IRONMAN Texas,2021,37,0,13,687,42.0522,False,False,2.64,True,0,im,strict
+b875ce5c-6880-4577-ba6a-1dafc2fdd371,2021 IRONMAN Vichy,2021,37,0,14,1077,42.2,True,False,7.6,True,0.02702702703,im,strict
+b57965c1-e903-4d02-a14b-1d8e14223d1d,2021 IRONMAN Vitoria-Gasteiz,2021,69,0,14,569,46.1,False,False,5.3,True,0,im,strict
+9d7fc5ab-e7ed-40fd-b46d-36eef2fe3fae,2021 IRONMAN Wisconsin,2021,104,0,8,3506,42.3579,True,False,6.94,True,0.03846153846,im,strict
+0a7ac8ac-3bf4-4615-94f7-51ae16220699,2021 IRONMAN World Championship,2021,175,0,22,2325,42.2614,False,False,2.69,True,0,im,strict
+f78281c1-1732-4295-9515-cf5dac4af423,2022 IRONMAN Austria,2022,120,0,11,2171,42.2,False,False,2,True,0,im,strict
+15d0cb98-aa9d-4bdf-8824-73820b017bf4,2022 IRONMAN Barcelona,2022,94,0,8,1838,42.2,False,False,1.7,True,0,im,strict
+d65cf230-9959-4305-89e0-1a6742d2547a,2022 IRONMAN California,2022,129,0,12,2610,42.2935,False,False,1.37,True,0,im,strict
+71a620f4-b009-492e-b42d-ef4de60ef792,2022 IRONMAN Chattanooga,2022,66,0,9,1497,42.4545,True,False,7.51,True,0.1060606061,im,strict
+0295e570-64dd-47d8-b244-0449ca8d1b0b,2022 IRONMAN Copenhagen,2022,61,0,11,2075,42.2,False,False,2.9,True,0,im,strict
+b74ca66a-5739-40c3-a2a2-31ac31615dee,2022 IRONMAN Cozumel,2022,58,0,5,1188,42.1004,False,False,7.1,True,0,im,strict
+bd315cf1-68d4-44a7-95ef-de17ef57a380,2022 IRONMAN Emilia Romagna,2022,49,0,13,2183,42.2,False,False,2.2,True,0,im,strict
+11fe6921-4571-4e19-bdf7-9c482fd64f89,2022 IRONMAN European Championship Frankfurt,2022,136,0,13,2249,42.2,False,False,1.75,True,0,im,strict
+f1d7fbf8-7bd7-44cf-bd37-9492d1eddc1e,2022 IRONMAN Florida,2022,97,0,19,1718,41.8429,False,False,1.61,True,0,im,strict
+bbe1551d-7662-49e2-85b1-1e91c4477375,2022 IRONMAN France,2022,92,0,7,1569,40.7,False,False,4.9,True,0,im,strict
+6d1bcb1f-2d6a-4d21-a16c-43c7cfd614ee,2022 IRONMAN Hamburg,2022,64,0,9,1817,42.7,False,False,4,True,0,im,strict
+8bdf6429-96d0-4873-a5bc-dd5e9fb1b09e,2022 IRONMAN Kalmar-Sweden,2022,78,0,16,1800,42.2,True,False,2,True,0.05128205128,im,strict
+a008904e-57a7-4da8-a7e9-d7da56635040,2022 IRONMAN Lake Placid,2022,104,0,11,1833,42.02,True,False,4.83,True,0.125,im,strict
+ea0a1444-5c00-46b1-9e42-cdcbcff93030,2022 IRONMAN Lanzarote,2022,39,0,7,897,42.1,False,False,4.7,True,0,im,strict
+59b45753-2b07-4b24-a32e-2f72b7c47023,2022 IRONMAN Maryland,2022,62,0,11,1377,42.3097,False,False,2.11,True,0,im,strict
+18c339e7-0515-4932-bc6e-13f848d8034c,2022 IRONMAN Portugal-Cascais,2022,33,0,10,1198,42.2,False,False,3.8,True,0,im,strict
+ee41f426-f8ac-42a3-8c0c-4fd3f9fdd20b,2022 IRONMAN Switzerland Thun,2022,66,0,10,1160,42.2,False,False,2.9,True,0,im,strict
+5a04e184-d243-4bcc-bc91-bd974505e80f,2022 IRONMAN Texas,2022,136,0,16,1861,42.0522,True,False,2.64,True,0.05882352941,im,strict
+ec84450a-49f0-47a7-9f23-52370d58ec19,2022 IRONMAN Vichy,2022,31,0,10,907,41.9,False,False,2.5,True,0,im,strict
+097775d2-ea7b-44da-a6f2-f7c0b064b010,2022 IRONMAN Vitoria-Gasteiz,2022,135,0,14,1438,42.3,False,False,1.05,True,0,im,strict
+bc03fa33-f1fc-4f3d-a126-19ef088bf407,2022 IRONMAN Wales,2022,36,0,9,1713,42.3,False,False,3.8,True,0,im,strict
+00d24264-8938-4a98-a10f-56dc3473e541,2022 IRONMAN Wisconsin,2022,57,0,9,1023,42.3579,False,False,2.6,True,0,im,strict
+1c0caffb-36cf-46f6-8f67-c1e7f7f428b8,2022 IRONMAN World Championship Thursday,2022,62,0,19,2319,42.6315,False,False,1.17,True,0,im,strict
+0a3940cf-3793-4d08-aa72-176a27830c3e,2023 IRONMAN Barcelona,2023,101,0,9,1955,42.2,False,False,1.7,True,0,im,strict
+a19ca236-64cb-4260-89b2-3235f8de33d2,2023 IRONMAN California,2023,68,0,9,2122,41.8912,False,False,1.93,True,0,im,strict
+d4796fc3-d1ac-4c69-9dc8-215d1ecb3853,2023 IRONMAN Chattanooga,2023,68,0,6,1242,42.4062,True,False,11.47,True,0.1764705882,im,strict
+8be47099-e69a-444b-98c5-f5be134ebacc,2023 IRONMAN Copenhagen,2023,50,0,15,1943,42.195,False,False,1.8,True,0,im,strict
+0c1a200f-69d5-46e6-98d6-c164a63a9fb9,2023 IRONMAN Cozumel,2023,70,0,4,1259,42.1004,False,False,7.1,True,0,im,strict
+811402c9-91a1-4ebb-b102-e083a44876e7,2023 IRONMAN Florida,2023,66,0,10,1820,42.0361,False,False,3.51,True,0,im,strict
+2ab0d9c7-defa-46a0-91b7-9f5e58c718cc,2023 IRONMAN France,2023,91,0,6,1416,42.2,False,False,4.9,True,0,im,strict
+d1227cc7-9f5f-4175-bf31-f1dfb0fee93d,2023 IRONMAN Frankfurt,2023,100,0,16,2076,42.2,False,False,1.75,True,0,im,strict
+b3efc195-b502-4fbf-bf5b-1dd031249e25,2023 IRONMAN Hamburg,2023,74,0,11,2061,41,False,False,3.8,True,0,im,strict
+8f2109e4-6d97-494c-9d54-ea42a5666dae,2023 IRONMAN Italy Emilia Romagna,2023,74,0,10,1923,42.2,False,False,2.1,True,0,im,strict
+63ba0c5c-89e1-4646-a38c-55bda838e32a,"2023 IRONMAN Kaernten-Klagenfurt, Austria",2023,94,0,10,1887,42.2,False,False,2,True,0,im,strict
+757a8a81-51f7-4c0c-a7f7-d240e8271a73,2023 IRONMAN Lake Placid,2023,73,0,11,1676,42.02,True,False,4.83,True,0.1232876712,im,strict
+98eb36dd-6a46-4a80-92ac-2b599b57516e,2023 IRONMAN Lanzarote,2023,35,0,6,843,42.2,True,False,11.8,True,0.2571428571,im,strict
+6dba0484-f141-42bb-bb95-0aac8f47844c,2023 IRONMAN Malaysia,2023,42,0,10,456,42.12,False,False,2.7,True,0,im,strict
+4a35d978-53d0-4897-b718-ce8299b53a92,2023 IRONMAN Maryland,2023,57,0,14,1042,42.3579,False,False,4.22,True,0,im,strict
+ab9f0371-c93f-4256-b734-eae3c3f45bb2,2023 IRONMAN New Zealand,2023,32,0,8,708,42.2,False,False,1.2,True,0,im,strict
+d8bb4897-273e-4c7f-9a5e-a510b6fc63ca,2023 IRONMAN Portugal-Cascais,2023,39,0,5,1250,42.2,False,False,7.76,True,0,im,strict
+89d248a9-cc2e-4d96-8949-d8526f500995,2023 IRONMAN Switzerland Thun,2023,71,0,10,989,42.3,False,False,2.9,True,0,im,strict
+33c67f48-ba3c-472c-b696-2d8cad67b46e,2023 IRONMAN Texas,2023,97,0,16,1859,42.1648,True,False,2.64,True,0.03092783505,im,strict
+9cfd25be-4ea6-4269-b56b-9119e6f54ad2,2023 IRONMAN Vichy,2023,42,0,13,476,42.2,False,False,2.2,True,0,im,strict
+a6aa560d-66a2-473c-ae0a-d6be004b8372,2023 IRONMAN Vitoria-Gasteiz,2023,52,0,13,1142,42.3,False,False,1.05,True,0,im,strict
+6efe6715-269e-491c-99a0-f86817a4d2b9,2023 IRONMAN Wales,2023,33,0,6,1634,42.2,False,False,3.8,True,0,im,strict
+f81b2e11-ec16-43ac-941b-4386106a9a28,2023 IRONMAN Wisconsin,2023,49,0,10,1067,42.1648,False,False,2.74,True,0,im,strict
+c0a881f6-dead-4fdf-9dd3-cebd6fa4b83b,2024 IRONMAN Cairns,2024,31,0,16,887,42.313,False,False,1.26,True,0,im,strict
+8613dae2-83f4-4dcd-b7db-deb752f5cd90,2024 IRONMAN Calella-Barcelona,2024,75,0,12,2741,42.07,False,False,1.7,True,0,im,strict
+ae0e5d71-3d79-4515-a179-11f044dccb61,2024 IRONMAN California,2024,82,0,8,2433,41.4728,True,False,4.97,True,0.06097560976,im,strict
+f7ea583a-e06f-4f4d-a19e-bfa325dce97c,2024 IRONMAN Copenhagen,2024,34,0,12,2373,42.489,False,False,1.1,True,0,im,strict
+9af45ff9-1802-4aa5-88bc-0090d1df6513,2024 IRONMAN Cozumel,2024,42,0,5,1071,42.1648,False,False,6.76,True,0,im,strict
+fea6dadb-93a9-42c9-ba4e-3dfc6d024b22,2024 IRONMAN Emilia Romagna,2024,62,0,11,2244,42.2,False,False,2.14,True,0,im,strict
+af3f560c-494c-464d-9ed9-c0fbd05ef73b,2024 IRONMAN Florida,2024,60,0,10,1500,42.0361,True,False,3.51,True,0.1166666667,im,strict
+66511861-b71e-44fd-8c65-cd282323354c,2024 IRONMAN France Nice,2024,63,0,12,1893,43.125,False,False,2.38,True,0,im,strict
+d3e4c293-9d14-4be0-9167-d9f6b886f26d,2024 IRONMAN Frankfurt,2024,75,0,14,2213,42.86,False,False,3.11,True,0,im,strict
+7aeeee79-b2fc-4bbd-b723-cc1193bde63f,2024 IRONMAN Hamburg,2024,51,0,9,2338,42.012,False,False,3.92,True,0,im,strict
+74f7a320-3cb3-4e1f-a860-faebaa6e0e61,"2024 IRONMAN Kaernten-Klagenfurt, Austria",2024,66,0,11,2650,42.262,False,False,1.2,True,0,im,strict
+9ca4223e-fee3-4583-a796-4f360a13cfc4,2024 IRONMAN Kalmar-Sweden,2024,45,0,14,1825,42.6,False,False,1,True,0,im,strict
+708d7255-c4fa-4ed2-96a4-5a350f1dacb0,2024 IRONMAN Lake Placid,2024,72,0,17,2156,42.3418,True,False,3.75,True,0.02777777778,im,strict
+03dfe11c-4973-41e1-8489-89ad1af4e3bc,2024 IRONMAN Malaysia,2024,34,0,13,454,42.12,True,False,2.7,True,0.02941176471,im,strict
+d4fd21c6-c504-42fa-b9a6-bfa3e66231bb,2024 IRONMAN Maryland,2024,43,0,13,1082,42.3579,False,False,2.11,True,0,im,strict
+86a0e55c-989f-4d25-bfff-cfb49e044797,2024 IRONMAN Texas,2024,136,0,19,2302,42.4545,True,False,2.86,True,0.05147058824,im,strict
+c5770170-0d51-4d0e-a6f5-c2a35a7b48b0,2024 IRONMAN Vitoria-Gasteiz,2024,89,0,18,1401,41.69,True,False,1.02,True,0.03370786517,im,strict
+cf78e723-848d-4d18-be36-1a83174549af,2024 IRONMAN Wales,2024,43,0,9,1643,42.2,False,False,3.51,True,0,im,strict
+2589106a-7c4e-4218-9922-fc5443c1b29e,2024 IRONMAN Wisconsin,2024,45,0,13,1224,42.2775,False,False,2.24,True,0,im,strict
+633f40fa-698f-4380-bb5f-9b50fe173849,2025 IRONMAN Calella-Barcelona,2025,45,0,12,2440,42.048,False,False,1.77,True,0,im,strict
+1fc58eb1-18fc-417d-bd3b-5aa674132777,2025 IRONMAN California,2025,53,0,7,2336,41.4728,False,False,5.68,True,0,im,strict
+4435b4ed-8e34-4703-9a77-50e43201412b,2025 IRONMAN Canada-Ottawa,2025,64,0,13,1911,42.1004,False,False,1.85,True,0,im,strict
+eecbddcc-fec9-4c52-ab35-28f77cb1c81b,2025 IRONMAN Chattanooga,2025,93,0,12,1351,42.0683,True,False,5.1,True,0.04301075269,im,strict
+e76951cf-c3df-4295-8cee-a41b118a33ff,2025 IRONMAN Copenhagen,2025,36,0,13,2449,42.599,True,False,1.65,True,0.02777777778,im,strict
+f35fbd8f-28bd-4dbb-b940-1b7e1dff7117,2025 IRONMAN Cozumel,2025,60,0,4,1457,42.1648,False,False,6.76,True,0,im,strict
+261dd41f-3a15-4684-bbe4-1a0284bad7e5,2025 IRONMAN Emilia Romagna,2025,86,0,18,2227,42.2,False,False,2.14,True,0,im,strict
+83af8238-4ace-4d88-a3d3-0371f9b88294,2025 IRONMAN Florida,2025,46,0,10,1482,42.0361,True,False,3.51,True,0.1086956522,im,strict
+f3a6cf4c-e9d5-4c6f-a425-86b3b8ba0524,2025 IRONMAN France Nice,2025,100,0,14,1466,41.2,False,False,2.3,True,0,im,strict
+dcfae363-4480-4c9c-b8af-bbdeea0b00ef,2025 IRONMAN Frankfurt,2025,126,0,16,2195,42.86,False,False,1.74,True,0,im,strict
+b25a3825-7c68-4442-a4d2-ea887b2fb50e,2025 IRONMAN Hamburg,2025,59,0,9,2346,42.133,False,False,3.95,True,0,im,strict
+9526bfb3-167a-4fa4-9808-39753c55eb90,2025 IRONMAN Japan South Hokkaido,2025,44,0,9,1077,42.2,False,False,3.6,True,0,im,strict
+9e9018ff-c307-447c-a26c-5927df800fdd,"2025 IRONMAN Kaernten-Klagenfurt, Austria",2025,115,0,11,2265,42.352,False,False,1.28,True,0,im,strict
+b5c5197c-0040-425d-93f7-fa5d0c4edf8e,2025 IRONMAN Kalmar-Sweden,2025,52,0,14,2027,42.3,False,False,1,True,0,im,strict
+b22a23ca-da28-464a-9dbe-89d86510c4ab,2025 IRONMAN Lake Placid,2025,36,0,12,1979,42.3418,True,False,7.64,True,0.05555555556,im,strict
+d6047ad1-824f-45a2-b70c-a757cc9ea609,2025 IRONMAN Les Sables d'Olonne-Vendee,2025,33,0,9,2557,42.05,False,False,2.93,True,0,im,strict
+93ffab28-3521-4d33-904b-97b02f5cc40e,2025 IRONMAN Malaysia,2025,34,0,12,610,42.12,True,False,2.7,True,0.05882352941,im,strict
+a407a3d4-6076-441c-abac-be93484f40a8,2025 IRONMAN Portugal-Cascais,2025,40,0,7,1407,42.19,False,False,7.6,True,0,im,strict
+e9345d08-ebd3-481d-948f-2cb3b9833189,2025 IRONMAN Switzerland Thun,2025,48,0,17,1452,42.286,False,False,4.92,True,0,im,strict
+0a34c991-b758-4d40-bf60-d6138ed86336,2025 IRONMAN Texas,2025,117,0,27,1799,42.2704,False,False,1.66,True,0,im,strict
+78cc342f-5383-4d91-8299-fb7f0ec0339a,2025 IRONMAN Vitoria-Gasteiz,2025,61,0,18,1466,41.69,True,False,1.02,True,0.01639344262,im,strict
+2a497ecb-1f5e-49b0-ad8e-f44dfd891922,2025 IRONMAN Wales,2025,35,0,9,1659,42.2,False,False,3.51,True,0,im,strict
+f87c8bbe-cb97-4f2c-83a7-e25d629870b1,2026 IRONMAN Cairns,2026,31,0,16,1078,42.313,False,False,2.48,True,0,im,strict
+bf442555-30b5-4228-bfa4-5f8e621b6dd4,2026 IRONMAN Canada-Ottawa,2026,41,0,12,2314,43.3074,False,False,1.77,True,0,im,strict
+002a44d9-34a7-4f44-bb46-dc254e3fcee9,2026 IRONMAN Chattanooga,2026,45,0,9,1184,42.0683,False,False,1.95,True,0,im,strict
+be0a788d-bcd7-4710-a756-fb096a5e1591,2026 IRONMAN Hamburg,2026,47,0,8,2214,42.151,False,False,3.9,True,0,im,strict
+29e186db-f6bc-4393-93cd-992737521f2a,2026 IRONMAN Italy Emilia Romagna,2026,55,0,17,2476,42.2,False,False,2,True,0,im,strict
+5ff2cb61-c76e-45d4-963f-25ee7280977f,2026 IRONMAN Jacksonville,2026,74,0,10,1290,41.9395,False,False,3.14,True,0,im,strict
+389379d7-4d81-45fc-a8f7-ddf825780d2c,2026 IRONMAN Japan South Hokkaido,2026,31,0,7,1110,42.2,False,False,3.6,True,0,im,strict
+96ad7c20-c2be-4b96-acf1-430bb12f348d,"2026 IRONMAN Kaernten-Klagenfurt, Austria",2026,80,0,12,2606,42.352,False,False,1.35,True,0,im,strict
+59f3b68c-c706-4a5c-b028-3ed9389d5422,2026 IRONMAN Kalmar-Sweden,2026,76,0,15,2456,42.5,False,False,1,True,0,im,strict
+a20c39b2-2f1b-40dc-ae85-3e2f41e5ab07,2026 IRONMAN Lake Placid,2026,51,0,15,1947,42.3418,True,False,3.75,True,0.1176470588,im,strict
+9bbac2c1-3eeb-4086-956e-c58892513a89,2026 IRONMAN Lanzarote,2026,40,0,7,1102,42.03,False,False,5.6,True,0,im,strict
+46e754db-2cb0-4a75-b9ad-2b9d0140a90e,2026 IRONMAN Maryland,2026,46,0,17,1266,42.4545,False,False,2.11,True,0,im,strict
+d7a58ffe-52bb-47a3-bc71-8c243ea143ec,2026 IRONMAN New Zealand,2026,35,0,15,995,41.941,False,False,1.43,True,0,im,strict
+864fb423-8283-471e-bb2d-b032050f853a,2026 IRONMAN Penghu,2026,31,0,14,564,42.2,False,False,2.1,True,0,im,strict
+3b3bd0bd-a1ce-4c96-85e6-cf6eff6cf31f,2026 IRONMAN Switzerland Thun,2026,59,0,16,1931,42.286,False,False,4.92,True,0,im,strict
+48b74ff4-543a-4a3d-b1e5-937a91902e9b,2026 IRONMAN Tallinn,2026,49,0,10,1565,42.236,False,False,3.98,True,0,im,strict
+31e73a5b-a79d-4847-9083-8dd15cc242b3,2026 IRONMAN Texas,2026,49,0,17,2217,43.5488,False,False,5.71,True,0,im,strict
+8cefb85b-a803-48be-af51-e0285a8dd11c,2026 IRONMAN Tours Metropole - Loire Valley,2026,124,0,14,2587,42.13,True,False,3.37,True,0.1129032258,im,strict
+c087c96c-783f-4142-bc21-52d4cfc31532,2026 IRONMAN Vichy,2026,34,0,9,901,41.08,True,False,6.35,True,0.1764705882,im,strict
+0418e60d-ca78-4f73-a2c2-76816190d293,2026 IRONMAN Vietnam,2026,37,0,10,710,42.0865,False,False,2.46,True,0,im,strict
+96a2ed72-934a-4942-b8e8-d483e286e1c1,2026 IRONMAN Vitoria-Gasteiz,2026,110,0,23,1233,42.276,True,False,2.9,True,0.1181818182,im,strict
+d168bf62-9088-4d48-b46a-9c6f968f24da,2026 IRONMAN World Championship,2026,52,0,19,2266,42.2891,False,False,1.15,True,0,im,strict
+2f990751-bf20-e511-9403-005056951bf1,2016 IRONMAN 70.3 Mallorca,2016,33,16,7,2565,21.1,True,True,3.1,True,0.4848484848,him,t2_no_limit
+49a595a5-fb4f-e511-9409-005056951bf1,2016 IRONMAN 70.3 Vichy,2016,44,3,6,1661,20.6,True,True,3.5,True,0.06818181818,him,t2_no_limit
+634e0277-52a4-e711-9419-005056951bf1,2018 IRONMAN 70.3 Asia-Pacific Championship Philippines,2018,41,4,6,1358,21.1,True,True,1,True,0.09756097561,him,t2_no_limit
+34400ea4-e6d6-e711-941b-005056951bf1,2018 IRONMAN 70.3 Augusta,2018,76,25,10,2668,21.08,True,True,1.77,True,0.3289473684,him,t2_no_limit
+39f3f709-13a2-e711-9419-005056951bf1,2018 IRONMAN 70.3 Boulder,2018,80,25,5,1921,21.1,True,True,4.9,True,0.3125,him,t2_no_limit
+fc62c23f-9b5a-e711-9418-005056951bf1,2018 IRONMAN 70.3 Campeche,2018,46,3,4,620,21.1,True,True,5.3,True,0.0652173913,him,t2_no_limit
+ca18f3c5-c2aa-e811-a961-000d3a3740b7,2018 IRONMAN 70.3 Cartagena,2018,63,8,6,1629,21.1,True,True,4.8,True,0.126984127,him,t2_no_limit
+338960da-71a7-e711-9419-005056951bf1,2018 IRONMAN 70.3 Cozumel,2018,33,7,4,1654,21.1,True,True,5.5,True,0.2121212121,him,t2_no_limit
+8b625e16-3e87-e711-9419-005056951bf1,2018 IRONMAN 70.3 Jonkoping,2018,32,5,8,1792,21.1,True,True,4.1,True,0.25,him,t2_no_limit
+df4e2f37-066b-e711-9418-005056951bf1,2018 IRONMAN 70.3 Mallorca,2018,70,19,6,2771,21.2,True,True,2,True,0.2714285714,him,t2_no_limit
+a75a0f1e-c5ad-e711-9419-005056951bf1,2018 IRONMAN 70.3 Nice,2018,54,24,4,2082,21.1,True,True,5.25,True,0.4444444444,him,t2_no_limit
+a06af767-c26b-e711-9418-005056951bf1,2018 IRONMAN 70.3 Pays D'Aix,2018,90,62,6,1477,21.1,True,True,1.8,True,0.6888888889,him,t2_no_limit
+c133282d-6699-e711-9419-005056951bf1,2018 IRONMAN 70.3 Puerto Rico,2018,38,3,5,501,21.1,True,True,5.55,True,0.1578947368,him,t2_no_limit
+9bc13d16-9277-e711-9418-005056951bf1,2018 IRONMAN 70.3 Switzerland,2018,79,18,6,1953,21,True,True,3.7,True,0.2278481013,him,t2_no_limit
+a9375cc6-40ca-e711-941b-005056951bf1,2018 IRONMAN 70.3 Waco,2018,42,4,7,2096,21.08,True,True,4.44,True,0.09523809524,him,t2_no_limit
+6d575ec6-9303-e911-a968-000d3a3749bc,2019 IRONMAN 70.3 Augusta,2019,80,15,7,2584,21.0824,True,True,2.12,True,0.1875,him,t2_no_limit
+ae7ad45a-52b7-e811-a967-000d3a37468c,2019 IRONMAN 70.3 Boulder,2019,69,69,1,1982,21.08,True,True,,False,1,him,t2_no_limit
+56367699-dd91-e811-941f-005056951bf1,2019 IRONMAN 70.3 Chattanooga,2019,32,32,1,2747,21.08,True,True,,False,1,him,t2_no_limit
+6acabb00-4cc6-e811-a96a-000d3a35f53a,2019 IRONMAN 70.3 Cozumel,2019,60,20,4,1495,20.9557,True,True,5.23,True,0.3333333333,him,t2_no_limit
+105fb91d-18b8-e811-a967-000d3a37468c,2019 IRONMAN 70.3 Ecuador,2019,73,73,1,1068,21.1,True,True,,False,1,him,t2_no_limit
+7284cebd-4cfd-e811-a968-000d3a3749bc,2019 IRONMAN 70.3 Goa,2019,33,2,4,678,21.1,True,True,7.1,True,0.06060606061,him,t2_no_limit
+a752822c-a2b2-e811-a96c-000d3a364086,2019 IRONMAN 70.3 Les Sables d'Olonne,2019,41,12,8,2338,21.1,True,True,2.5,True,0.2926829268,him,t2_no_limit
+8a6c6181-04f7-e811-a96d-000d3a35f53a,2019 IRONMAN 70.3 Los Cabos,2019,33,15,4,640,20.99,True,True,7.28,True,0.4545454545,him,t2_no_limit
+7a74a065-c889-e811-941f-005056951bf1,2019 IRONMAN 70.3 Mallorca,2019,83,23,9,2832,21.05,True,True,1.95,True,0.3253012048,him,t2_no_limit
+e39cd8e5-6e80-e811-941f-005056951bf1,2019 IRONMAN 70.3 Oceanside California,2019,68,68,1,2360,21.08,True,True,,False,1,him,t2_no_limit
+a0b5b8d6-52b7-e811-a967-000d3a37468c,2019 IRONMAN 70.3 Ohio,2019,38,38,1,1883,21.08,True,True,,False,1,him,t2_no_limit
+d2f702e4-f5a9-e811-a967-000d3a35f53a,2019 IRONMAN 70.3 Sunshine Coast,2019,32,22,3,1418,21.1,True,True,5,True,0.6875,him,t2_no_limit
+0110bd42-ef94-e811-9421-005056951bf1,2019 IRONMAN 70.3 Switzerland,2019,53,8,5,2064,21,True,True,3.7,True,0.1509433962,him,t2_no_limit
+09df055b-5eb7-e811-a967-000d3a37468c,2019 IRONMAN 70.3 Traverse City,2019,49,9,10,2141,21.0985,True,True,1.69,True,0.2040816327,him,t2_no_limit
+8bf835cd-4cc6-e811-a96a-000d3a35f53a,2019 IRONMAN 70.3 Vichy,2019,37,0,6,1698,21.1,False,False,1,True,0,him,t2_no_limit
+c9ad8486-9403-e911-a968-000d3a3749bc,2019 IRONMAN 70.3 Waco,2019,40,10,9,2127,21.0824,True,True,3.35,True,0.25,him,t2_no_limit
+fc99809f-4dc6-e811-a96a-000d3a35f53a,2019 IRONMAN 70.3 Zell am See Kaprun,2019,40,11,4,2076,21,True,True,2.8,True,0.275,him,t2_no_limit
+72c4014d-3c77-465f-9a2f-d9477cf5b146,2021 IRONMAN 70.3 Acapulco,2021,36,3,5,896,21.097,True,True,10.6,True,0.3055555556,him,t2_no_limit
+d5abbfc1-778d-47d8-9048-ea36a75fb885,2021 IRONMAN 70.3 Chattanooga,2021,43,6,9,1998,21.0824,True,True,1.13,True,0.2558139535,him,t2_no_limit
+93463968-5ae1-470a-81b4-e4a5f480306e,2021 IRONMAN 70.3 Cozumel Day 1,2021,43,11,4,1228,20.9557,True,True,5.23,True,0.2558139535,him,t2_no_limit
+951360a4-3212-4a21-b99d-69bfb52d8215,2021 IRONMAN 70.3 Des Moines,2021,60,9,11,2347,21.1,True,True,3.15,True,0.1666666667,him,t2_no_limit
+819cd3fb-05a8-490c-adba-4d3001009339,2021 IRONMAN 70.3 Florida,2021,41,1,9,1237,21.2594,True,True,4.78,True,0.2195121951,him,t2_no_limit
+ecbcba01-8dbc-4765-8b40-c9c918f6be8a,2021 IRONMAN 70.3 Hawaii,2021,45,9,8,1078,21.2916,True,True,1.71,True,0.2,him,t2_no_limit
+e1fbebe0-53f7-473c-ab44-40441dc2f557,2021 IRONMAN 70.3 Indian Wells La Quinta,2021,48,13,7,1549,21.3238,True,True,2.48,True,0.2708333333,him,t2_no_limit
+e22bebf3-f9cd-486a-8e53-270daeb02b59,2021 IRONMAN 70.3 Michigan,2021,46,20,8,3706,21.0341,True,True,2.46,True,0.4782608696,him,t2_no_limit
+822c0309-8267-41e7-9d66-b4745e64fe2c,2021 IRONMAN 70.3 North Carolina,2021,40,12,6,3991,21.1468,True,True,1.19,True,0.3,him,t2_no_limit
+86852764-7406-42f3-b4e8-de4444d09ede,2021 IRONMAN 70.3 Oceanside,2021,33,17,8,1529,20.9859,True,True,1.8,True,0.5454545455,him,t2_no_limit
+4836a4d3-7fbf-47dd-bf87-f6a6274cc9ff,2021 IRONMAN 70.3 Ohio,2021,36,6,5,1850,21.0663,True,True,3.64,True,0.1666666667,him,t2_no_limit
+999ba657-1d2a-4ff3-916e-c200ffd9fef5,2021 IRONMAN 70.3 Oregon,2021,36,12,8,1750,21.0503,True,True,2.66,True,0.4444444444,him,t2_no_limit
+76d2a06a-898b-4a43-a071-daaa37661f1e,2021 IRONMAN 70.3 Texas,2021,30,3,10,1743,21.7758,True,True,1.15,True,0.1,him,t2_no_limit
+974f44a5-ce5f-45be-aab8-1446cc3e5fd8,2021 IRONMAN 70.3 Waco,2021,84,24,7,3056,21.9032,True,True,4.72,True,0.2857142857,him,t2_no_limit
+1f0e33db-974b-4695-880d-f45cd34da2cb,2022 IRONMAN 70.3 Boulder,2022,76,24,8,1929,21.0824,True,True,2.7,True,0.4210526316,him,t2_no_limit
+71539573-68ac-483e-8ac6-b313cbfd42b0,2022 IRONMAN 70.3 Cartagena,2022,67,4,7,1652,21,True,True,5.38,True,0.1044776119,him,t2_no_limit
+4cb72055-da4f-43bb-b8ae-9cbb85435275,2022 IRONMAN 70.3 Cascais Portugal,2022,33,19,4,1976,21,True,True,4.2,True,0.5757575758,him,t2_no_limit
+8980bc3f-3694-4e37-b53f-d2378a26d7c9,2022 IRONMAN 70.3 Chattanooga,2022,72,10,11,2754,21.0824,True,True,1.13,True,0.1944444444,him,t2_no_limit
+d1a8bafe-7cb8-4043-9825-6a83ae768ea4,2022 IRONMAN 70.3 Coeur d'Alene,2022,41,8,5,2094,21.2434,True,True,3.46,True,0.1951219512,him,t2_no_limit
+f0a465d0-1b05-4bce-8b5d-e885a9e17997,2022 IRONMAN 70.3 Cozumel,2022,68,8,5,1704,20.9557,True,True,5.23,True,0.1176470588,him,t2_no_limit
+600dafd7-1f3d-4394-ae3c-12db67d00830,2022 IRONMAN 70.3 Emilia Romagna,2022,35,15,7,2500,21.095,True,True,2.2,True,0.4285714286,him,t2_no_limit
+c9e159db-5f88-4cff-ac20-a06e4a8f8ea5,2022 IRONMAN 70.3 European Championship Elsinore,2022,45,3,7,2039,21.1,True,True,1.8,True,0.06666666667,him,t2_no_limit
+c2b8dbc9-fdf9-422c-a147-d976146f1902,2022 IRONMAN 70.3 Goa,2022,33,5,5,683,21.1,True,True,4.2,True,0.1515151515,him,t2_no_limit
+eb94f177-ed20-4fb1-80e7-3ac0e69d848a,2022 IRONMAN 70.3 Hawaii,2022,57,6,7,1244,21.2916,True,True,3.64,True,0.1052631579,him,t2_no_limit
+d978fa3e-b272-42e3-b544-7b4cfae73c1e,2022 IRONMAN 70.3 Indian Wells La Quinta,2022,39,8,6,1560,20.9376,True,True,2.75,True,0.2051282051,him,t2_no_limit
+640c30e8-d501-4d7c-8df8-15a6765adf74,2022 IRONMAN 70.3 Kenting,2022,51,14,6,696,20.75,True,True,7,True,0.2745098039,him,t2_no_limit
+02aef019-3e37-4afc-ae97-df7ba4f8a90e,2022 IRONMAN 70.3 Los Cabos,2022,39,13,7,939,20.99,True,True,4.81,True,0.3333333333,him,t2_no_limit
+8778c3e9-e5df-4279-bf51-bb00ef54be82,2022 IRONMAN 70.3 Luxembourg,2022,165,51,8,1879,21.1,True,True,3.1,True,0.3090909091,him,t2_no_limit
+f29efe58-05b8-4106-9c17-704fc2d80208,2022 IRONMAN 70.3 Mallorca,2022,53,12,9,2714,21.1,True,True,1.5,True,0.2452830189,him,t2_no_limit
+e67aa96d-bb2a-41f5-97d0-e3e5a9ed33f1,2022 IRONMAN 70.3 Mont-Tremblant,2022,43,17,5,1751,21.0824,True,True,3.85,True,0.3953488372,him,t2_no_limit
+42e17e72-c272-41b6-8f47-f1e3d01b7a60,2022 IRONMAN 70.3 Oceanside,2022,44,4,9,2388,21.1468,True,True,2.11,True,0.2727272727,him,t2_no_limit
+604be70b-5d68-4166-b12b-2501183175d0,2022 IRONMAN 70.3 Ohio,2022,34,3,9,1390,21.1146,True,True,1.75,True,0.08823529412,him,t2_no_limit
+f3092057-1f84-447c-a909-2abf4c229445,2022 IRONMAN 70.3 Pays D'Aix,2022,33,11,8,1808,21.5,True,True,2.7,True,0.4545454545,him,t2_no_limit
+6dbd5095-1cd9-40fc-a069-c02ce455dc85,2022 IRONMAN 70.3 Puerto Rico,2022,42,19,4,1006,21.0825,True,True,5.49,True,0.4523809524,him,t2_no_limit
+2a2a1fe9-1308-4e8a-afdb-2d053f0a9fdb,2022 IRONMAN 70.3 Santa Cruz,2022,53,40,5,2549,21.3399,True,True,3.03,True,0.7547169811,him,t2_no_limit
+3b12b880-6fdb-45aa-99e9-29e1099143e4,2022 IRONMAN 70.3 Switzerland,2022,97,24,5,1603,21.1,True,True,3.4,True,0.2474226804,him,t2_no_limit
+459ee5b4-7fe7-44ee-8992-1bdd7743bc46,2022 IRONMAN 70.3 Texas,2022,36,6,12,2073,21.4526,True,True,3.54,True,0.3333333333,him,t2_no_limit
+a25be991-163a-453d-88e0-ef1304602060,2023 IRONMAN 70.3 Cartagena,2023,60,8,11,1728,21,True,True,3.03,True,0.15,him,t2_no_limit
+91fa1be8-3002-4755-a8ef-01b8254d5d44,2023 IRONMAN 70.3 Chattanooga,2023,47,14,7,2888,21.1629,True,True,3.01,True,0.2978723404,him,t2_no_limit
+aebbf326-0ee8-4a0b-8db2-d5186dc9c835,2023 IRONMAN 70.3 Desaru Coast,2023,47,5,4,527,21,True,True,7.3,True,0.3617021277,him,t2_no_limit
+492f4a98-d43f-4f8d-8817-05e59893d155,2023 IRONMAN 70.3 Eagleman,2023,34,2,9,1575,21.1307,True,True,2.22,True,0.1764705882,him,t2_no_limit
+7dfbd00b-2bf2-49ad-8795-065df9e6b0b0,2023 IRONMAN 70.3 Hawaii,2023,47,3,9,998,21.2916,True,True,2.61,True,0.1276595745,him,t2_no_limit
+8d79205d-7f75-4618-a21c-d8361b88ed69,2023 IRONMAN 70.3 Italy Emilia Romagna,2023,86,39,7,1960,21.1,True,True,2.1,True,0.4534883721,him,t2_no_limit
+4d9d8903-3b94-4e48-9bc0-8363186ea89d,2023 IRONMAN 70.3 Kenting,2023,36,9,3,1263,21.1,True,True,7,True,0.25,him,t2_no_limit
+cf9cd1bd-c45b-4b80-9e94-bb07529df6f2,2023 IRONMAN 70.3 Kraichgau,2023,33,7,8,1974,21.1,True,True,1.34,True,0.2121212121,him,t2_no_limit
+8b5e285b-68da-4c26-b8cc-015c01ca8fb2,2023 IRONMAN 70.3 Luxembourg,2023,93,32,8,2038,21,True,True,3.1,True,0.3440860215,him,t2_no_limit
+969f5eca-6c39-47d1-955c-a0868ac38a58,2023 IRONMAN 70.3 New York,2023,35,7,8,2122,21.0985,True,True,1.13,True,0.2,him,t2_no_limit
+99f76aa0-8c0f-4638-b4f7-909c0aa300ce,2023 IRONMAN 70.3 Nice,2023,46,8,4,2274,21.1,True,True,4.9,True,0.1739130435,him,t2_no_limit
+3493d41f-2d4d-4075-a7ed-18c2798a976d,2023 IRONMAN 70.3 North Carolina,2023,32,12,5,2301,20.9054,True,True,2.85,True,0.375,him,t2_no_limit
+10365b96-0bae-4ccc-abdc-54535af3c224,2023 IRONMAN 70.3 Oceanside,2023,36,1,10,2220,21.1468,True,True,2.11,True,0.1944444444,him,t2_no_limit
+c36091d1-efaa-4970-9c67-688c7a97d67b,2023 IRONMAN 70.3 Pennsylvania Happy Valley,2023,30,10,7,1979,20.6318,True,True,2.08,True,0.3333333333,him,t2_no_limit
+d3a4fcdc-bc4e-4422-ac03-5404edcbf683,2023 IRONMAN 70.3 Pucon,2023,56,15,6,1706,21.05,True,True,3.51,True,0.2678571429,him,t2_no_limit
+fdd29721-a47d-408b-b6c2-4bf0934a373c,2023 IRONMAN 70.3 Switzerland,2023,44,12,6,1896,21.1,True,True,3.4,True,0.2727272727,him,t2_no_limit
+9aa45f7c-9da2-4540-9a5a-b129c590ad29,2023 IRONMAN 70.3 Venice-Jesolo,2023,35,15,4,2369,20.97,True,True,2.35,True,0.4285714286,him,t2_no_limit
+b69d77c6-8fda-41e3-9ec9-b73d922b75a0,2023 IRONMAN 70.3 Vietnam,2023,53,5,7,1240,21.1,True,True,2,True,0.09433962264,him,t2_no_limit
+21d5f802-e971-4d26-b5f4-e265383a7aa3,2023 IRONMAN 70.3 Weymouth,2023,30,21,5,2060,21.4,True,True,1.6,True,0.7,him,t2_no_limit
+65614825-bc08-495a-9d77-cab42c8265ae,2024 IRONMAN 70.3 Alcúdia-Mallorca,2024,37,11,8,2919,20.83,True,True,1.43,True,0.2972972973,him,t2_no_limit
+61ff0d49-aa03-41d0-bf53-7f159d9baa98,2024 IRONMAN 70.3 Cartagena,2024,96,13,12,1773,21,True,True,3.03,True,0.21875,him,t2_no_limit
+c644b569-80b0-4346-ab8d-42d46b037abc,2024 IRONMAN 70.3 Chattanooga,2024,65,22,6,3212,21.1629,True,True,4.83,True,0.3384615385,him,t2_no_limit
+6de385b2-6587-42f3-a58b-404fe0f60ba6,2024 IRONMAN 70.3 Cozumel,2024,47,13,4,1386,21.1,True,True,5.4,True,0.2765957447,him,t2_no_limit
+896b1717-f2b2-4fd4-a949-b2b2805d720e,2024 IRONMAN 70.3 Desaru Coast,2024,38,3,6,516,21.1,True,True,4.2,True,0.2368421053,him,t2_no_limit
+df642982-5fff-4460-8470-49efcb8fdc79,2024 IRONMAN 70.3 Goa,2024,35,0,5,520,20.67,False,False,3.62,True,0,him,t2_no_limit
+34e8c66b-a3d1-45ea-ad3a-b2fa037034dd,2024 IRONMAN 70.3 Goseong,2024,47,11,5,1069,20.862,True,True,3.25,True,0.2340425532,him,t2_no_limit
+1a391ebe-5138-4e54-9bf7-b14aa90c709b,2024 IRONMAN 70.3 Italy Emilia Romagna,2024,37,11,6,2378,21.25,True,True,2.09,True,0.2972972973,him,t2_no_limit
+3eef74eb-c459-4eff-9c9d-827bea775793,2024 IRONMAN 70.3 Kenting,2024,73,24,3,1058,21.1,True,True,7,True,0.3287671233,him,t2_no_limit
+971c5bb8-4616-4f21-8088-46d6265733f6,2024 IRONMAN 70.3 Kraichgau,2024,32,4,10,2101,21.6,True,True,2.65,True,0.125,him,t2_no_limit
+fe0101d8-7150-4e0a-839f-6b81ff6af3c6,2024 IRONMAN 70.3 Louisville,2024,39,13,6,2014,21.2594,True,True,1.34,True,0.3333333333,him,t2_no_limit
+930b0a89-4038-4945-ac93-77eea268bf6c,2024 IRONMAN 70.3 Mossel Bay,2024,32,5,7,1375,21.1,True,True,1.8,True,0.15625,him,t2_no_limit
+4a1ee310-0583-4649-953c-7042c73d6aa1,2024 IRONMAN 70.3 Oregon,2024,36,10,5,2205,21.1468,True,True,1.54,True,0.2777777778,him,t2_no_limit
+7e1c6afa-b63a-4aa2-b935-fbc741fdbf3a,2024 IRONMAN 70.3 Texas,2024,30,4,13,1785,21.0664,True,True,3.54,True,0.3,him,t2_no_limit
+261f3355-28c7-4677-9c0c-4fccdf4c07e9,2024 IRONMAN 70.3 Valencia,2024,32,9,7,2334,21,True,True,2.15,True,0.53125,him,t2_no_limit
+e42f12ce-2366-4beb-aadf-844c9142c76f,2024 IRONMAN 70.3 Waco,2024,44,10,4,1823,21.1146,True,True,3.77,True,0.2272727273,him,t2_no_limit
+40d6c495-69a5-430b-a2c4-a985f194738d,2024 IRONMAN 70.3 Zell am See-Kaprun,2024,33,13,5,2198,21.1,True,True,2.8,True,0.3939393939,him,t2_no_limit
+4db17435-c87f-45ce-b8f8-64260d4ff21f,2025 IRONMAN 70.3 Alcúdia-Mallorca,2025,32,5,11,2784,20.79,True,True,1.46,True,0.25,him,t2_no_limit
+e1555ad0-d967-434a-bcbd-572d8ad2e74b,2025 IRONMAN 70.3 Boulder,2025,34,3,5,1621,21.0824,True,True,2.98,True,0.08823529412,him,t2_no_limit
+48541b5d-87fe-4b40-a5d9-e7da104aa77d,2025 IRONMAN 70.3 Cartagena,2025,53,4,11,1805,21,True,True,2.66,True,0.2264150943,him,t2_no_limit
+d4ab9ef4-8b7f-43c2-a594-c432415d8f90,2025 IRONMAN 70.3 Chattanooga,2025,38,10,7,2669,21.0663,True,True,3.01,True,0.2631578947,him,t2_no_limit
+1a236cb2-01bb-4493-8bb9-9c1e34656adb,2025 IRONMAN 70.3 Da Nang,2025,51,1,10,1505,21.1704,True,True,1.9,True,0.01960784314,him,t2_no_limit
+8f32c36f-ad87-43d9-a96c-2f3bd3f610d5,2025 IRONMAN 70.3 Gulf Coast,2025,178,3,8,1258,21.0631,True,True,1.87,True,0.01685393258,him,t2_no_limit
+cb9654b6-2176-479b-bc7e-f38bc8e150ae,2025 IRONMAN 70.3 Hawaii,2025,30,4,8,930,21.0695,True,True,2.33,True,0.1666666667,him,t2_no_limit
+ec5433ea-4907-47f4-b2ab-b6ba296725a3,2025 IRONMAN 70.3 Italy Emilia Romagna,2025,67,27,8,2071,21.25,True,True,2.09,True,0.4029850746,him,t2_no_limit
+e9856ee7-7672-4552-9e27-d9ab6f6e2935,2025 IRONMAN 70.3 Luxembourg Remich - Région Moselle,2025,42,1,12,2393,21.08,True,True,1.46,True,0.2142857143,him,t2_no_limit
+0b8191e1-76de-427b-bc4a-78fefdcd90e6,2025 IRONMAN 70.3 Mont Tremblant,2025,30,12,6,2575,21.0824,True,True,2.7,True,0.4,him,t2_no_limit
+8db1ed51-d623-4ce8-8976-e5fc25d78f39,2025 IRONMAN 70.3 Mossel Bay,2025,64,43,8,1750,21.1,True,True,4.1,True,0.671875,him,t2_no_limit
+ca5c4954-e274-4358-b921-868097a625cb,2025 IRONMAN 70.3 Musselman,2025,48,11,7,1410,22.0963,True,True,2.22,True,0.2291666667,him,t2_no_limit
+9718158a-07b2-4ab6-99b8-d207c74cb432,2025 IRONMAN 70.3 Nice,2025,48,15,7,2016,20.6,True,True,2.3,True,0.3125,him,t2_no_limit
+19551b8a-21bc-4529-8fe2-3cabed8b05ae,2025 IRONMAN 70.3 Puerto Rico,2025,32,10,8,658,21.0825,True,True,5.63,True,0.3125,him,t2_no_limit
+b4395fca-89f0-48c9-80ee-82bb750145ed,2025 IRONMAN 70.3 Rockford,2025,77,4,9,1763,21.5491,True,True,2.29,True,0.1688311688,him,t2_no_limit
+a34c72f5-d303-4b85-bd36-bcc44f46c1c7,2025 IRONMAN 70.3 Waco,2025,46,6,9,1796,21.2916,True,True,2.17,True,0.1304347826,him,t2_no_limit
+ddc798a0-abce-41ba-8c10-d0dd07fe3572,2025 IRONMAN 70.3 Westfriesland,2025,30,17,6,1621,20.6,True,True,4.72,True,0.5666666667,him,t2_no_limit
+a72aed28-fefb-4a23-8bed-cb2382700fba,2025 IRONMAN 70.3 Zell am See-Kaprun,2025,31,9,5,1850,21.1,True,True,2.95,True,0.2903225806,him,t2_no_limit
+646075b9-b1b7-4144-b33b-8faa4ab118d5,2026 IRONMAN 70.3 Alcúdia-Mallorca,2026,40,18,10,2717,21.09,True,True,1.26,True,0.45,him,t2_no_limit
+812bab5c-40a5-4c0e-8e9b-933902ce7035,2026 IRONMAN 70.3 Alghero,2026,39,12,9,2257,21.0696,True,True,1.4,True,0.3333333333,him,t2_no_limit
+82cf961d-85e6-40bb-8e86-209517a2602d,2026 IRONMAN 70.3 Chattanooga,2026,47,12,6,2498,21.0985,True,True,1.11,True,0.2553191489,him,t2_no_limit
+f77ac398-ef29-4c13-8fd5-06bd4cd1151b,2026 IRONMAN 70.3 Cozumel,2026,32,7,3,1635,21.1,True,True,5.4,True,0.21875,him,t2_no_limit
+70c84787-b0ca-437f-b169-834d337f9ad1,2026 IRONMAN 70.3 Dallas-Little Elm,2026,37,7,7,1685,21.2272,True,True,1.8,True,0.1891891892,him,t2_no_limit
+f8a995ff-b881-4d9f-b869-51426c020ba1,2026 IRONMAN 70.3 Eagleman,2026,51,8,10,2245,21.1505,True,True,2.09,True,0.1568627451,him,t2_no_limit
+54d56e50-9c53-48bc-a317-86313efe3938,2026 IRONMAN 70.3 Italy Emilia Romagna,2026,71,31,10,2615,21.25,True,True,2.09,True,0.4366197183,him,t2_no_limit
+8abbf5d3-4be5-42a4-b40d-c2b126f9ad4d,2026 IRONMAN 70.3 Kraichgau,2026,40,16,7,2228,22.8828,True,True,3.46,True,0.4,him,t2_no_limit
+5552214b-c1f5-4a02-a4c1-7032d66bc903,2026 IRONMAN 70.3 Les Sables d'Olonne - Vendée,2026,34,5,6,2620,21.154,True,True,2.14,True,0.1470588235,him,t2_no_limit
+4a2ee31f-6dbe-427b-af1f-27692f166951,2026 IRONMAN 70.3 Luxembourg,2026,52,2,10,2167,21.08,True,True,1.46,True,0.1153846154,him,t2_no_limit
+a5025858-f652-44aa-b109-e36f3a6c3b8f,2026 IRONMAN 70.3 Omaha,2026,34,20,6,1287,21.3238,True,True,1.88,True,0.5882352941,him,t2_no_limit
+fef7c2f6-6938-4a94-8909-135d45b3743b,2026 IRONMAN 70.3 San Salvador,2026,31,10,7,654,21.34,True,True,5.52,True,0.3225806452,him,t2_no_limit
+ec84135c-bae0-4567-be8f-d3582f16e43b,2026 IRONMAN 70.3 Swansea,2026,31,15,5,1752,21.008,True,True,8.58,True,0.4838709677,him,t2_no_limit
+bdb39d6d-3dcb-4c7e-b4d0-bad1efbfbbcf,2026 IRONMAN 70.3 Westfriesland,2026,33,14,9,1673,20.6,True,True,2.98,True,0.4242424242,him,t2_no_limit
+b753115b-701a-420d-8e61-b6c642333303,2026 IRONMAN 70.3 World Championship - Men,2026,41,1,14,3162,21.0293,True,True,1.79,True,0.5365853659,him,t2_no_limit
+f40d667a-c78e-4da8-bfeb-a2041c951226,2026 IRONMAN 70.3 Zell am See-Kaprun,2026,30,15,4,2005,21.1,True,True,2.95,True,0.5,him,t2_no_limit
+a199a3a5-6674-e611-9410-005056951bf1,2017 IRONMAN World Championship,2017,72,17,13,2234,42.16,True,True,4.71,True,0.2361111111,im,t2_no_limit
+ecb0249c-925a-e711-9418-005056951bf1,2018 IRONMAN Austria,2018,109,25,11,2315,42.2,True,True,1.5,True,0.2293577982,im,t2_no_limit
+b51269e6-49a5-e711-9419-005056951bf1,2018 IRONMAN Barcelona,2018,99,15,7,2470,42.2,True,True,1.6,True,0.1515151515,im,t2_no_limit
+94ddc8cf-1a4a-e711-9418-005056951bf1,2018 IRONMAN Brazil,2018,32,16,4,1798,42.2,True,True,13,True,0.5,im,t2_no_limit
+10a0b97c-9152-e711-9418-005056951bf1,2018 IRONMAN Cairns,2018,41,0,9,965,42.2,True,False,4.5,True,0.1951219512,im,t2_no_limit
+324aba02-08a2-e711-9419-005056951bf1,2018 IRONMAN Chattanooga,2018,188,18,8,1909,42.16,True,True,3.22,True,0.09574468085,im,t2_no_limit
+2f9635a9-4187-e711-9419-005056951bf1,2018 IRONMAN Copenhagen,2018,62,2,16,2247,42.2,True,True,2.4,True,0.03225806452,im,t2_no_limit
+ad41c04d-cdb5-e711-941b-005056951bf1,2018 IRONMAN Cozumel,2018,75,10,6,1490,42.2,True,True,7,True,0.1333333333,im,t2_no_limit
+98f707e1-c6a2-e711-9419-005056951bf1,2018 IRONMAN Emilia Romagna,2018,149,44,9,2078,42.2,True,True,4.4,True,0.2953020134,im,t2_no_limit
+eed3d75c-c961-e711-9418-005056951bf1,2018 IRONMAN European Championship Frankfurt,2018,180,23,20,2267,42.2,True,True,3.1,True,0.1277777778,im,t2_no_limit
+3d59d1a9-abc5-e711-941b-005056951bf1,2018 IRONMAN Florida,2018,117,4,21,1654,42.16,True,True,1.42,True,0.03418803419,im,t2_no_limit
+2762e142-1972-e711-9418-005056951bf1,2018 IRONMAN France,2018,84,13,9,2387,42.2,True,True,5.25,True,0.1547619048,im,t2_no_limit
+bb2effd1-35bf-e711-941b-005056951bf1,2018 IRONMAN Gurye Korea,2018,40,0,8,1262,42,True,False,5.1,True,0.15,im,t2_no_limit
+7ae98e84-f680-e711-9418-005056951bf1,2018 IRONMAN Hamburg,2018,94,19,11,1974,42.2,True,True,4.1,True,0.2021276596,im,t2_no_limit
+77b45a74-3f87-e711-9419-005056951bf1,2018 IRONMAN Kalmar-Sweden,2018,68,3,14,2009,42.2,True,True,1.5,True,0.04411764706,im,t2_no_limit
+1a8af6a6-1072-e711-9418-005056951bf1,2018 IRONMAN Lake Placid,2018,53,4,6,2091,42.2,True,True,13.2,True,0.07547169811,im,t2_no_limit
+0b67a500-a544-e811-941e-005056951bf1,2018 IRONMAN Malaysia,2018,66,0,7,980,42.2,True,False,8,True,0.07575757576,im,t2_no_limit
+9ba75f9b-f6ac-e711-9419-005056951bf1,2018 IRONMAN Maryland,2018,42,1,15,1380,42.16,True,True,2.43,True,0.02380952381,im,t2_no_limit
+7f57d401-9352-e711-9418-005056951bf1,2018 IRONMAN North American Championship Texas,2018,123,18,15,2355,42.16,True,True,2.8,True,0.1463414634,im,t2_no_limit
+03194d68-0831-e711-9415-005056951bf1,2018 IRONMAN South Africa,2018,51,11,14,1720,42.2,True,True,2.6,True,0.2156862745,im,t2_no_limit
+1fbbeca2-cc61-e711-9418-005056951bf1,2018 IRONMAN Subic Bay Philippines,2018,56,10,8,1082,42.2,True,True,8.79,True,0.1785714286,im,t2_no_limit
+570945c8-d893-e711-9419-005056951bf1,2018 IRONMAN Vichy,2018,46,4,13,1281,41.6,True,True,3.5,True,0.08695652174,im,t2_no_limit
+9c1ad20a-5c99-e711-9419-005056951bf1,2018 IRONMAN Wales,2018,35,2,12,2046,42.2,True,True,3.8,True,0.05714285714,im,t2_no_limit
+406b4079-5c99-e711-9419-005056951bf1,2018 IRONMAN Wisconsin,2018,42,9,7,1928,42.16,True,True,6.81,True,0.2142857143,im,t2_no_limit
+19c48b66-758e-e711-9419-005056951bf1,2018 IRONMAN World Championship,2018,39,0,13,2306,42.16,True,False,5.86,True,0.05128205128,im,t2_no_limit
+ac3dcc5f-c047-e811-941e-005056951bf1,2019 IRONMAN African Championship South Africa,2019,32,1,10,1671,42.2,True,True,2.6,True,0.03125,im,t2_no_limit
+5a58f70f-df7a-e811-941f-005056951bf1,2019 IRONMAN Austria,2019,105,35,14,2490,42.2,True,True,3.2,True,0.3333333333,im,t2_no_limit
+c4cc10f9-88b6-e811-a967-000d3a37468c,2019 IRONMAN Barcelona,2019,74,11,9,2772,42.2,True,True,1.6,True,0.1486486486,im,t2_no_limit
+e9a0289c-7a72-e811-941f-005056951bf1,2019 IRONMAN Cairns,2019,45,6,17,1070,41.5,True,True,4.5,True,0.1777777778,im,t2_no_limit
+acdabbde-4ec6-e811-a96a-000d3a35f53a,2019 IRONMAN Chattanooga,2019,156,8,10,1359,42.4545,True,True,7.5,True,0.1474358974,im,t2_no_limit
+d7b6268d-64a5-e811-a966-000d3a37468c,2019 IRONMAN Copenhagen,2019,64,4,13,2556,42.2,True,True,2.9,True,0.0625,im,t2_no_limit
+f1489aae-cc44-e811-941e-005056951bf1,2019 IRONMAN Cozumel,2019,87,15,6,1557,42.2,True,True,7,True,0.1724137931,im,t2_no_limit
+f2f381dd-edc0-e811-a96d-000d3a364086,2019 IRONMAN Emilia Romagna,2019,90,6,14,2561,42.2,True,True,4.8,True,0.2,im,t2_no_limit
+9201dd9a-e17a-e811-941f-005056951bf1,2019 IRONMAN European Championship Frankfurt,2019,461,121,20,2025,42.2,True,True,1.8,True,0.262472885,im,t2_no_limit
+5694d9df-c3e1-e811-a965-000d3a3749bc,2019 IRONMAN Florida,2019,65,6,14,2283,42.4867,True,True,2.3,True,0.09230769231,im,t2_no_limit
+3f7d3002-207a-e811-941f-005056951bf1,2019 IRONMAN France,2019,102,26,6,2286,30,True,True,5,True,0.2549019608,im,t2_no_limit
+03b71de8-0795-e811-9421-005056951bf1,2019 IRONMAN Hamburg,2019,118,9,11,2006,42.2,True,True,4.1,True,0.07627118644,im,t2_no_limit
+e0911607-66a5-e811-a966-000d3a37468c,2019 IRONMAN Kalmar-Sweden,2019,62,3,13,2161,42.2,True,True,1.9,True,0.04838709677,im,t2_no_limit
+b913a822-3764-e811-941e-005056951bf1,2019 IRONMAN Lanzarote,2019,60,20,8,1360,41.8,True,True,5.16,True,0.3333333333,im,t2_no_limit
+30ae2cd8-5e3b-e911-a96d-000d3a3740b7,2019 IRONMAN Malaysia,2019,77,3,12,982,42.2,True,True,2.8,True,0.05194805195,im,t2_no_limit
+96950619-4ac6-e811-a96a-000d3a35f53a,2019 IRONMAN Maryland,2019,92,8,18,1726,41.7786,True,True,2.17,True,0.08695652174,im,t2_no_limit
+033e4941-e422-e811-941d-005056951bf1,2019 IRONMAN New Zealand,2019,51,0,10,1337,42.2,True,False,7.4,True,0.1176470588,im,t2_no_limit
+e41a9f82-c989-e811-941f-005056951bf1,2019 IRONMAN North American Championship Texas,2019,138,138,1,2045,42.16,True,True,,False,1,im,t2_no_limit
+cbc9793b-c1aa-e811-a961-000d3a3740b7,2019 IRONMAN Vichy,2019,105,7,18,1240,42.2,True,True,1,True,0.06666666667,im,t2_no_limit
+c8f3ef02-72ba-e811-a967-000d3a37468c,2019 IRONMAN Vitoria-Gasteiz,2019,69,1,11,1604,42,True,True,4.4,True,0.1014492754,im,t2_no_limit
+800d63c0-f5b4-e811-a964-000d3a36478d,2019 IRONMAN Wales,2019,33,3,11,1878,42.2,True,True,3.8,True,0.09090909091,im,t2_no_limit
+9a200e74-1af7-e811-a96d-000d3a35f53a,2019 IRONMAN Western Australia,2019,44,4,8,1169,42.2,True,True,1.4,True,0.09090909091,im,t2_no_limit
+52455708-bcb5-e811-a967-000d3a37468c,2019 IRONMAN Wisconsin,2019,50,3,12,1825,41.8429,True,True,7.61,True,0.14,im,t2_no_limit
+7d5d5ba8-fd38-e911-a974-000d3a36478d,2020 IRONMAN Cozumel,2020,40,8,6,777,42.6314,True,True,6.81,True,0.2,im,t2_no_limit
+4c54363c-c8fc-e911-a812-000d3a5a1477,2020 IRONMAN Florida,2020,47,1,15,1146,41.2636,True,True,3.83,True,0.1063829787,im,t2_no_limit
+1ec4ff9e-e91f-42e0-825b-3ee0aa27cbd8,2021 IRONMAN Austria,2021,40,8,10,1032,42.2,True,True,2,True,0.2,im,t2_no_limit
+0c82c066-8f9e-4d6d-b8a9-a452c14dfa50,2021 IRONMAN Barcelona,2021,118,16,6,3008,42.2,True,True,1.6,True,0.1355932203,im,t2_no_limit
+2cceae96-8e89-4ef3-8b62-6e7aefe879f2,2021 IRONMAN Cairns,2021,30,2,14,1105,42.1,True,True,6,True,0.06666666667,im,t2_no_limit
+e7c5b87f-7b8b-4bfe-8989-c9f65ece83e5,2021 IRONMAN Chattanooga,2021,97,2,10,1868,42.4545,True,True,7.51,True,0.09278350515,im,t2_no_limit
+d475d4af-8721-4f69-949f-e8e187d5544e,2021 IRONMAN Copenhagen,2021,54,2,15,1350,42.2,True,True,1.8,True,0.03703703704,im,t2_no_limit
+fe5ce325-4545-4029-92d7-06b041bd3327,2021 IRONMAN Cozumel,2021,78,13,6,2209,42.1004,True,True,7.1,True,0.1666666667,im,t2_no_limit
+28d151b2-0f82-4945-b853-5de5b70c3fd1,2021 IRONMAN European Championship Frankfurt,2021,67,3,18,1026,42.2,True,True,1.75,True,0.0447761194,im,t2_no_limit
+d8df0b33-0809-4507-bcbc-611067a517ca,2021 IRONMAN Florida,2021,66,7,19,1766,41.9395,True,True,1.61,True,0.1060606061,im,t2_no_limit
+59b5f3e2-891e-4ef0-9d20-e301e7ad5edf,2021 IRONMAN France,2021,57,6,9,936,42.2,True,True,5,True,0.1052631579,im,t2_no_limit
+47af6768-2329-48da-99d0-cd6808e82204,2021 IRONMAN Hamburg,2021,31,4,9,976,42.2,True,True,4,True,0.1290322581,im,t2_no_limit
+a0f9d06a-82a5-4a5e-915b-f2689a03447e,2021 IRONMAN Lake Placid,2021,77,6,12,1524,42.2,True,True,2.44,True,0.07792207792,im,t2_no_limit
+c73a0924-d713-4926-aecf-91911f350ccf,2021 IRONMAN Lanzarote,2021,47,5,10,692,42.2,True,True,7.35,True,0.1063829787,im,t2_no_limit
+525754c0-dae5-4e6c-ac4f-0f034a9b1719,2021 IRONMAN Maryland,2021,102,14,19,1692,42.0039,True,True,2.14,True,0.137254902,im,t2_no_limit
+d1921b2b-d5dc-4057-9887-e296c114d0ee,2021 IRONMAN Switzerland Thun,2021,35,2,9,967,42.2,True,True,2.6,True,0.05714285714,im,t2_no_limit
+37a255ce-58a5-4f54-a47d-d6ee047ba487,2021 IRONMAN Texas,2021,43,6,14,687,42.0522,True,True,2.64,True,0.1395348837,im,t2_no_limit
+b875ce5c-6880-4577-ba6a-1dafc2fdd371,2021 IRONMAN Vichy,2021,39,2,15,1077,42.2,True,True,7.6,True,0.07692307692,im,t2_no_limit
+b57965c1-e903-4d02-a14b-1d8e14223d1d,2021 IRONMAN Vitoria-Gasteiz,2021,71,2,15,569,46.1,True,True,5.3,True,0.02816901408,im,t2_no_limit
+9d7fc5ab-e7ed-40fd-b46d-36eef2fe3fae,2021 IRONMAN Wisconsin,2021,108,4,9,3506,42.3579,True,True,6.94,True,0.07407407407,im,t2_no_limit
+0a7ac8ac-3bf4-4615-94f7-51ae16220699,2021 IRONMAN World Championship,2021,209,34,23,2325,42.2614,True,True,2.69,True,0.1626794258,im,t2_no_limit
+f78281c1-1732-4295-9515-cf5dac4af423,2022 IRONMAN Austria,2022,153,33,12,2171,42.2,True,True,2,True,0.2156862745,im,t2_no_limit
+15d0cb98-aa9d-4bdf-8824-73820b017bf4,2022 IRONMAN Barcelona,2022,105,11,9,1838,42.2,True,True,1.7,True,0.1047619048,im,t2_no_limit
+d65cf230-9959-4305-89e0-1a6742d2547a,2022 IRONMAN California,2022,131,2,13,2610,42.2935,True,True,1.37,True,0.01526717557,im,t2_no_limit
+71a620f4-b009-492e-b42d-ef4de60ef792,2022 IRONMAN Chattanooga,2022,72,6,10,1497,42.4545,True,True,7.51,True,0.1805555556,im,t2_no_limit
+0295e570-64dd-47d8-b244-0449ca8d1b0b,2022 IRONMAN Copenhagen,2022,64,3,12,2075,42.2,True,True,2.9,True,0.046875,im,t2_no_limit
+b74ca66a-5739-40c3-a2a2-31ac31615dee,2022 IRONMAN Cozumel,2022,76,18,6,1188,42.1004,True,True,7.1,True,0.2368421053,im,t2_no_limit
+bd315cf1-68d4-44a7-95ef-de17ef57a380,2022 IRONMAN Emilia Romagna,2022,55,6,14,2183,42.2,True,True,2.2,True,0.1090909091,im,t2_no_limit
+11fe6921-4571-4e19-bdf7-9c482fd64f89,2022 IRONMAN European Championship Frankfurt,2022,160,24,14,2249,42.2,True,True,1.75,True,0.15,im,t2_no_limit
+f1d7fbf8-7bd7-44cf-bd37-9492d1eddc1e,2022 IRONMAN Florida,2022,102,5,20,1718,41.8429,True,True,1.61,True,0.04901960784,im,t2_no_limit
+bbe1551d-7662-49e2-85b1-1e91c4477375,2022 IRONMAN France,2022,113,21,8,1569,40.7,True,True,4.9,True,0.185840708,im,t2_no_limit
+6d1bcb1f-2d6a-4d21-a16c-43c7cfd614ee,2022 IRONMAN Hamburg,2022,70,6,10,1817,42.7,True,True,4,True,0.08571428571,im,t2_no_limit
+8bdf6429-96d0-4873-a5bc-dd5e9fb1b09e,2022 IRONMAN Kalmar-Sweden,2022,81,3,17,1800,42.2,True,True,2,True,0.08641975309,im,t2_no_limit
+a008904e-57a7-4da8-a7e9-d7da56635040,2022 IRONMAN Lake Placid,2022,112,8,12,1833,42.02,True,True,4.83,True,0.1875,im,t2_no_limit
+ea0a1444-5c00-46b1-9e42-cdcbcff93030,2022 IRONMAN Lanzarote,2022,52,13,8,897,42.1,True,True,4.7,True,0.25,im,t2_no_limit
+59b45753-2b07-4b24-a32e-2f72b7c47023,2022 IRONMAN Maryland,2022,65,3,12,1377,42.3097,True,True,2.11,True,0.04615384615,im,t2_no_limit
+18c339e7-0515-4932-bc6e-13f848d8034c,2022 IRONMAN Portugal-Cascais,2022,38,5,11,1198,42.2,True,True,3.8,True,0.1315789474,im,t2_no_limit
+ee41f426-f8ac-42a3-8c0c-4fd3f9fdd20b,2022 IRONMAN Switzerland Thun,2022,74,8,11,1160,42.2,True,True,2.9,True,0.1081081081,im,t2_no_limit
+5a04e184-d243-4bcc-bc91-bd974505e80f,2022 IRONMAN Texas,2022,147,11,17,1861,42.0522,True,True,2.64,True,0.1292517007,im,t2_no_limit
+ec84450a-49f0-47a7-9f23-52370d58ec19,2022 IRONMAN Vichy,2022,33,2,11,907,41.9,True,True,2.5,True,0.06060606061,im,t2_no_limit
+097775d2-ea7b-44da-a6f2-f7c0b064b010,2022 IRONMAN Vitoria-Gasteiz,2022,148,13,15,1438,42.3,True,True,1.05,True,0.08783783784,im,t2_no_limit
+bc03fa33-f1fc-4f3d-a126-19ef088bf407,2022 IRONMAN Wales,2022,60,24,10,1713,42.3,True,True,3.8,True,0.4,im,t2_no_limit
+00d24264-8938-4a98-a10f-56dc3473e541,2022 IRONMAN Wisconsin,2022,66,9,10,1023,42.3579,True,True,2.6,True,0.1363636364,im,t2_no_limit
+1c0caffb-36cf-46f6-8f67-c1e7f7f428b8,2022 IRONMAN World Championship Thursday,2022,71,9,20,2319,42.6315,True,True,1.17,True,0.1267605634,im,t2_no_limit
+89a21377-7ed9-42c7-ae59-a02ae9fbcd3a,2023 IRONMAN Australia,2023,36,16,17,968,43.049,True,True,2.5,True,0.4444444444,im,t2_no_limit
+0a3940cf-3793-4d08-aa72-176a27830c3e,2023 IRONMAN Barcelona,2023,111,10,10,1955,42.2,True,True,1.7,True,0.09009009009,im,t2_no_limit
+53389811-79d1-4935-90b0-4b099b224b7b,2023 IRONMAN Brazil,2023,36,10,7,1307,42.076,True,True,9.2,True,0.2777777778,im,t2_no_limit
+a19ca236-64cb-4260-89b2-3235f8de33d2,2023 IRONMAN California,2023,69,1,10,2122,41.8912,True,True,1.93,True,0.01449275362,im,t2_no_limit
+d4796fc3-d1ac-4c69-9dc8-215d1ecb3853,2023 IRONMAN Chattanooga,2023,72,4,7,1242,42.4062,True,True,11.47,True,0.2222222222,im,t2_no_limit
+8be47099-e69a-444b-98c5-f5be134ebacc,2023 IRONMAN Copenhagen,2023,53,3,16,1943,42.195,True,True,1.8,True,0.05660377358,im,t2_no_limit
+0c1a200f-69d5-46e6-98d6-c164a63a9fb9,2023 IRONMAN Cozumel,2023,95,25,5,1259,42.1004,True,True,7.1,True,0.2631578947,im,t2_no_limit
+811402c9-91a1-4ebb-b102-e083a44876e7,2023 IRONMAN Florida,2023,84,18,11,1820,42.0361,True,True,3.51,True,0.2142857143,im,t2_no_limit
+2ab0d9c7-defa-46a0-91b7-9f5e58c718cc,2023 IRONMAN France,2023,114,23,7,1416,42.2,True,True,4.9,True,0.201754386,im,t2_no_limit
+d1227cc7-9f5f-4175-bf31-f1dfb0fee93d,2023 IRONMAN Frankfurt,2023,103,3,17,2076,42.2,True,True,1.75,True,0.02912621359,im,t2_no_limit
+b3efc195-b502-4fbf-bf5b-1dd031249e25,2023 IRONMAN Hamburg,2023,78,4,12,2061,41,True,True,3.8,True,0.05128205128,im,t2_no_limit
+8f2109e4-6d97-494c-9d54-ea42a5666dae,2023 IRONMAN Italy Emilia Romagna,2023,104,30,11,1923,42.2,True,True,2.1,True,0.2884615385,im,t2_no_limit
+63ba0c5c-89e1-4646-a38c-55bda838e32a,"2023 IRONMAN Kaernten-Klagenfurt, Austria",2023,112,18,11,1887,42.2,True,True,2,True,0.1607142857,im,t2_no_limit
+757a8a81-51f7-4c0c-a7f7-d240e8271a73,2023 IRONMAN Lake Placid,2023,78,5,12,1676,42.02,True,True,4.83,True,0.1794871795,im,t2_no_limit
+98eb36dd-6a46-4a80-92ac-2b599b57516e,2023 IRONMAN Lanzarote,2023,42,7,7,843,42.2,True,True,11.8,True,0.380952381,im,t2_no_limit
+6dba0484-f141-42bb-bb95-0aac8f47844c,2023 IRONMAN Malaysia,2023,42,0,10,456,42.12,False,False,2.7,True,0,im,t2_no_limit
+4a35d978-53d0-4897-b718-ce8299b53a92,2023 IRONMAN Maryland,2023,59,2,15,1042,42.3579,True,True,4.22,True,0.03389830508,im,t2_no_limit
+ab9f0371-c93f-4256-b734-eae3c3f45bb2,2023 IRONMAN New Zealand,2023,35,3,9,708,42.2,True,True,1.2,True,0.08571428571,im,t2_no_limit
+d8bb4897-273e-4c7f-9a5e-a510b6fc63ca,2023 IRONMAN Portugal-Cascais,2023,52,13,6,1250,42.2,True,True,7.76,True,0.25,im,t2_no_limit
+89d248a9-cc2e-4d96-8949-d8526f500995,2023 IRONMAN Switzerland Thun,2023,81,10,11,989,42.3,True,True,2.9,True,0.1234567901,im,t2_no_limit
+33c67f48-ba3c-472c-b696-2d8cad67b46e,2023 IRONMAN Texas,2023,102,5,17,1859,42.1648,True,True,2.64,True,0.07843137255,im,t2_no_limit
+9cfd25be-4ea6-4269-b56b-9119e6f54ad2,2023 IRONMAN Vichy,2023,48,6,14,476,42.2,True,True,2.2,True,0.125,im,t2_no_limit
+a6aa560d-66a2-473c-ae0a-d6be004b8372,2023 IRONMAN Vitoria-Gasteiz,2023,53,1,14,1142,42.3,True,True,1.05,True,0.01886792453,im,t2_no_limit
+6efe6715-269e-491c-99a0-f86817a4d2b9,2023 IRONMAN Wales,2023,42,9,7,1634,42.2,True,True,3.8,True,0.2142857143,im,t2_no_limit
+f81b2e11-ec16-43ac-941b-4386106a9a28,2023 IRONMAN Wisconsin,2023,56,7,11,1067,42.1648,True,True,2.74,True,0.125,im,t2_no_limit
+c0a881f6-dead-4fdf-9dd3-cebd6fa4b83b,2024 IRONMAN Cairns,2024,33,2,17,887,42.313,True,True,1.26,True,0.06060606061,im,t2_no_limit
+8613dae2-83f4-4dcd-b7db-deb752f5cd90,2024 IRONMAN Calella-Barcelona,2024,78,3,13,2741,42.07,True,True,1.7,True,0.03846153846,im,t2_no_limit
+ae0e5d71-3d79-4515-a179-11f044dccb61,2024 IRONMAN California,2024,86,4,9,2433,41.4728,True,True,4.97,True,0.1046511628,im,t2_no_limit
+f7ea583a-e06f-4f4d-a19e-bfa325dce97c,2024 IRONMAN Copenhagen,2024,38,4,13,2373,42.489,True,True,1.1,True,0.1052631579,im,t2_no_limit
+9af45ff9-1802-4aa5-88bc-0090d1df6513,2024 IRONMAN Cozumel,2024,48,6,6,1071,42.1648,True,True,6.76,True,0.125,im,t2_no_limit
+fea6dadb-93a9-42c9-ba4e-3dfc6d024b22,2024 IRONMAN Emilia Romagna,2024,80,18,12,2244,42.2,True,True,2.14,True,0.225,im,t2_no_limit
+af3f560c-494c-464d-9ed9-c0fbd05ef73b,2024 IRONMAN Florida,2024,69,9,11,1500,42.0361,True,True,3.51,True,0.231884058,im,t2_no_limit
+66511861-b71e-44fd-8c65-cd282323354c,2024 IRONMAN France Nice,2024,74,11,13,1893,43.125,True,True,2.38,True,0.1486486486,im,t2_no_limit
+d3e4c293-9d14-4be0-9167-d9f6b886f26d,2024 IRONMAN Frankfurt,2024,81,6,15,2213,42.86,True,True,3.11,True,0.07407407407,im,t2_no_limit
+7aeeee79-b2fc-4bbd-b723-cc1193bde63f,2024 IRONMAN Hamburg,2024,64,13,10,2338,42.012,True,True,3.92,True,0.203125,im,t2_no_limit
+74f7a320-3cb3-4e1f-a860-faebaa6e0e61,"2024 IRONMAN Kaernten-Klagenfurt, Austria",2024,70,4,12,2650,42.262,True,True,1.2,True,0.05714285714,im,t2_no_limit
+9ca4223e-fee3-4583-a796-4f360a13cfc4,2024 IRONMAN Kalmar-Sweden,2024,49,4,15,1825,42.6,True,True,1,True,0.08163265306,im,t2_no_limit
+708d7255-c4fa-4ed2-96a4-5a350f1dacb0,2024 IRONMAN Lake Placid,2024,75,3,18,2156,42.3418,True,True,3.75,True,0.06666666667,im,t2_no_limit
+182022fd-4f7a-41b1-a636-b3d6da402ec3,2024 IRONMAN Lanzarote,2024,40,11,4,900,42.634,True,True,15.4,True,0.275,im,t2_no_limit
+03dfe11c-4973-41e1-8489-89ad1af4e3bc,2024 IRONMAN Malaysia,2024,36,2,14,454,42.12,True,True,2.7,True,0.08333333333,im,t2_no_limit
+d4fd21c6-c504-42fa-b9a6-bfa3e66231bb,2024 IRONMAN Maryland,2024,46,3,14,1082,42.3579,True,True,2.11,True,0.0652173913,im,t2_no_limit
+faa82b9b-746d-4b35-ab08-12d5d590052f,2024 IRONMAN Portugal-Cascais,2024,30,5,9,1195,42.12,True,True,7.7,True,0.1666666667,im,t2_no_limit
+c446d5ec-661d-4d03-9e9c-08c821027476,2024 IRONMAN Switzerland Thun,2024,30,3,11,1292,42.286,True,True,2.89,True,0.1,im,t2_no_limit
+86a0e55c-989f-4d25-bfff-cfb49e044797,2024 IRONMAN Texas,2024,160,24,20,2302,42.4545,True,True,2.86,True,0.19375,im,t2_no_limit
+c5770170-0d51-4d0e-a6f5-c2a35a7b48b0,2024 IRONMAN Vitoria-Gasteiz,2024,95,6,19,1401,41.69,True,True,1.02,True,0.09473684211,im,t2_no_limit
+cf78e723-848d-4d18-be36-1a83174549af,2024 IRONMAN Wales,2024,56,13,10,1643,42.2,True,True,3.51,True,0.2321428571,im,t2_no_limit
+2589106a-7c4e-4218-9922-fc5443c1b29e,2024 IRONMAN Wisconsin,2024,48,3,14,1224,42.2775,True,True,2.24,True,0.0625,im,t2_no_limit
+633f40fa-698f-4380-bb5f-9b50fe173849,2025 IRONMAN Calella-Barcelona,2025,48,3,13,2440,42.048,True,True,1.77,True,0.0625,im,t2_no_limit
+1fc58eb1-18fc-417d-bd3b-5aa674132777,2025 IRONMAN California,2025,66,13,8,2336,41.4728,True,True,5.68,True,0.196969697,im,t2_no_limit
+4435b4ed-8e34-4703-9a77-50e43201412b,2025 IRONMAN Canada-Ottawa,2025,67,3,14,1911,42.1004,True,True,1.85,True,0.0447761194,im,t2_no_limit
+eecbddcc-fec9-4c52-ab35-28f77cb1c81b,2025 IRONMAN Chattanooga,2025,98,5,13,1351,42.0683,True,True,5.1,True,0.09183673469,im,t2_no_limit
+e76951cf-c3df-4295-8cee-a41b118a33ff,2025 IRONMAN Copenhagen,2025,37,1,14,2449,42.599,True,True,1.65,True,0.05405405405,im,t2_no_limit
+f35fbd8f-28bd-4dbb-b940-1b7e1dff7117,2025 IRONMAN Cozumel,2025,74,14,5,1457,42.1648,True,True,6.76,True,0.1891891892,im,t2_no_limit
+261dd41f-3a15-4684-bbe4-1a0284bad7e5,2025 IRONMAN Emilia Romagna,2025,107,21,19,2227,42.2,True,True,2.14,True,0.1962616822,im,t2_no_limit
+83af8238-4ace-4d88-a3d3-0371f9b88294,2025 IRONMAN Florida,2025,58,12,11,1482,42.0361,True,True,3.51,True,0.2931034483,im,t2_no_limit
+f3a6cf4c-e9d5-4c6f-a425-86b3b8ba0524,2025 IRONMAN France Nice,2025,112,12,15,1466,41.2,True,True,2.3,True,0.1071428571,im,t2_no_limit
+dcfae363-4480-4c9c-b8af-bbdeea0b00ef,2025 IRONMAN Frankfurt,2025,135,9,17,2195,42.86,True,True,1.74,True,0.06666666667,im,t2_no_limit
+b25a3825-7c68-4442-a4d2-ea887b2fb50e,2025 IRONMAN Hamburg,2025,76,17,10,2346,42.133,True,True,3.95,True,0.2236842105,im,t2_no_limit
+9526bfb3-167a-4fa4-9808-39753c55eb90,2025 IRONMAN Japan South Hokkaido,2025,47,3,10,1077,42.2,True,True,3.6,True,0.06382978723,im,t2_no_limit
+9e9018ff-c307-447c-a26c-5927df800fdd,"2025 IRONMAN Kaernten-Klagenfurt, Austria",2025,128,13,12,2265,42.352,True,True,1.28,True,0.1015625,im,t2_no_limit
+b5c5197c-0040-425d-93f7-fa5d0c4edf8e,2025 IRONMAN Kalmar-Sweden,2025,52,0,14,2027,42.3,False,False,1,True,0,im,t2_no_limit
+b22a23ca-da28-464a-9dbe-89d86510c4ab,2025 IRONMAN Lake Placid,2025,38,2,13,1979,42.3418,True,True,7.64,True,0.1052631579,im,t2_no_limit
+15de8d69-e94d-4fff-b456-97da49f8d00d,2025 IRONMAN Lanzarote,2025,44,17,8,883,42.03,True,True,5.6,True,0.3863636364,im,t2_no_limit
+d6047ad1-824f-45a2-b70c-a757cc9ea609,2025 IRONMAN Les Sables d'Olonne-Vendee,2025,42,9,10,2557,42.05,True,True,2.93,True,0.2142857143,im,t2_no_limit
+93ffab28-3521-4d33-904b-97b02f5cc40e,2025 IRONMAN Malaysia,2025,35,1,13,610,42.12,True,True,2.7,True,0.08571428571,im,t2_no_limit
+a407a3d4-6076-441c-abac-be93484f40a8,2025 IRONMAN Portugal-Cascais,2025,55,15,8,1407,42.19,True,True,7.6,True,0.2727272727,im,t2_no_limit
+e9345d08-ebd3-481d-948f-2cb3b9833189,2025 IRONMAN Switzerland Thun,2025,53,5,18,1452,42.286,True,True,4.92,True,0.09433962264,im,t2_no_limit
+0a34c991-b758-4d40-bf60-d6138ed86336,2025 IRONMAN Texas,2025,125,8,28,1799,42.2704,True,True,1.66,True,0.064,im,t2_no_limit
+78cc342f-5383-4d91-8299-fb7f0ec0339a,2025 IRONMAN Vitoria-Gasteiz,2025,62,1,19,1466,41.69,True,True,1.02,True,0.03225806452,im,t2_no_limit
+2a497ecb-1f5e-49b0-ad8e-f44dfd891922,2025 IRONMAN Wales,2025,58,23,10,1659,42.2,True,True,3.51,True,0.3965517241,im,t2_no_limit
+f87c8bbe-cb97-4f2c-83a7-e25d629870b1,2026 IRONMAN Cairns,2026,33,2,17,1078,42.313,True,True,2.48,True,0.06060606061,im,t2_no_limit
+bf442555-30b5-4228-bfa4-5f8e621b6dd4,2026 IRONMAN Canada-Ottawa,2026,43,2,13,2314,43.3074,True,True,1.77,True,0.04651162791,im,t2_no_limit
+002a44d9-34a7-4f44-bb46-dc254e3fcee9,2026 IRONMAN Chattanooga,2026,46,1,10,1184,42.0683,True,True,1.95,True,0.02173913043,im,t2_no_limit
+57af84bb-e6a7-4548-a1ed-9aafebc0d869,2026 IRONMAN Frankfurt,2026,34,19,8,2480,21.49,True,True,3.12,True,0.5588235294,im,t2_no_limit
+be0a788d-bcd7-4710-a756-fb096a5e1591,2026 IRONMAN Hamburg,2026,56,9,9,2214,42.151,True,True,3.9,True,0.1607142857,im,t2_no_limit
+29e186db-f6bc-4393-93cd-992737521f2a,2026 IRONMAN Italy Emilia Romagna,2026,77,22,18,2476,42.2,True,True,2,True,0.2857142857,im,t2_no_limit
+5ff2cb61-c76e-45d4-963f-25ee7280977f,2026 IRONMAN Jacksonville,2026,78,4,11,1290,41.9395,True,True,3.14,True,0.05128205128,im,t2_no_limit
+389379d7-4d81-45fc-a8f7-ddf825780d2c,2026 IRONMAN Japan South Hokkaido,2026,35,4,8,1110,42.2,True,True,3.6,True,0.1142857143,im,t2_no_limit
+96ad7c20-c2be-4b96-acf1-430bb12f348d,"2026 IRONMAN Kaernten-Klagenfurt, Austria",2026,88,8,13,2606,42.352,True,True,1.35,True,0.09090909091,im,t2_no_limit
+59f3b68c-c706-4a5c-b028-3ed9389d5422,2026 IRONMAN Kalmar-Sweden,2026,85,9,16,2456,42.5,True,True,1,True,0.1058823529,im,t2_no_limit
+a20c39b2-2f1b-40dc-ae85-3e2f41e5ab07,2026 IRONMAN Lake Placid,2026,57,6,16,1947,42.3418,True,True,3.75,True,0.2105263158,im,t2_no_limit
+9bbac2c1-3eeb-4086-956e-c58892513a89,2026 IRONMAN Lanzarote,2026,57,17,8,1102,42.03,True,True,5.6,True,0.298245614,im,t2_no_limit
+46e754db-2cb0-4a75-b9ad-2b9d0140a90e,2026 IRONMAN Maryland,2026,54,8,18,1266,42.4545,True,True,2.11,True,0.1481481481,im,t2_no_limit
+d7a58ffe-52bb-47a3-bc71-8c243ea143ec,2026 IRONMAN New Zealand,2026,35,0,15,995,41.941,False,False,1.43,True,0,im,t2_no_limit
+864fb423-8283-471e-bb2d-b032050f853a,2026 IRONMAN Penghu,2026,34,3,15,564,42.2,True,True,2.1,True,0.08823529412,im,t2_no_limit
+89d3cdad-317c-471e-9325-32cf4bce3fde,2026 IRONMAN South Africa,2026,30,2,8,783,42.61,True,True,2.5,True,0.06666666667,im,t2_no_limit
+3b3bd0bd-a1ce-4c96-85e6-cf6eff6cf31f,2026 IRONMAN Switzerland Thun,2026,63,4,17,1931,42.286,True,True,4.92,True,0.06349206349,im,t2_no_limit
+48b74ff4-543a-4a3d-b1e5-937a91902e9b,2026 IRONMAN Tallinn,2026,55,6,11,1565,42.236,True,True,3.98,True,0.1090909091,im,t2_no_limit
+31e73a5b-a79d-4847-9083-8dd15cc242b3,2026 IRONMAN Texas,2026,81,32,18,2217,43.5488,True,True,5.71,True,0.3950617284,im,t2_no_limit
+8cefb85b-a803-48be-af51-e0285a8dd11c,2026 IRONMAN Tours Metropole - Loire Valley,2026,130,6,15,2587,42.13,True,True,3.37,True,0.1538461538,im,t2_no_limit
+c087c96c-783f-4142-bc21-52d4cfc31532,2026 IRONMAN Vichy,2026,37,3,10,901,41.08,True,True,6.35,True,0.2432432432,im,t2_no_limit
+0418e60d-ca78-4f73-a2c2-76816190d293,2026 IRONMAN Vietnam,2026,41,4,11,710,42.0865,True,True,2.46,True,0.09756097561,im,t2_no_limit
+96a2ed72-934a-4942-b8e8-d483e286e1c1,2026 IRONMAN Vitoria-Gasteiz,2026,118,8,24,1233,42.276,True,True,2.9,True,0.1779661017,im,t2_no_limit
+c116f798-7f84-4d9c-a513-2603642b90ce,2026 IRONMAN Wales,2026,57,30,10,1944,42.2,True,True,3.51,True,0.5263157895,im,t2_no_limit
+d168bf62-9088-4d48-b46a-9c6f968f24da,2026 IRONMAN World Championship,2026,56,4,20,2266,42.2891,True,True,1.15,True,0.07142857143,im,t2_no_limit

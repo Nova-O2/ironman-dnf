@@ -1,0 +1,11 @@
+# RQ2 — T2 duration limit (99th percentile of the official-source finishers' T2 splits) and the in-race DNFs at the cycling-completion distance by T2 split
+# Generated: 2026-10-28 14:38:20
+# Python 3.12.13, pandas 3.0.1, numpy 2.4.3, statsmodels 0.14.6, scipy 1.17.1, scikit-learn 1.8.0, pymannkendall 1.4.3
+# Dataset: ironman_merged.csv (version 4.0.0)
+# Seed: 42
+# Reference counts of the merged dataset file (ironman_merged.csv, v4.0.0, whole file; constants, not counted from the file read): N = 3,632,323, DNF = 216,130
+# Analysis code: sha256 ecc7a0109c9fce44f371632752704b0b02cf0fce41db594816dc0fce4160849f (notebooks/*.py except generate_figures.py, generate_tables.py, manuscript_number_audit.py)
+# Analysed population: 14 duplicated race-years, 29 non-standard-format editions, 5 non-IRONMAN races and 6 stopped or wholesale-coded editions excluded at load (_common.load_dataset; descriptives.txt, Excluded records)
+race_type,t2_limit_sec,t2_limit_min,n_finishers_with_t2,median_t2_min_finishers,n_at_t2,median_t2_min_at_t2,n_at_t2_long,median_t2_min_at_t2_long,n_at_t2_long_over_60_min,n_at_no_t2
+im,1204,20.06666667,742497,6.583333333,1672,8.666666667,333,34.23333333,103,3696
+him,754,12.56666667,1345115,4.266666667,3218,5.816666667,902,23.675,196,6261

@@ -1,0 +1,15 @@
+# RQ3 — pooled in-race DNF rate by period (in-race DNFs / starters over the seasons of the period; 2020 and 2026 excluded; % full precision)
+# Generated: 2026-10-28 14:39:27
+# Python 3.12.13, pandas 3.0.1, numpy 2.4.3, statsmodels 0.14.6, scipy 1.17.1, scikit-learn 1.8.0, pymannkendall 1.4.3
+# Dataset: ironman_merged.csv (version 4.0.0)
+# Seed: 42
+# Reference counts of the merged dataset file (ironman_merged.csv, v4.0.0, whole file; constants, not counted from the file read): N = 3,632,323, DNF = 216,130
+# Analysis code: sha256 ecc7a0109c9fce44f371632752704b0b02cf0fce41db594816dc0fce4160849f (notebooks/*.py except generate_figures.py, generate_tables.py, manuscript_number_audit.py)
+# Analysed population: 14 duplicated race-years, 29 non-standard-format editions, 5 non-IRONMAN races and 6 stopped or wholesale-coded editions excluded at load (_common.load_dataset; descriptives.txt, Excluded records)
+race_type,period,first_season,last_season,n_seasons,starters,inrace_dnf,inrace_rate_pct
+im,2002-2009,2002,2009,8,185668,23001,12.38824138
+im,2010-2019,2010,2019,10,620480,50188,8.088576586
+im,2021-2025,2021,2025,5,295051,27321,9.259755093
+him,2004-2009,2004,2009,6,59414,2357,3.967078466
+him,2010-2019,2010,2019,10,1071705,52751,4.92215675
+him,2021-2025,2021,2025,5,728970,32453,4.451897883

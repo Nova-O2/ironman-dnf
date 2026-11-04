@@ -1,0 +1,46 @@
+# RQ2 — seasons of the hazard cohort events (main analysis and the years_le_2019 / years_ge_2021 sensitivities; first and last season of each cohort)
+# Generated: 2026-10-28 14:39:09
+# Python 3.12.13, pandas 3.0.1, numpy 2.4.3, statsmodels 0.14.6, scipy 1.17.1, scikit-learn 1.8.0, pymannkendall 1.4.3
+# Dataset: ironman_merged.csv (version 4.0.0)
+# Seed: 42
+# Reference counts of the merged dataset file (ironman_merged.csv, v4.0.0, whole file; constants, not counted from the file read): N = 3,632,323, DNF = 216,130
+# Analysis code: sha256 ecc7a0109c9fce44f371632752704b0b02cf0fce41db594816dc0fce4160849f (notebooks/*.py except generate_figures.py, generate_tables.py, manuscript_number_audit.py)
+# Analysed population: 14 duplicated race-years, 29 non-standard-format editions, 5 non-IRONMAN races and 6 stopped or wholesale-coded editions excluded at load (_common.load_dataset; descriptives.txt, Excluded records)
+race_type,analysis,race_year,n_events_cohort,n_events_in_first_interval_contrasts,first_season,last_season
+im,main,2017,1,1,2017,2026
+im,main,2018,24,24,2017,2026
+im,main,2019,23,22,2017,2026
+im,main,2020,2,2,2017,2026
+im,main,2021,19,19,2017,2026
+im,main,2022,23,23,2017,2026
+im,main,2023,24,24,2017,2026
+im,main,2024,21,21,2017,2026
+im,main,2025,23,23,2017,2026
+im,main,2026,24,24,2017,2026
+im,years_le_2019,2017,1,1,2017,2019
+im,years_le_2019,2018,24,24,2017,2019
+im,years_le_2019,2019,23,22,2017,2019
+im,years_ge_2021,2021,19,19,2021,2026
+im,years_ge_2021,2022,23,23,2021,2026
+im,years_ge_2021,2023,24,24,2021,2026
+im,years_ge_2021,2024,21,21,2021,2026
+im,years_ge_2021,2025,23,23,2021,2026
+im,years_ge_2021,2026,24,24,2021,2026
+him,main,2016,2,2,2016,2026
+him,main,2018,13,13,2016,2026
+him,main,2019,16,11,2016,2026
+him,main,2021,12,12,2016,2026
+him,main,2022,19,19,2016,2026
+him,main,2023,16,16,2016,2026
+him,main,2024,14,14,2016,2026
+him,main,2025,13,13,2016,2026
+him,main,2026,14,14,2016,2026
+him,years_le_2019,2016,2,2,2016,2019
+him,years_le_2019,2018,13,13,2016,2019
+him,years_le_2019,2019,16,11,2016,2019
+him,years_ge_2021,2021,12,12,2021,2026
+him,years_ge_2021,2022,19,19,2021,2026
+him,years_ge_2021,2023,16,16,2021,2026
+him,years_ge_2021,2024,14,14,2021,2026
+him,years_ge_2021,2025,13,13,2021,2026
+him,years_ge_2021,2026,14,14,2021,2026

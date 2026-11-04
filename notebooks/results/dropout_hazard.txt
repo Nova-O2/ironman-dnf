@@ -1,0 +1,271 @@
+# RQ2 — Interval-censored dropout hazard along the run
+# Generated: 2026-10-28 14:38:52
+# Python 3.12.13, pandas 3.0.1, numpy 2.4.3, statsmodels 0.14.6, scipy 1.17.1, scikit-learn 1.8.0, pymannkendall 1.4.3
+# Dataset: ironman_merged.csv (version 4.0.0)
+# Seed: 42
+# Reference counts of the merged dataset file (ironman_merged.csv, v4.0.0, whole file; constants, not counted from the file read): N = 3,632,323, DNF = 216,130
+# Analysis code: sha256 ecc7a0109c9fce44f371632752704b0b02cf0fce41db594816dc0fce4160849f (notebooks/*.py except generate_figures.py, generate_tables.py, manuscript_number_audit.py)
+# Analysed population: 14 duplicated race-years, 29 non-standard-format editions, 5 non-IRONMAN races and 6 stopped or wholesale-coded editions excluded at load (_common.load_dataset; descriptives.txt, Excluded records)
+
+Constants: MIN_RUN_DNF=30 (sens (20, 50)), START_MAT_KM=1.0 (sens (0.5, 1.5)), N_BOOT=1000; positions compared at two decimals; course positions per event (modal finisher distances; nominal run length IM 42.20, HIM 21.10 km where the finishers carry no distance)
+T2 duration limit (_common.t2_limits; 99th percentile of the T2 splits of the official-source finishers with a T2 split > 0, analysed population): IM 1,204.00 s = 20.07 min; HIM 754.00 s = 12.57 min
+Official source only (total_distance_km is official-only). Events = in-race DNFs (DNFs without a
+recorded finish time). Finish-time DNFs (DNFs with a recorded finish time, overall_sec > 0) are
+non-events at risk over the whole run, like finishers. DQ excluded. Exposure starts at the first
+observed run mat. km_run = total_distance_km - the event's cycling completion, at two decimals.
+The recorded distances of the events whose course basis is nominal_incoherent or nominal_scale
+are not used (_common.attach_course): their DNFs count as DNFs without a distance.
+Main analysis (T2 rule): run DNFs = DNFs beyond the cycling completion and before the finish
+distance (at their km_run) + DNFs at the cycling-completion distance with a T2 split of at most the T2
+duration limit of their event type (at km 0, the transition exit). Sensitivities: strict rule, the former
+only; T2 rule without the duration limit, any T2 split > 0. Identical definition in dropout_point.py
+section 5. Mats at the start of the run: mats < START_MAT_KM, km 0 included (observed whenever at least
+one DNF with a T2 split within the limit withdrew there). Events without a checkpoint at or beyond the
+threshold of the start of the run are excluded from both first-interval contrasts and from the pooled
+hazard by band, and kept in the per-km curve. Every bootstrap uses a fresh generator seeded with SEED.
+Curve contrasts exclude each event's terminal km bin (the bin that contains its finish).
+Sensitivity 'including_stopped': the main analysis with the 6 stopped or wholesale-coded editions kept
+(_common.STOPPED_EDITIONS; excluded from every other analysis).
+
+======================================================================
+IRONMAN
+======================================================================
+In-race DNFs with distance data: 35,190
+  (in-race DNFs whose recorded distance is not used, course rule: 382)
+  before the cycling completion (no mat crossed, swim or cycling segment; not modelled): 16,337
+  at the cycling-completion distance: 5,701
+    with a T2 split within the duration limit (T2-completers, enter the run at km 0): 1,672
+    with a T2 split longer than the limit (withdrew in the transition; not modelled in the main analysis): 333
+    without a T2 split (withdrew in the transition; not modelled): 3,696
+  beyond the cycling completion and before the finish distance: 13,148
+  at the finish distance (crossed the finish mat without a finish time; excluded): 4
+  beyond the run length (data anomalies, excluded): 0
+  run-segment DNFs, main analysis (T2 rule): 14,820; strict rule: 13,148; T2 rule without the duration limit: 15,153
+  T2-completers at km 0 by event: 216 events; largest: 2019 IRONMAN North American Championship Texas 122; 2019 IRONMAN European Championship Frankfurt 112; 2018 IRONMAN Emilia Romagna 40; 2022 IRONMAN Austria 30; 2019 IRONMAN Austria 28
+
+SECTION 1 — Checkpoint structure (events with >= 30 run DNFs; main analysis)
+  events in cohort: 184  | run DNFs covered: 13,488 (91.0121% of run DNFs; 13,488 / 14,820)
+  cohort seasons (main): first 2017, last 2026; cohort events by season: 2017: 1, 2018: 24, 2019: 23, 2020: 2, 2021: 19, 2022: 23, 2023: 24, 2024: 21, 2025: 23, 2026: 24
+  T2-completers at km 0 in the cohort: 1,567 of 1,672; events with a mat at km 0: 171
+  distinct run checkpoints per event: median 12 (P10 7, P90 18)
+  DNFs per interval: median 4 (P25 2, P75 8)
+  events with a mat at the start of the run (< 1.0 km): 96.7391% (178 / 184); with a mat at the start of the run other than km 0: 39
+  first run checkpoint (km past the event's cycling completion): median 2.900 (P10 1.422, P25 2.000, P75 4.900, P90 7.100, min 1.000, max 15.400), n = 183 (events without any mat >= 1.0 km: 1)
+  events without a checkpoint at or beyond 1.0 km (excluded from both first-interval contrasts, kept in the per-km curve): 1
+    2019 IRONMAN North American Championship Texas [e41a9f82-c989-e811-941f-005056951bf1]: run DNFs 122 (at km 0 122), mats 1, run length 42.16 km
+  share of an event's run DNFs recorded at a mat at the start of the run (before the first checkpoint): median 9.7%, pooled 13.3%
+  run length of the cohort events (km): median 42.2000 (min 30.0000, max 46.1000)
+  strict rule: cohort 174 events, run DNFs covered 11,686 (88.8804% of 13,148); DNFs at km 0 in the cohort 0; events with the start of the run observed 39; without a checkpoint at or beyond 1.0 km 0; median first checkpoint 2.900 km
+  T2 rule without the duration limit: cohort 187 events, run DNFs covered 13,887 (91.6452% of 15,153); DNFs at km 0 in the cohort 1,906; events with the start of the run observed 184; without a checkpoint at or beyond 1.0 km 1; median first checkpoint 2.900 km
+  including stopped editions: run DNFs 14,820 (T2-completers at km 0 1,672); cohort 184 events, run DNFs covered 13,488 (91.0121% of 14,820); DNFs at km 0 in the cohort 1,567; events with the start of the run observed 178; without a checkpoint at or beyond 1.0 km 1; median first checkpoint 2.900 km
+
+SECTION 2 — Pooled hazard by band of interval start (DNF per 10,000 athlete-km; main analysis; events without a checkpoint at or beyond 1.0 km excluded, as in the first-interval contrasts: 1)
+band_start_km  n_intervals  n_events  dnf  athlete_km  hazard_per_1e4_athlete_km  median_width_km  max_width_km
+       [0, 1)          211       177 1672  1114145.03                      15.01             2.47         15.40
+       [1, 3)          111        94  512   608184.93                       8.42             2.93          8.47
+       [3, 5)           92        88  423   657903.96                       6.43             3.92          7.74
+      [5, 10)          220       160 1089  1271538.71                       8.56             2.98         10.11
+   [10, 21.1)          698       183 5298  3609385.05                      14.68             2.80         10.00
+  [21.1, end)          909       183 4372  5834028.18                       7.49             3.10         16.79
+
+SECTION 3 — Main contrasts (cluster bootstrap over events, 1000 reps, seed 42)
+  [main — T2 rule]
+  (a-between) start of the run -> first checkpoint vs rest of run: 15.01 vs 9.76 per 10,000 athlete-km; ratio 1.54 (95% CI 1.34-1.78; events 183, with the start of the run observed 177; cohort 184, excluded without a checkpoint at or beyond the threshold of the start of the run 1; NaN reps 0)
+  (a-within) start of the run -> first checkpoint vs rest of run: 15.01 vs 9.80 per 10,000 athlete-km; ratio 1.53 (95% CI 1.33-1.77; events 177, with the start of the run observed 177; cohort 184, excluded without a checkpoint at or beyond the threshold of the start of the run 1; NaN reps 0)
+  (b) per-km curve: km 0-3 = 16.23; km 3-end = 9.74 per 10,000 athlete-km; ratio 1.67 (95% CI 1.47-1.89; each event's terminal bin excluded; NaN reps: curve 376, ratio 0)
+      km 3-21 = 11.15; km 21-end = 8.49; terminal bins (pooled) = 14.19
+      terminal bin of each event (bin start km: events): 29: 1, 40: 2, 41: 20, 42: 157, 43: 3, 46: 1
+  per-km curve (hazard per 10,000 athlete-km over each event's non-terminal bins, 95% CI;
+  n_events = events with exposure in the bin; terminal_share = share of the bin's exposure in terminal bins):
+   km_bin_start  hazard_per_1e4  ci_low  ci_high  n_events  terminal_share
+              0           21.73   18.02    26.48       178            0.00
+              1           16.11   13.28    19.99       182            0.00
+              2           11.06    9.88    12.46       183            0.00
+              3            9.16    8.22    10.23       184            0.00
+              4            7.92    7.11     8.81       184            0.00
+              5            7.38    6.61     8.17       184            0.00
+              6            7.06    6.33     7.82       184            0.00
+              7            6.72    6.06     7.46       184            0.00
+              8            7.54    6.75     8.45       184            0.00
+              9            8.65    7.68     9.73       184            0.00
+             10           14.03   11.79    16.76       184            0.00
+             11           16.31   13.75    19.41       184            0.00
+             12           15.12   13.25    17.31       184            0.00
+             13           13.36   11.88    15.09       184            0.00
+             14           13.64   11.69    15.89       184            0.00
+             15           10.93    9.75    12.18       184            0.00
+             16           10.57    9.60    11.70       184            0.00
+             17           10.84    9.71    12.07       184            0.00
+             18           11.86   10.46    13.54       184            0.00
+             19           13.57   11.71    15.54       184            0.00
+             20           16.15   13.86    18.81       184            0.00
+             21           20.72   17.63    24.09       184            0.00
+             22           17.58   15.32    20.09       184            0.00
+             23           13.37   11.89    15.04       184            0.00
+             24           11.99   10.62    13.49       184            0.00
+             25           10.28    8.97    11.77       184            0.00
+             26           10.28    8.92    11.86       184            0.00
+             27           11.11    9.57    12.88       184            0.00
+             28            9.50    8.14    11.17       184            0.00
+             29            7.55    6.54     8.82       183            0.01
+             30            7.63    6.70     8.74       183            0.00
+             31            7.82    6.83     9.00       183            0.00
+             32            7.06    5.99     8.30       183            0.00
+             33            5.50    4.62     6.46       183            0.00
+             34            4.85    4.14     5.75       183            0.00
+             35            4.48    3.67     5.44       183            0.00
+             36            4.23    3.41     5.19       183            0.00
+             37            3.85    3.07     4.81       183            0.00
+             38            4.10    3.20     5.20       183            0.00
+             39            4.41    3.46     5.69       183            0.00
+             40            4.83    3.85     6.07       181            0.01
+             41            6.28    4.79     8.03       161            0.07
+             42            2.37    1.71     3.45         4            0.90
+             43            2.58    2.58     2.58         1            0.79
+             44            2.58    2.58     2.58         1            0.00
+             45            2.58    2.58     2.58         1            0.00
+             46             NaN     NaN      NaN         0            1.00
+  [strict — strict rule: no DNF at the cycling-completion distance enters the run (sensitivity)]
+  (a-between) start of the run -> first checkpoint vs rest of run: 8.04 vs 9.89 per 10,000 athlete-km; ratio 0.81 (95% CI 0.64-1.03; events 174, with the start of the run observed 39; cohort 174, excluded without a checkpoint at or beyond the threshold of the start of the run 0; NaN reps 0)
+  (a-within) start of the run -> first checkpoint vs rest of run: 8.04 vs 10.52 per 10,000 athlete-km; ratio 0.76 (95% CI 0.61-0.95; events 39, with the start of the run observed 39; cohort 174, excluded without a checkpoint at or beyond the threshold of the start of the run 0; NaN reps 0)
+  (b) per-km curve: km 0-3 = 9.59; km 3-end = 9.81 per 10,000 athlete-km; ratio 0.98 (95% CI 0.85-1.11; each event's terminal bin excluded; NaN reps: curve 375, ratio 0)
+      km 3-21 = 11.23; km 21-end = 8.60; terminal bins (pooled) = 14.53
+      terminal bin of each event (bin start km: events): 29: 1, 40: 2, 41: 20, 42: 147, 43: 3, 46: 1
+  [t2_no_limit — T2 rule without the duration limit (sensitivity)]
+  (a-between) start of the run -> first checkpoint vs rest of run: 17.30 vs 9.71 per 10,000 athlete-km; ratio 1.78 (95% CI 1.56-2.06; events 186, with the start of the run observed 183; cohort 187, excluded without a checkpoint at or beyond the threshold of the start of the run 1; NaN reps 0)
+  (a-within) start of the run -> first checkpoint vs rest of run: 17.30 vs 9.72 per 10,000 athlete-km; ratio 1.78 (95% CI 1.56-2.05; events 183, with the start of the run observed 183; cohort 187, excluded without a checkpoint at or beyond the threshold of the start of the run 1; NaN reps 0)
+  (b) per-km curve: km 0-3 = 18.59; km 3-end = 9.73 per 10,000 athlete-km; ratio 1.91 (95% CI 1.69-2.17; each event's terminal bin excluded; NaN reps: curve 385, ratio 0)
+      km 3-21 = 11.13; km 21-end = 8.47; terminal bins (pooled) = 14.00
+      terminal bin of each event (bin start km: events): 21: 1, 29: 1, 40: 2, 41: 20, 42: 158, 43: 4, 46: 1
+  [including_stopped — T2 rule, stopped or wholesale-coded editions kept (sensitivity)]
+  (a-between) start of the run -> first checkpoint vs rest of run: 15.01 vs 9.76 per 10,000 athlete-km; ratio 1.54 (95% CI 1.34-1.78; events 183, with the start of the run observed 177; cohort 184, excluded without a checkpoint at or beyond the threshold of the start of the run 1; NaN reps 0)
+  (a-within) start of the run -> first checkpoint vs rest of run: 15.01 vs 9.80 per 10,000 athlete-km; ratio 1.53 (95% CI 1.33-1.77; events 177, with the start of the run observed 177; cohort 184, excluded without a checkpoint at or beyond the threshold of the start of the run 1; NaN reps 0)
+  (b) per-km curve: km 0-3 = 16.23; km 3-end = 9.74 per 10,000 athlete-km; ratio 1.67 (95% CI 1.47-1.89; each event's terminal bin excluded; NaN reps: curve 376, ratio 0)
+      km 3-21 = 11.15; km 21-end = 8.49; terminal bins (pooled) = 14.19
+      terminal bin of each event (bin start km: events): 29: 1, 40: 2, 41: 20, 42: 157, 43: 3, 46: 1
+
+SECTION 4 — Sensitivity analyses (first interval vs rest, BETWEEN version; dropout_hazard_bands.csv holds their bands, without the events lacking a checkpoint at or beyond 1.0 km)
+  min_dnf_20: 13.90 vs 9.14 per 10,000 athlete-km; ratio 1.52 (95% CI 1.32-1.73; events 223, with the start of the run observed 211; cohort 224, excluded without a checkpoint at or beyond the threshold of the start of the run 1; NaN reps 0)
+  min_dnf_50: 16.98 vs 10.58 per 10,000 athlete-km; ratio 1.61 (95% CI 1.36-1.89; events 126, with the start of the run observed 123; cohort 127, excluded without a checkpoint at or beyond the threshold of the start of the run 1; NaN reps 0)
+  exclude_2026: 14.97 vs 10.05 per 10,000 athlete-km; ratio 1.49 (95% CI 1.29-1.72; events 159, with the start of the run observed 154; cohort 160, excluded without a checkpoint at or beyond the threshold of the start of the run 1; NaN reps 0)
+  years_le_2019: 15.46 vs 10.19 per 10,000 athlete-km; ratio 1.52 (95% CI 1.09-2.02; events 47, with the start of the run observed 46; cohort 48, excluded without a checkpoint at or beyond the threshold of the start of the run 1; NaN reps 0)
+    cohort seasons (years_le_2019): first 2017, last 2019; cohort events by season: 2017: 1, 2018: 24, 2019: 23
+  years_ge_2021: 14.81 vs 9.59 per 10,000 athlete-km; ratio 1.54 (95% CI 1.35-1.78; events 134, with the start of the run observed 129; cohort 134, excluded without a checkpoint at or beyond the threshold of the start of the run 0; NaN reps 0)
+    cohort seasons (years_ge_2021): first 2021, last 2026; cohort events by season: 2021: 19, 2022: 23, 2023: 24, 2024: 21, 2025: 23, 2026: 24
+  at_risk_without_finish_time: 15.06 vs 9.79 per 10,000 athlete-km; ratio 1.54 (95% CI 1.34-1.78; events 183, with the start of the run observed 177; cohort 184, excluded without a checkpoint at or beyond the threshold of the start of the run 1; NaN reps 0)
+  start_mat_0.5: 16.09 vs 9.74 per 10,000 athlete-km; ratio 1.65 (95% CI 1.42-1.92; events 183, with the start of the run observed 176; cohort 184, excluded without a checkpoint at or beyond the threshold of the start of the run 1; NaN reps 0)
+  start_mat_1.5: 14.82 vs 9.75 per 10,000 athlete-km; ratio 1.52 (95% CI 1.33-1.74; events 183, with the start of the run observed 180; cohort 184, excluded without a checkpoint at or beyond the threshold of the start of the run 1; NaN reps 0)
+  strict: 8.04 vs 9.89 per 10,000 athlete-km; ratio 0.81 (95% CI 0.64-1.03; events 174, with the start of the run observed 39; cohort 174, excluded without a checkpoint at or beyond the threshold of the start of the run 0; NaN reps 0)
+  t2_no_limit: 17.30 vs 9.71 per 10,000 athlete-km; ratio 1.78 (95% CI 1.56-2.06; events 186, with the start of the run observed 183; cohort 187, excluded without a checkpoint at or beyond the threshold of the start of the run 1; NaN reps 0)
+  including_stopped: 15.01 vs 9.76 per 10,000 athlete-km; ratio 1.54 (95% CI 1.34-1.78; events 183, with the start of the run observed 177; cohort 184, excluded without a checkpoint at or beyond the threshold of the start of the run 1; NaN reps 0)
+
+======================================================================
+IRONMAN 70.3
+======================================================================
+In-race DNFs with distance data: 43,206
+  (in-race DNFs whose recorded distance is not used, course rule: 596)
+  before the cycling completion (no mat crossed, swim or cycling segment; not modelled): 22,230
+  at the cycling-completion distance: 10,381
+    with a T2 split within the duration limit (T2-completers, enter the run at km 0): 3,218
+    with a T2 split longer than the limit (withdrew in the transition; not modelled in the main analysis): 902
+    without a T2 split (withdrew in the transition; not modelled): 6,261
+  beyond the cycling completion and before the finish distance: 10,575
+  at the finish distance (crossed the finish mat without a finish time; excluded): 20
+  beyond the run length (data anomalies, excluded): 0
+  run-segment DNFs, main analysis (T2 rule): 13,793; strict rule: 10,575; T2 rule without the duration limit: 14,695
+  T2-completers at km 0 by event: 589 events; largest: 2019 IRONMAN 70.3 Ecuador 69; 2019 IRONMAN 70.3 Boulder 65; 2019 IRONMAN 70.3 Oceanside California 60; 2022 IRONMAN 70.3 Luxembourg 45; 2019 IRONMAN 70.3 Ohio 34
+
+SECTION 1 — Checkpoint structure (events with >= 30 run DNFs; main analysis)
+  events in cohort: 119  | run DNFs covered: 5,749 (41.6806% of run DNFs; 5,749 / 13,793)
+  cohort seasons (main): first 2016, last 2026; cohort events by season: 2016: 2, 2018: 13, 2019: 16, 2021: 12, 2022: 19, 2023: 16, 2024: 14, 2025: 13, 2026: 14
+  T2-completers at km 0 in the cohort: 1,258 of 3,218; events with a mat at km 0: 115
+  distinct run checkpoints per event: median 7 (P10 4, P90 10)
+  DNFs per interval: median 4 (P25 2, P75 9)
+  events with a mat at the start of the run (< 1.0 km): 98.3193% (117 / 119); with a mat at the start of the run other than km 0: 30
+  first run checkpoint (km past the event's cycling completion): median 2.890 (P10 1.409, P25 1.912, P75 4.175, P90 5.463, min 1.000, max 10.600), n = 114 (events without any mat >= 1.0 km: 5)
+  events without a checkpoint at or beyond 1.0 km (excluded from both first-interval contrasts, kept in the per-km curve): 5
+    2019 IRONMAN 70.3 Boulder [ae7ad45a-52b7-e811-a967-000d3a37468c]: run DNFs 65 (at km 0 65), mats 1, run length 21.08 km
+    2019 IRONMAN 70.3 Chattanooga [56367699-dd91-e811-941f-005056951bf1]: run DNFs 31 (at km 0 31), mats 1, run length 21.08 km
+    2019 IRONMAN 70.3 Ecuador [105fb91d-18b8-e811-a967-000d3a37468c]: run DNFs 69 (at km 0 69), mats 1, run length 21.10 km
+    2019 IRONMAN 70.3 Oceanside California [e39cd8e5-6e80-e811-941f-005056951bf1]: run DNFs 60 (at km 0 60), mats 1, run length 21.08 km
+    2019 IRONMAN 70.3 Ohio [a0b5b8d6-52b7-e811-a967-000d3a37468c]: run DNFs 34 (at km 0 34), mats 1, run length 21.08 km
+  share of an event's run DNFs recorded at a mat at the start of the run (before the first checkpoint): median 21.2%, pooled 24.7%
+  run length of the cohort events (km): median 21.1000 (min 20.6000, max 22.8828)
+  strict rule: cohort 79 events, run DNFs covered 3,620 (34.2317% of 10,575); DNFs at km 0 in the cohort 0; events with the start of the run observed 25; without a checkpoint at or beyond 1.0 km 0; median first checkpoint 3.030 km
+  T2 rule without the duration limit: cohort 139 events, run DNFs covered 6,766 (46.0429% of 14,695); DNFs at km 0 in the cohort 1,902; events with the start of the run observed 137; without a checkpoint at or beyond 1.0 km 5; median first checkpoint 2.825 km
+  including stopped editions: run DNFs 15,363 (T2-completers at km 0 4,788); cohort 120 events, run DNFs covered 7,319 (47.6404% of 15,363); DNFs at km 0 in the cohort 2,828; events with the start of the run observed 118; without a checkpoint at or beyond 1.0 km 6; median first checkpoint 2.890 km
+
+SECTION 2 — Pooled hazard by band of interval start (DNF per 10,000 athlete-km; main analysis; events without a checkpoint at or beyond 1.0 km excluded, as in the first-interval contrasts: 5)
+band_start_km  n_intervals  n_events  dnf  athlete_km  hazard_per_1e4_athlete_km  median_width_km  max_width_km
+       [0, 1)          141       112 1162   634494.23                      18.31             2.10         10.33
+       [1, 3)           69        59  296   400203.20                       7.40             2.24          6.93
+       [3, 5)           82        71  456   493864.68                       9.23             2.86          6.80
+      [5, 10)          177       108 1067   988721.01                      10.79             2.32         10.94
+    [10, end)          339       114 2509  2045144.78                      12.27             3.00         10.30
+
+SECTION 3 — Main contrasts (cluster bootstrap over events, 1000 reps, seed 42)
+  [main — T2 rule]
+  (a-between) start of the run -> first checkpoint vs rest of run: 18.31 vs 11.02 per 10,000 athlete-km; ratio 1.66 (95% CI 1.40-1.95; events 114, with the start of the run observed 112; cohort 119, excluded without a checkpoint at or beyond the threshold of the start of the run 5; NaN reps 0)
+  (a-within) start of the run -> first checkpoint vs rest of run: 18.31 vs 10.96 per 10,000 athlete-km; ratio 1.67 (95% CI 1.41-1.98; events 112, with the start of the run observed 112; cohort 119, excluded without a checkpoint at or beyond the threshold of the start of the run 5; NaN reps 0)
+  (b) per-km curve: km 0-3 = 16.92; km 3-end = 11.15 per 10,000 athlete-km; ratio 1.52 (95% CI 1.32-1.73; each event's terminal bin excluded; NaN reps: curve 136, ratio 0)
+      terminal bins (pooled) = 15.62
+      terminal bin of each event (bin start km: events): 20: 24, 21: 93, 22: 2
+  per-km curve (hazard per 10,000 athlete-km over each event's non-terminal bins, 95% CI;
+  n_events = events with exposure in the bin; terminal_share = share of the bin's exposure in terminal bins):
+   km_bin_start  hazard_per_1e4  ci_low  ci_high  n_events  terminal_share
+              0           22.42   19.87    25.26       117            0.00
+              1           16.46   14.06    19.13       118            0.00
+              2           12.02   10.47    13.90       118            0.00
+              3           10.21    8.76    11.87       119            0.00
+              4            9.31    7.95    11.05       119            0.00
+              5            9.19    7.68    11.08       119            0.00
+              6           10.00    7.98    13.15       119            0.00
+              7           12.09    9.83    14.94       119            0.00
+              8           11.16    9.20    13.34       119            0.00
+              9           10.26    8.50    12.10       119            0.00
+             10           14.19   11.68    16.85       119            0.00
+             11           16.48   12.60    21.43       119            0.00
+             12           14.98   11.52    19.73       119            0.00
+             13           13.58   10.25    18.07       119            0.00
+             14           12.18    9.28    15.56       119            0.00
+             15            9.39    7.48    11.66       119            0.00
+             16            7.38    5.98     9.10       119            0.00
+             17            6.82    5.67     8.27       119            0.00
+             18            8.12    6.40    10.09       119            0.00
+             19           10.35    8.00    13.37       119            0.00
+             20           15.91   10.74    22.40        95            0.16
+             21            1.54    1.15     2.15         2            0.89
+             22             NaN     NaN      NaN         0            1.00
+  [strict — strict rule: no DNF at the cycling-completion distance enters the run (sensitivity)]
+  (a-between) start of the run -> first checkpoint vs rest of run: 15.23 vs 13.28 per 10,000 athlete-km; ratio 1.15 (95% CI 0.77-1.69; events 79, with the start of the run observed 25; cohort 79, excluded without a checkpoint at or beyond the threshold of the start of the run 0; NaN reps 0)
+  (a-within) start of the run -> first checkpoint vs rest of run: 15.23 vs 11.68 per 10,000 athlete-km; ratio 1.30 (95% CI 0.81-2.07; events 25, with the start of the run observed 25; cohort 79, excluded without a checkpoint at or beyond the threshold of the start of the run 0; NaN reps 0)
+  (b) per-km curve: km 0-3 = 12.65; km 3-end = 13.26 per 10,000 athlete-km; ratio 0.95 (95% CI 0.71-1.26; each event's terminal bin excluded; NaN reps: curve 404, ratio 0)
+      terminal bins (pooled) = 21.12
+      terminal bin of each event (bin start km: events): 20: 17, 21: 61, 22: 1
+  [t2_no_limit — T2 rule without the duration limit (sensitivity)]
+  (a-between) start of the run -> first checkpoint vs rest of run: 24.19 vs 10.21 per 10,000 athlete-km; ratio 2.37 (95% CI 2.00-2.80; events 134, with the start of the run observed 132; cohort 139, excluded without a checkpoint at or beyond the threshold of the start of the run 5; NaN reps 0)
+  (a-within) start of the run -> first checkpoint vs rest of run: 24.19 vs 10.15 per 10,000 athlete-km; ratio 2.38 (95% CI 2.01-2.82; events 132, with the start of the run observed 132; cohort 139, excluded without a checkpoint at or beyond the threshold of the start of the run 5; NaN reps 0)
+  (b) per-km curve: km 0-3 = 21.95; km 3-end = 10.52 per 10,000 athlete-km; ratio 2.09 (95% CI 1.79-2.40; each event's terminal bin excluded; NaN reps: curve 128, ratio 0)
+      terminal bins (pooled) = 13.66
+      terminal bin of each event (bin start km: events): 20: 30, 21: 107, 22: 2
+  [including_stopped — T2 rule, stopped or wholesale-coded editions kept (sensitivity)]
+  (a-between) start of the run -> first checkpoint vs rest of run: 18.31 vs 11.02 per 10,000 athlete-km; ratio 1.66 (95% CI 1.40-1.95; events 114, with the start of the run observed 112; cohort 120, excluded without a checkpoint at or beyond the threshold of the start of the run 6; NaN reps 0)
+  (a-within) start of the run -> first checkpoint vs rest of run: 18.31 vs 10.96 per 10,000 athlete-km; ratio 1.67 (95% CI 1.41-1.98; events 112, with the start of the run observed 112; cohort 120, excluded without a checkpoint at or beyond the threshold of the start of the run 6; NaN reps 0)
+  (b) per-km curve: km 0-3 = 20.04; km 3-end = 14.34 per 10,000 athlete-km; ratio 1.40 (95% CI 1.20-1.66; each event's terminal bin excluded; NaN reps: curve 136, ratio 0)
+      terminal bins (pooled) = 16.49
+      terminal bin of each event (bin start km: events): 20: 24, 21: 94, 22: 2
+
+SECTION 4 — Sensitivity analyses (first interval vs rest, BETWEEN version; dropout_hazard_bands.csv holds their bands, without the events lacking a checkpoint at or beyond 1.0 km)
+  min_dnf_20: 13.92 vs 8.69 per 10,000 athlete-km; ratio 1.60 (95% CI 1.42-1.81; events 254, with the start of the run observed 249; cohort 263, excluded without a checkpoint at or beyond the threshold of the start of the run 9; NaN reps 0)
+  min_dnf_50: 21.66 vs 15.31 per 10,000 athlete-km; ratio 1.41 (95% CI 1.03-1.85; events 35, with the start of the run observed 35; cohort 38, excluded without a checkpoint at or beyond the threshold of the start of the run 3; NaN reps 0)
+  exclude_2026: 18.23 vs 11.68 per 10,000 athlete-km; ratio 1.56 (95% CI 1.29-1.85; events 100, with the start of the run observed 98; cohort 105, excluded without a checkpoint at or beyond the threshold of the start of the run 5; NaN reps 0)
+  years_le_2019: 17.21 vs 11.79 per 10,000 athlete-km; ratio 1.46 (95% CI 1.05-1.89; events 26, with the start of the run observed 25; cohort 31, excluded without a checkpoint at or beyond the threshold of the start of the run 5; NaN reps 0)
+    cohort seasons (years_le_2019): first 2016, last 2019; cohort events by season: 2016: 2, 2018: 13, 2019: 16
+  years_ge_2021: 18.68 vs 10.80 per 10,000 athlete-km; ratio 1.73 (95% CI 1.42-2.07; events 88, with the start of the run observed 87; cohort 88, excluded without a checkpoint at or beyond the threshold of the start of the run 0; NaN reps 0)
+    cohort seasons (years_ge_2021): first 2021, last 2026; cohort events by season: 2021: 12, 2022: 19, 2023: 16, 2024: 14, 2025: 13, 2026: 14
+  at_risk_without_finish_time: 18.47 vs 11.10 per 10,000 athlete-km; ratio 1.66 (95% CI 1.40-1.96; events 114, with the start of the run observed 112; cohort 119, excluded without a checkpoint at or beyond the threshold of the start of the run 5; NaN reps 0)
+  start_mat_0.5: 18.52 vs 11.07 per 10,000 athlete-km; ratio 1.67 (95% CI 1.40-1.98; events 114, with the start of the run observed 111; cohort 119, excluded without a checkpoint at or beyond the threshold of the start of the run 5; NaN reps 0)
+  start_mat_1.5: 16.94 vs 11.11 per 10,000 athlete-km; ratio 1.53 (95% CI 1.30-1.78; events 114, with the start of the run observed 113; cohort 119, excluded without a checkpoint at or beyond the threshold of the start of the run 5; NaN reps 0)
+  strict: 15.23 vs 13.28 per 10,000 athlete-km; ratio 1.15 (95% CI 0.77-1.69; events 79, with the start of the run observed 25; cohort 79, excluded without a checkpoint at or beyond the threshold of the start of the run 0; NaN reps 0)
+  t2_no_limit: 24.19 vs 10.21 per 10,000 athlete-km; ratio 2.37 (95% CI 2.00-2.80; events 134, with the start of the run observed 132; cohort 139, excluded without a checkpoint at or beyond the threshold of the start of the run 5; NaN reps 0)
+  including_stopped: 18.31 vs 11.02 per 10,000 athlete-km; ratio 1.66 (95% CI 1.40-1.95; events 114, with the start of the run observed 112; cohort 120, excluded without a checkpoint at or beyond the threshold of the start of the run 6; NaN reps 0)

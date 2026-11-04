@@ -1,0 +1,63 @@
+# Analysed population — race-years excluded at load (one row per event_id; inrace_dnf = DNFs without a recorded finish time)
+# Generated: 2026-10-28 14:37:11
+# Python 3.12.13, pandas 3.0.1, numpy 2.4.3, statsmodels 0.14.6, scipy 1.17.1, scikit-learn 1.8.0, pymannkendall 1.4.3
+# Dataset: ironman_merged.csv (version 4.0.0)
+# Seed: 42
+# Reference counts of the merged dataset file (ironman_merged.csv, v4.0.0, whole file; constants, not counted from the file read): N = 3,632,323, DNF = 216,130
+# Analysis code: sha256 ecc7a0109c9fce44f371632752704b0b02cf0fce41db594816dc0fce4160849f (notebooks/*.py except generate_figures.py, generate_tables.py, manuscript_number_audit.py)
+# Analysed population: 14 duplicated race-years, 29 non-standard-format editions, 5 non-IRONMAN races and 6 stopped or wholesale-coded editions excluded at load (_common.load_dataset; descriptives.txt, Excluded records)
+event_id,event_name,source,race_type,race_year,reason,kept_event_id,records,starters,dnf,inrace_dnf
+1431,Ironman 70.3 Atlantic City Aqaubike 2018,coachcox,him,2018,aquabike,,1,1,1,1
+02d85d68-0898-4743-8de6-ea333bdb3cd2,2023 Aquabike Geelong,official,im,2023,aquabike,,77,72,72,72
+a08ff39f-2626-4df7-ba26-26ec15401535,2024 Aquabike Geelong,official,im,2024,aquabike,,65,60,60,60
+59780d02-4153-401a-8a52-c2cd9fe9b935,2025 Aquabike 70.3 Cairns,official,him,2025,aquabike,,21,20,20,20
+577fb4e0-382f-4ecd-878d-04d58915a8f0,2025 Aquabike 70.3 Geelong,official,him,2025,aquabike,,41,38,38,38
+148c922d-3496-4743-bdf6-75bb74acbbda,2025 Aquabike 70.3 Melbourne,official,him,2025,aquabike,,25,18,0,0
+dba86a4d-1e9c-4f07-99a4-30379a22a9f6,2025 Aquabike 70.3 Western Australia,official,him,2025,aquabike,,39,31,31,31
+886835f5-5d6d-4268-8358-4efefcab72c9,2025 Aquabike 70.3 Western Sydney,official,him,2025,aquabike,,40,38,38,38
+d9fcadcb-3757-4bd4-9e0e-0074269d3424,2026 Aquabike 70.3 Geelong,official,him,2026,aquabike,,43,39,39,39
+f648b82c-67a0-4c71-87f5-46d18c30e88e,2026 Aquabike 70.3 New Zealand,official,him,2026,aquabike,,47,41,41,41
+11de0919-8daa-4dcf-9e4f-b9ccbdc53ed5,2026 Aquabike 70.3 Western Sydney,official,him,2026,aquabike,,43,32,32,32
+4fa307d2-f2d8-47c3-a8c5-132728e12c99,2021 IRONMAN 70.3 Cascais Portugal Bike-Run,official,him,2021,bike_run,,33,29,3,3
+4038f7f7-2d68-48cb-af26-05653a1fc228,2021 IRONMAN 70.3 Emilia Romagna Bike-Run,official,him,2021,bike_run,,33,30,1,1
+a3adc4a3-34c0-4842-a7b0-175200f5b2b5,2021 IRONMAN 70.3 Jonkoping Bike-Run,official,him,2021,bike_run,,22,16,0,0
+105c2e2a-62d3-4694-bee0-e91576b77c99,2021 IRONMAN 70.3 Les Sables d'Olonne Bike-Run,official,him,2021,bike_run,,32,31,2,2
+3294b9f7-f930-4c8e-a6a9-7410b0bfc5d1,2021 IRONMAN 70.3 Zell am See Kaprun Bike-Run,official,him,2021,bike_run,,41,28,3,3
+f2d3dd3c-606c-4c4d-bffd-c10d4d73f4a4,2021 IRONMAN Emilia Romagna Bike-Run,official,im,2021,bike_run,,23,17,7,7
+469d87df-cb50-485e-9404-4a1512831ed6,2021 IRONMAN Portugal-Cascais Bike-Run,official,im,2021,bike_run,,28,22,2,2
+e774b571-7a1b-4e6e-afb7-6721fa001b0e,2023 IRONMAN Kalmar-Sweden DO-NOT-USE (see notes),official,im,2023,do_not_use,,1810,1777,174,173
+1231,Ironman 70.3 Cancun 2012,coachcox,him,2012,duplicate,534,1765,1474,52,52
+871,Ironman 70.3 Santa Rosa 2014,coachcox,him,2014,duplicate,1351,2218,2181,10,10
+872,Ironman 70.3 Santa Rosa 2015,coachcox,him,2015,duplicate,1384,2218,2175,12,12
+1974,Ironman 70.3 Buenos Aires 2016,coachcox,him,2016,duplicate,758,1920,1618,45,45
+873,Ironman 70.3 Santa Rosa 2016,coachcox,him,2016,duplicate,1409,1893,1890,80,80
+1411,Ironman 70.3 Alagoas 2017,coachcox,him,2017,duplicate,1036,944,839,15,15
+2029,Ironman 70.3 Mar del Plata 2017,coachcox,him,2017,duplicate,415,1265,1071,54,54
+759,Ironman 70.3 South American Championship 2017,coachcox,him,2017,duplicate,1975,2235,1888,50,50
+2030,Ironman 70.3 Mar del Plata 2018,coachcox,him,2018,duplicate,465,985,831,44,44
+760,Ironman 70.3 South American Championship 2018,coachcox,him,2018,duplicate,1976,2524,2118,55,55
+7b8fe9f3-87d2-ea11-a812-000d3a5a1cf8,2019 IRONMAN World Championship Kukui Division,official,im,2019,duplicate,502,320,313,19,19
+2031,Ironman 70.3 Mar del Plata 2019,coachcox,him,2019,duplicate,531,760,638,68,68
+642,Ironman 70.3 South American Championship 2019,coachcox,him,2019,duplicate,1977,1331,1167,24,24
+564,Ironman 70.3 Virginia 2019,coachcox,him,2019,duplicate,2117,2079,1597,58,58
+210,Challenge Copenhagen 2010,coachcox,im,2010,non_ironman,,1575,1575,267,267
+211,Challenge Copenhagen 2011,coachcox,im,2011,non_ironman,,1734,1734,370,357
+212,Challenge Copenhagen 2012,coachcox,im,2012,non_ironman,,1566,1566,193,166
+356,Challenge Weymouth 2014,coachcox,im,2014,non_ironman,,449,449,31,31
+357,Challenge Weymouth 2015,coachcox,im,2015,non_ironman,,430,430,32,32
+ce6bef41-c899-4aec-9b2e-92f35db3fc87,2015 5150 Geelong,official,im,2015,olympic_5150,,177,172,2,1
+e175fd50-f144-e411-93f8-005056951bf1,2015 5150 Kraichgau,official,im,2015,olympic_5150,,732,578,16,16
+8e3e1c74-1457-e511-9409-005056951bf1,2016 5150 Kraichgau,official,im,2016,olympic_5150,,671,555,4,4
+66c19e29-1648-e511-9409-005056951bf1,2016 5150 Mont-Tremblant,official,im,2016,olympic_5150,,934,917,17,17
+3424bad7-9ad3-e511-940c-005056951bf1,2016 5150 Penghu,official,im,2016,olympic_5150,,212,138,14,6
+ddd390da-b585-e611-9410-005056951bf1,2017 5150 Kraichgau,official,im,2017,olympic_5150,,652,544,26,22
+d6539912-73a1-e711-9419-005056951bf1,2018 5150 Kraichgau,official,im,2018,olympic_5150,,643,551,18,18
+dc2db09c-6899-e711-9419-005056951bf1,2018 5150 Mont-Tremblant,official,im,2018,olympic_5150,,1220,958,31,31
+45c117aa-5de3-e811-a965-000d3a3749bc,2019 5150 Kraichgau,official,im,2019,olympic_5150,,751,613,46,46
+cac04a7a-48c6-e811-a96a-000d3a35f53a,2019 5150 Mont-Tremblant,official,im,2019,olympic_5150,,1147,894,43,43
+152,Ironman Japan 2007,coachcox,im,2007,stopped,,788,788,413,413
+1126,Ironman 70.3 Brazil 2008,coachcox,him,2008,stopped,,653,588,271,271
+e116d0b1-4eae-e111-80ae-005056956277,2011 IRONMAN 70.3 Mallorca: Triathlon,official,him,2011,stopped,,1857,1631,1631,1631
+f4616994-3055-e211-b7a2-005056956277,2013 IRONMAN 70.3 Switzerland: Triathlon,official,him,2013,stopped,,2181,1188,1188,1188
+1348,Ironman 70.3 Superfrog 2014,coachcox,him,2014,stopped,,6,4,4,4
+24dc0e64-dc91-e811-941f-005056951bf1,2019 IRONMAN 70.3 Texas,official,him,2019,stopped,,2875,2234,1850,1850

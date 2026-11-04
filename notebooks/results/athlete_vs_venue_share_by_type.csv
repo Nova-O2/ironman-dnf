@@ -1,0 +1,81 @@
+# Race location of each athlete continent's starts, by event type (share of the continent's starts, %)
+# Generated: 2026-10-28 14:39:49
+# Python 3.12.13, pandas 3.0.1, numpy 2.4.3, statsmodels 0.14.6, scipy 1.17.1, scikit-learn 1.8.0, pymannkendall 1.4.3
+# Dataset: ironman_merged.csv (version 4.0.0)
+# Seed: 42
+# Reference counts of the merged dataset file (ironman_merged.csv, v4.0.0, whole file; constants, not counted from the file read): N = 3,632,323, DNF = 216,130
+# Analysis code: sha256 ecc7a0109c9fce44f371632752704b0b02cf0fce41db594816dc0fce4160849f (notebooks/*.py except generate_figures.py, generate_tables.py, manuscript_number_audit.py)
+# Analysed population: 14 duplicated race-years, 29 non-standard-format editions, 5 non-IRONMAN races and 6 stopped or wholesale-coded editions excluded at load (_common.load_dataset; descriptives.txt, Excluded records)
+race_type,athlete_continent,event_continent,N_starts,share_pct
+him,Africa,Africa,48476,78.7907354733848
+him,Africa,Asia,3312,5.383177570093458
+him,Africa,Europe,6446,10.477041852905323
+him,Africa,North America,2121,3.4473791141812273
+him,Africa,Oceania,1041,1.6919951239333604
+him,Africa,South America,129,0.20967086550182853
+him,Asia,Africa,541,0.3993798907426547
+him,Asia,Asia,113316,83.65273881588661
+him,Asia,Europe,8196,6.050494610955264
+him,Asia,North America,9064,6.691274176878784
+him,Asia,Oceania,4158,3.069540823859442
+him,Asia,South America,185,0.1365716816772479
+him,Europe,Africa,5428,0.8780429412820915
+him,Europe,Asia,29002,4.691415140579075
+him,Europe,Europe,541291,87.56019560234425
+him,Europe,North America,30167,4.879867614159332
+him,Europe,Oceania,10417,1.6850724611893049
+him,Europe,South America,1888,0.3054062404459449
+him,North America,Africa,1302,0.1462251013018751
+him,North America,Asia,5623,0.6315082523966541
+him,North America,Europe,18000,2.0215451792885957
+him,North America,North America,856889,96.23554595196809
+him,North America,Oceania,4219,0.47382772841214366
+him,North America,South America,4375,0.49134778663264483
+him,Oceania,Africa,361,0.2911712990595409
+him,Oceania,Asia,4949,3.9917084738107143
+him,Oceania,Europe,4429,3.5722927521737025
+him,Oceania,North America,5852,4.720040005807294
+him,Oceania,Oceania,108255,87.31509412656676
+him,Oceania,South America,136,0.10969334258198771
+him,South America,Africa,679,0.4099795915902861
+him,South America,Asia,1176,0.7100677462594646
+him,South America,Europe,8708,5.257882597302226
+him,South America,North America,29326,17.707012522793416
+him,South America,Oceania,1642,0.991438128705817
+him,South America,South America,124087,74.92361941334879
+im,Africa,Africa,19157,78.70906775134557
+im,Africa,Asia,135,0.5546653519043511
+im,Africa,Europe,3166,13.007929660216114
+im,Africa,North America,1238,5.086486708574715
+im,Africa,Oceania,562,2.309051316816632
+im,Africa,South America,81,0.33279921114261063
+im,Asia,Africa,385,0.6367741188534758
+im,Asia,Asia,30223,49.987595309372985
+im,Asia,Europe,13008,21.51469542349614
+im,Asia,North America,7881,13.034848910868163
+im,Asia,Oceania,8702,14.392749044838821
+im,Asia,South America,262,0.4333371925704173
+im,Europe,Africa,3701,0.8161582125230998
+im,Europe,Asia,2721,0.6000449868347352
+im,Europe,Europe,401672,88.57819549867024
+im,Europe,North America,37285,8.22222614264355
+im,Europe,Oceania,6919,1.5258034780997913
+im,Europe,South America,1168,0.25757168122858165
+im,North America,Africa,682,0.14779018993856521
+im,North America,Asia,1147,0.24855622853304152
+im,North America,Europe,17093,3.7040728982696414
+im,North America,North America,435870,94.45353385413846
+im,North America,Oceania,4798,1.039732157368381
+im,North America,South America,1875,0.4063146717519205
+im,Oceania,Africa,186,0.21812552772305094
+im,Oceania,Asia,1039,1.2184538887325265
+im,Oceania,Europe,2968,3.480626700440942
+im,Oceania,North America,6627,7.771601463551928
+im,Oceania,Oceania,74358,87.20095693779905
+im,Oceania,South America,94,0.11023548175250962
+im,South America,Africa,556,1.1427866729698066
+im,South America,Asia,165,0.3391363328057879
+im,South America,Europe,4696,9.652025568824122
+im,South America,North America,11125,22.866010317966005
+im,South America,Oceania,559,1.14895278811173
+im,South America,South America,31552,64.85108831932254

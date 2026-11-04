@@ -1,0 +1,49 @@
+# RQ2 — main contrasts of the dropout hazard (main + sensitivities)
+# Generated: 2026-10-28 14:39:09
+# Python 3.12.13, pandas 3.0.1, numpy 2.4.3, statsmodels 0.14.6, scipy 1.17.1, scikit-learn 1.8.0, pymannkendall 1.4.3
+# Dataset: ironman_merged.csv (version 4.0.0)
+# Seed: 42
+# Reference counts of the merged dataset file (ironman_merged.csv, v4.0.0, whole file; constants, not counted from the file read): N = 3,632,323, DNF = 216,130
+# Analysis code: sha256 ecc7a0109c9fce44f371632752704b0b02cf0fce41db594816dc0fce4160849f (notebooks/*.py except generate_figures.py, generate_tables.py, manuscript_number_audit.py)
+# Analysed population: 14 duplicated race-years, 29 non-standard-format editions, 5 non-IRONMAN races and 6 stopped or wholesale-coded editions excluded at load (_common.load_dataset; descriptives.txt, Excluded records)
+race_type,analysis,contrast,n_events,n_events_with_start_mat,h_first_per_1e4,h_rest_per_1e4,ratio,ci_low,ci_high,n_nan_reps,underpowered,n_events_cohort,n_events_excluded_no_checkpoint
+im,main,first_interval_vs_rest_between,183,177,15.00702292,9.760420788,1.537538519,1.336165313,1.777720573,0,False,184,1
+im,main,first_interval_vs_rest_within,177,177,15.00702292,9.801996211,1.531017009,1.32761333,1.770357564,0,False,184,1
+im,main,curve_km0-3_vs_km3-end_excl_terminal,184,,16.23237562,9.735425207,1.66735148,1.467071996,1.893855137,0,False,184,0
+im,strict,first_interval_vs_rest_between,174,39,8.040321184,9.886750273,0.8132420625,0.6392786155,1.030469057,0,False,174,0
+im,strict,first_interval_vs_rest_within,39,39,8.040321184,10.51736451,0.7644806047,0.6129058558,0.9473336796,0,False,174,0
+im,strict,curve_km0-3_vs_km3-end_excl_terminal,174,,9.594284389,9.81339962,0.9776718324,0.8507249028,1.113354916,0,False,174,0
+im,t2_no_limit,first_interval_vs_rest_between,186,183,17.30433743,9.707751876,1.782527783,1.556678344,2.060610452,0,False,187,1
+im,t2_no_limit,first_interval_vs_rest_within,183,183,17.30433743,9.717397405,1.780758438,1.560442033,2.045647869,0,False,187,1
+im,t2_no_limit,curve_km0-3_vs_km3-end_excl_terminal,187,,18.59332948,9.726490531,1.911617497,1.686671235,2.167047927,0,False,187,0
+im,including_stopped,first_interval_vs_rest_between,183,177,15.00702292,9.760420788,1.537538519,1.336165313,1.777720573,0,False,184,1
+im,including_stopped,first_interval_vs_rest_within,177,177,15.00702292,9.801996211,1.531017009,1.32761333,1.770357564,0,False,184,1
+im,including_stopped,curve_km0-3_vs_km3-end_excl_terminal,184,,16.23237562,9.735425207,1.66735148,1.467071996,1.893855137,0,False,184,0
+im,min_dnf_20,first_interval_vs_rest_between,223,211,13.89867759,9.141263514,1.520432877,1.319449684,1.729111609,0,False,224,1
+im,min_dnf_50,first_interval_vs_rest_between,126,123,16.97873915,10.57634342,1.60535059,1.361918685,1.888873894,0,False,127,1
+im,exclude_2026,first_interval_vs_rest_between,159,154,14.97175737,10.04582866,1.490345682,1.289185643,1.724368084,0,False,160,1
+im,years_le_2019,first_interval_vs_rest_between,47,46,15.46089816,10.19080396,1.517142144,1.091525865,2.023404303,0,False,48,1
+im,years_ge_2021,first_interval_vs_rest_between,134,129,14.81152962,9.590840427,1.544341158,1.347366631,1.784585186,0,False,134,0
+im,at_risk_without_finish_time,first_interval_vs_rest_between,183,177,15.05677421,9.789051171,1.538123966,1.336598676,1.778655277,0,False,184,1
+im,start_mat_0.5,first_interval_vs_rest_between,183,176,16.09379247,9.73751304,1.652762097,1.422225829,1.921045798,0,False,184,1
+im,start_mat_1.5,first_interval_vs_rest_between,183,180,14.81694933,9.74777724,1.520033641,1.33097864,1.739883751,0,False,184,1
+him,main,first_interval_vs_rest_between,114,112,18.31379932,11.01851601,1.662093089,1.395339221,1.954892779,0,False,119,5
+him,main,first_interval_vs_rest_within,112,112,18.31379932,10.95808935,1.671258441,1.409944109,1.977171509,0,False,119,5
+him,main,curve_km0-3_vs_km3-end_excl_terminal,119,,16.92412315,11.1463135,1.51836059,1.315949474,1.725654465,0,False,119,0
+him,strict,first_interval_vs_rest_between,79,25,15.23330879,13.27716404,1.147331519,0.7693556025,1.687417139,0,False,79,0
+him,strict,first_interval_vs_rest_within,25,25,15.23330879,11.68248028,1.303944747,0.8138660774,2.074486668,0,False,79,0
+him,strict,curve_km0-3_vs_km3-end_excl_terminal,79,,12.65451386,13.26295812,0.9541245438,0.7091192531,1.264668106,0,False,79,0
+him,t2_no_limit,first_interval_vs_rest_between,134,132,24.18994103,10.21162714,2.368862542,1.995786818,2.803489797,0,False,139,5
+him,t2_no_limit,first_interval_vs_rest_within,132,132,24.18994103,10.15211728,2.382748383,2.00954666,2.818734519,0,False,139,5
+him,t2_no_limit,curve_km0-3_vs_km3-end_excl_terminal,139,,21.94864965,10.5150422,2.087357258,1.79269597,2.404714674,0,False,139,0
+him,including_stopped,first_interval_vs_rest_between,114,112,18.31379932,11.01851601,1.662093089,1.395339221,1.954892779,0,False,120,6
+him,including_stopped,first_interval_vs_rest_within,112,112,18.31379932,10.95808935,1.671258441,1.409944109,1.977171509,0,False,120,6
+him,including_stopped,curve_km0-3_vs_km3-end_excl_terminal,120,,20.04234194,14.34363547,1.397298612,1.204856711,1.663283865,0,False,120,0
+him,min_dnf_20,first_interval_vs_rest_between,254,249,13.92130609,8.691504096,1.601714264,1.419841665,1.812029967,0,False,263,9
+him,min_dnf_50,first_interval_vs_rest_between,35,35,21.66378994,15.3122164,1.414804322,1.027188754,1.847605119,0,False,38,3
+him,exclude_2026,first_interval_vs_rest_between,100,98,18.22673214,11.68213812,1.560222277,1.289355715,1.851505537,0,False,105,5
+him,years_le_2019,first_interval_vs_rest_between,26,25,17.21429538,11.7863972,1.460522253,1.048971957,1.89368502,0,False,31,5
+him,years_ge_2021,first_interval_vs_rest_between,88,87,18.6784074,10.80479273,1.728715012,1.41674681,2.074323891,0,False,88,0
+him,at_risk_without_finish_time,first_interval_vs_rest_between,114,112,18.467997,11.1005628,1.66369916,1.395777999,1.957756482,0,False,119,5
+him,start_mat_0.5,first_interval_vs_rest_between,114,111,18.520335,11.07228646,1.672674841,1.397815474,1.984136339,0,False,119,5
+him,start_mat_1.5,first_interval_vs_rest_between,114,113,16.94145832,11.10506304,1.525561652,1.296291405,1.776641759,0,False,119,5

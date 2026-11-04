@@ -1,0 +1,77 @@
+# RQ4 — Logistic Regression (HIM)
+# Generated: 2026-10-28 14:40:59
+# Python 3.12.13, pandas 3.0.1, numpy 2.4.3, statsmodels 0.14.6, scipy 1.17.1, scikit-learn 1.8.0, pymannkendall 1.4.3
+# Dataset: ironman_merged.csv (version 4.0.0)
+# Seed: 42
+# Reference counts of the merged dataset file (ironman_merged.csv, v4.0.0, whole file; constants, not counted from the file read): N = 3,632,323, DNF = 216,130
+# Analysis code: sha256 ecc7a0109c9fce44f371632752704b0b02cf0fce41db594816dc0fce4160849f (notebooks/*.py except generate_figures.py, generate_tables.py, manuscript_number_audit.py)
+# Analysed population: 14 duplicated race-years, 29 non-standard-format editions, 5 non-IRONMAN races and 6 stopped or wholesale-coded editions excluded at load (_common.load_dataset; descriptives.txt, Excluded records)
+
+Sample: 1,954,178 starters (HIM, age-group only)
+In-race DNFs (outcome): 88,287 (4.5179%)
+Excluded: PROs, finish-time DNFs, unknown sex, unknown continent of origin, unmapped race location
+
+Reference categories: sex=Male, age=30-34, athlete_continent=North America, race_continent=North America
+Features: 22
+Observations: 1,954,178
+Standard errors: clustered by event (event_id), 1,423 clusters; CIs and p-values from the clustered covariance (cov_type='cluster')
+
+Fitting logistic regression...
+Converged: True
+Log-likelihood: -354,359.2
+Pseudo R²: 0.014844
+
+======================================================================
+ODDS RATIOS (95% CI; standard errors clustered by event, 1,423 clusters)
+======================================================================
+                         OR      CI_low     CI_high            p  SE_log_odds  sig  CI_includes_1
+const                108923 0.000540457 2.19522e+13     0.234502      9.75604                True
+female              1.38724     1.34453     1.43131  1.58294e-93    0.0159551  ***          False
+age_18-24           1.04998     1.00244     1.09977    0.0391157    0.0236398    *          False
+age_25-29           0.95944     0.92949    0.990354    0.0104979    0.0161806    *          False
+age_35-39           1.03626     1.00953     1.06371   0.00756411    0.0133365   **          False
+age_40-44           1.13325     1.10203     1.16535   1.6956e-18    0.0142534  ***          False
+age_45-49           1.28719     1.24767     1.32796  1.07294e-56     0.015911  ***          False
+age_50-54            1.4849     1.43344     1.53821 5.64279e-107    0.0179953  ***          False
+age_55-59           1.75877     1.69181     1.82837 8.12394e-179    0.0198021  ***          False
+age_60-64           2.14565     2.05077     2.24493  5.3445e-240    0.0230771  ***          False
+age_65-69           2.89606      2.7132     3.09125 4.68442e-224    0.0332771  ***          False
+age_70+             5.28854     4.85473     5.76111            0    0.0436684  ***          False
+ath_Africa          1.14668    0.925196     1.42118     0.211326     0.109501                True
+ath_Asia            1.30203     1.15587     1.46668  1.39827e-05    0.0607549  ***          False
+ath_Europe         0.750288    0.684047    0.822944  1.11481e-09    0.0471595  ***          False
+ath_Oceania        0.966258    0.833732     1.11985      0.64836     0.075266                True
+ath_South_America  0.776225    0.700351    0.860318  1.38739e-06    0.0524805  ***          False
+race_Africa         1.42276     1.00802     2.00813    0.0449224     0.175825    *          False
+race_Asia           1.24529     1.06665     1.45386   0.00549267    0.0790064   **          False
+race_Europe         1.26073     1.08174     1.46934   0.00301998    0.0781237   **          False
+race_Oceania       0.839485    0.688921     1.02296    0.0827567      0.10085                True
+race_South_America  1.09926    0.907447     1.33162      0.33339    0.0978385                True
+race_year          0.992624    0.983263     1.00207     0.125651   0.00483435                True
+(full precision in the CSV)
+
+======================================================================
+MODEL PERFORMANCE
+======================================================================
+AUC-ROC: 0.593444
+Threshold (prevalence): 0.0452
+
+Classification report:
+              precision    recall  f1-score   support
+
+    Finisher       0.96      0.61      0.75   1865891
+         DNF       0.06      0.52      0.11     88287
+
+    accuracy                           0.61   1954178
+   macro avg       0.51      0.57      0.43   1954178
+weighted avg       0.92      0.61      0.72   1954178
+
+======================================================================
+PREDICTED PROBABILITY DISTRIBUTION
+======================================================================
+
+Finishers (n=1,865,891):
+  P5=0.0293, P25=0.0339, P50=0.0406, P75=0.0512, P95=0.0741
+
+DNFs (n=88,287):
+  P5=0.0306, P25=0.0359, P50=0.0460, P75=0.0583, P95=0.0908

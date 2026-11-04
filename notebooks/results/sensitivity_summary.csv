@@ -1,0 +1,16 @@
+# Sensitivity analyses S1-S4 — model summaries
+# Generated: 2026-10-28 14:43:19
+# Python 3.12.13, pandas 3.0.1, numpy 2.4.3, statsmodels 0.14.6, scipy 1.17.1, scikit-learn 1.8.0, pymannkendall 1.4.3
+# Dataset: ironman_merged.csv (version 4.0.0)
+# Seed: 42
+# Reference counts of the merged dataset file (ironman_merged.csv, v4.0.0, whole file; constants, not counted from the file read): N = 3,632,323, DNF = 216,130
+# Analysis code: sha256 ecc7a0109c9fce44f371632752704b0b02cf0fce41db594816dc0fce4160849f (notebooks/*.py except generate_figures.py, generate_tables.py, manuscript_number_audit.py)
+# Analysed population: 14 duplicated race-years, 29 non-standard-format editions, 5 non-IRONMAN races and 6 stopped or wholesale-coded editions excluded at load (_common.load_dataset; descriptives.txt, Excluded records)
+analysis,model,n,n_dnf,dnf_rate_pct,auc,converged,cov_type,n_clusters
+S1,IM — with finish-time DNFs,1108228,98522,8.890047896,0.6138745068,True,cluster (event_id),668
+S1,HIM — with finish-time DNFs,1961489,95598,4.873746424,0.5959691874,True,cluster (event_id),1423
+S2,Combined IM+HIM (20% sample),612133,37245,6.084462037,0.6392202326,True,cluster (event_id),2090
+S3,IM — excluding 2020-2021,1057295,91725,8.675440629,0.6146274128,True,cluster (event_id),631
+S3,HIM — excluding 2020-2021,1849877,83845,4.53246351,0.5921662781,True,cluster (event_id),1336
+S4,IM — with PROs,1127617,101375,8.990197913,0.621795035,True,cluster (event_id),669
+S4,HIM — with PROs,1985153,91715,4.620046918,0.6001984678,True,cluster (event_id),1424

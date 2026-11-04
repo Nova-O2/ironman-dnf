@@ -1,0 +1,131 @@
+# Athlete Origin × Race Location
+# Generated: 2026-10-28 14:39:46
+# Python 3.12.13, pandas 3.0.1, numpy 2.4.3, statsmodels 0.14.6, scipy 1.17.1, scikit-learn 1.8.0, pymannkendall 1.4.3
+# Dataset: ironman_merged.csv (version 4.0.0)
+# Seed: 42
+# Reference counts of the merged dataset file (ironman_merged.csv, v4.0.0, whole file; constants, not counted from the file read): N = 3,632,323, DNF = 216,130
+# Analysis code: sha256 ecc7a0109c9fce44f371632752704b0b02cf0fce41db594816dc0fce4160849f (notebooks/*.py except generate_figures.py, generate_tables.py, manuscript_number_audit.py)
+# Analysed population: 14 duplicated race-years, 29 non-standard-format editions, 5 non-IRONMAN races and 6 stopped or wholesale-coded editions excluded at load (_common.load_dataset; descriptives.txt, Excluded records)
+
+============================================================
+SECTION 1: MAPPING COVERAGE
+============================================================
+
+Athlete origin coverage: 3,128,842 / 3,192,507 = 98.0058%
+Race location coverage: 3,192,507 / 3,192,507 = 100.0000%
+World Championship events are mapped to their host continent for each year.
+
+Note: athlete origin from 'country' field (registration nationality).
+Race location from structured event metadata (_race_locations.py): host country of each race,
+assigned to a continent by the athlete-origin mapping (CONTINENT_MAP).
+
+Secondary-source starters whose race continent under the host-country rule differs from the
+continent of the source's region field: 16,770 of 942,897 (DNF 1,104)
+  region field -> host-country rule:
+                                    starters  DNF
+  region_continent event_continent               
+  Africa           Asia                10590  740
+  Asia             North America         138   27
+  Europe           Asia                  809   84
+  South America    North America        5233  253
+Starters without a race location: 0
+
+============================================================
+SECTION 2: DNF RATE BY RACE LOCATION
+============================================================
+
+                           N_starts  N_DNF  DNF_rate
+event_continent race_type                           
+North America   him          952227  49359    5.1835
+Europe          him          596297  26589    4.4590
+North America   im           508599  49724    9.7767
+Europe          im           454406  41761    9.1902
+Asia            him          161086  10560    6.5555
+South America   him          133700   5324    3.9820
+Oceania         him          133025   5963    4.4826
+                im            97624   6056    6.2034
+Africa          him           56927   3908    6.8649
+Asia            im            37057   4656   12.5644
+South America   im            35111   2184    6.2203
+Africa          im            26448   2429    9.1841
+
+============================================================
+SECTION 3: CROSS-TABULATION (ATHLETE ORIGIN × RACE LOCATION)
+============================================================
+
+DNF rate (%) — rows = athlete origin, cols = race location.
+Only combinations with N >= 1,000 starts shown.
+Records with both mapped: 3,128,842
+
+DNF rate (%):
+event_continent    Africa  Asia  Europe  North America  Oceania  South America
+athlete_continent                                                             
+Africa                7.7   5.3     7.0            6.3      4.9            NaN
+Asia                  NaN   8.3    10.3            7.5      9.1            NaN
+Europe                7.5   5.1     6.2            5.7      4.4            5.9
+North America         8.0   8.0    10.6            6.9      7.2            7.6
+Oceania               NaN   7.8     7.1            5.6      4.9            NaN
+South America         5.7   5.2     5.7            5.0      3.5            4.3
+
+N starts:
+event_continent     Africa      Asia    Europe  North America   Oceania  South America
+athlete_continent                                                                     
+Africa             67633.0    3447.0    9612.0         3359.0    1603.0            NaN
+Asia                   NaN  143539.0   21204.0        16945.0   12860.0            NaN
+Europe              9129.0   31723.0  942963.0        67452.0   17336.0         3056.0
+North America       1984.0    6770.0   35093.0      1292759.0    9017.0         6250.0
+Oceania                NaN    5988.0    7397.0        12479.0  182613.0            NaN
+South America       1235.0    1341.0   13404.0        40451.0    2201.0       155639.0
+
+============================================================
+SECTION 4: HOME vs AWAY EFFECT
+============================================================
+
+'Home' = athlete continent matches race continent.
+
+                           N_starts  N_DNF  DNF_rate
+athlete_continent is_home                           
+Africa            False       18231   1165    6.3902
+                  True        67633   5181    7.6605
+Asia              False       52382   4741    9.0508
+                  True       143539  11966    8.3364
+Europe            False      128696   7093    5.5114
+                  True       942963  58644    6.2191
+North America     False       59114   5547    9.3836
+                  True      1292759  88664    6.8585
+Oceania           False       26641   1741    6.5350
+                  True       182613   8998    4.9274
+South America     False       58632   2986    5.0928
+                  True       155639   6714    4.3138
+
+Overall:
+      N_starts   N_DNF  DNF_rate
+Away    343696   23273    6.7714
+Home   2785146  180167    6.4689
+
+============================================================
+SECTION 5: RACE LOCATION OF EACH ATHLETE CONTINENT'S STARTS, BY EVENT TYPE
+============================================================
+
+Share (%) of the starts of athletes from each continent (rows) held on each race continent
+(columns); each row sums to 100.
+
+IRONMAN:
+event_continent    Africa   Asia  Europe  North America  Oceania  South America
+athlete_continent                                                              
+Africa              78.71   0.55   13.01           5.09     2.31           0.33
+Asia                 0.64  49.99   21.51          13.03    14.39           0.43
+Europe               0.82   0.60   88.58           8.22     1.53           0.26
+North America        0.15   0.25    3.70          94.45     1.04           0.41
+Oceania              0.22   1.22    3.48           7.77    87.20           0.11
+South America        1.14   0.34    9.65          22.87     1.15          64.85
+
+IRONMAN 70.3:
+event_continent    Africa   Asia  Europe  North America  Oceania  South America
+athlete_continent                                                              
+Africa              78.79   5.38   10.48           3.45     1.69           0.21
+Asia                 0.40  83.65    6.05           6.69     3.07           0.14
+Europe               0.88   4.69   87.56           4.88     1.69           0.31
+North America        0.15   0.63    2.02          96.24     0.47           0.49
+Oceania              0.29   3.99    3.57           4.72    87.32           0.11
+South America        0.41   0.71    5.26          17.71     0.99          74.92

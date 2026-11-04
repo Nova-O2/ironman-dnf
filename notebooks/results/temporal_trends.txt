@@ -1,0 +1,438 @@
+# RQ3 — Temporal Trends (incl. COVID-era variation)
+# Generated: 2026-10-28 14:39:26
+# Python 3.12.13, pandas 3.0.1, numpy 2.4.3, statsmodels 0.14.6, scipy 1.17.1, scikit-learn 1.8.0, pymannkendall 1.4.3
+# Dataset: ironman_merged.csv (version 4.0.0)
+# Seed: 42
+# Reference counts of the merged dataset file (ironman_merged.csv, v4.0.0, whole file; constants, not counted from the file read): N = 3,632,323, DNF = 216,130
+# Analysis code: sha256 ecc7a0109c9fce44f371632752704b0b02cf0fce41db594816dc0fce4160849f (notebooks/*.py except generate_figures.py, generate_tables.py, manuscript_number_audit.py)
+# Analysed population: 14 duplicated race-years, 29 non-standard-format editions, 5 non-IRONMAN races and 6 stopped or wholesale-coded editions excluded at load (_common.load_dataset; descriptives.txt, Excluded records)
+
+NOTE: starters = FIN + DNF + DQ, professionals included. Total DNF rate = DNFs / starters (finish-time
+DNFs included); in-race DNF rate = in-race DNFs (DNFs without a recorded finish time) / starters;
+finish-time DNF rate = DNFs with a recorded finish time / starters. The trend tests use the in-race
+DNF rate as the primary series (in-race DNFs are the outcome of the regression and the event of the
+hazard), the total DNF rate as the secondary series and the finish-time DNF rate, the difference
+between the two, as a third series. The logistic regression (RQ4) also excludes professionals.
+
+============================================================
+SECTION 1: ANNUAL DNF RATES BY EVENT TYPE (total, in-race and finish-time)
+============================================================
+
+Rates in % of starters (rounded here for display; full precision in temporal_trends_annual.csv):
+
+ race_year race_type  N_starts  N_DNF  DNF_rate  N_inrace  inrace_rate  N_finish_time  finish_time_rate
+      2002        im      6018    827   13.7421       827      13.7421              0            0.0000
+      2003        im     11989   1757   14.6551      1757      14.6551              0            0.0000
+      2004       him      1962     70    3.5678        70       3.5678              0            0.0000
+      2004        im     10112    682    6.7445       682       6.7445              0            0.0000
+      2005       him      4370    193    4.4165       193       4.4165              0            0.0000
+      2005        im     21976   2518   11.4580      2518      11.4580              0            0.0000
+      2006       him      8278    334    4.0348       332       4.0106              2            0.0242
+      2006        im     26220   3212   12.2502      3199      12.2006             13            0.0496
+      2007       him      9259    292    3.1537       292       3.1537              0            0.0000
+      2007        im     31892   3983   12.4890      3981      12.4828              2            0.0063
+      2008       him     12954    721    5.5658       721       5.5658              0            0.0000
+      2008        im     38403   5410   14.0874      5410      14.0874              0            0.0000
+      2009       him     22591    749    3.3155       749       3.3155              0            0.0000
+      2009        im     39058   4679   11.9796      4627      11.8465             52            0.1331
+      2010       him     41490   1894    4.5650      1893       4.5625              1            0.0024
+      2010        im     40001   3374    8.4348      3356       8.3898             18            0.0450
+      2011       him     52027   2285    4.3920      2282       4.3862              3            0.0058
+      2011        im     44215   3778    8.5446      3775       8.5378              3            0.0068
+      2012       him     71880   3167    4.4060      3108       4.3239             59            0.0821
+      2012        im     54383   4422    8.1312      4400       8.0908             22            0.0405
+      2013       him     78849   3317    4.2068      3301       4.1865             16            0.0203
+      2013        im     59692   4381    7.3393      4342       7.2740             39            0.0653
+      2014       him     98011   4053    4.1353      3972       4.0526             81            0.0826
+      2014        im     71026   5028    7.0791      4929       6.9397             99            0.1394
+      2015       him    125491   7183    5.7239      6823       5.4370            360            0.2869
+      2015        im     72050   6468    8.9771      6352       8.8161            116            0.1610
+      2016       him    134323   7531    5.6066      6715       4.9991            816            0.6075
+      2016        im     68420   4974    7.2698      4790       7.0009            184            0.2689
+      2017       him    144005   8498    5.9012      8211       5.7019            287            0.1993
+      2017        im     70098   5426    7.7406      5352       7.6350             74            0.1056
+      2018       him    154078   8931    5.7964      8152       5.2908            779            0.5056
+      2018        im     70182   6025    8.5848      5860       8.3497            165            0.2351
+      2019       him    171551   9528    5.5540      8294       4.8347           1234            0.7193
+      2019        im     70413   7207   10.2353      7032       9.9868            175            0.2485
+      2020       him     12666    650    5.1318       611       4.8239             39            0.3079
+      2020        im      4265    292    6.8464       285       6.6823              7            0.1641
+      2021       him    102737   5475    5.3291      4689       4.5641            786            0.7651
+      2021        im     49703   5609   11.2850      5449      10.9631            160            0.3219
+      2022       him    147808   8233    5.5701      6945       4.6987           1288            0.8714
+      2022        im     68752   7409   10.7764      7223      10.5059            186            0.2705
+      2023       him    145580   6425    4.4134      6034       4.1448            391            0.2686
+      2023        im     55133   5180    9.3955      5083       9.2195             97            0.1759
+      2024       him    164162   7853    4.7837      7397       4.5059            456            0.2778
+      2024        im     57397   4756    8.2861      4655       8.1102            101            0.1760
+      2025       him    168683   7798    4.6229      7388       4.3798            410            0.2431
+      2025        im     64066   5083    7.9340      4911       7.6655            172            0.2685
+      2026       him    160507   6523    4.0640      6125       3.8160            398            0.2480
+      2026        im     53781   4330    8.0512      4222       7.8504            108            0.2008
+
+============================================================
+SECTION 1b: TREND TESTS (in-race DNF rate, primary; total DNF rate, secondary; finish-time DNF rate)
+============================================================
+
+Seasons: every season of the event type except 2020 (COVID-19 pandemic, much reduced
+field) and the partial 2026 season.
+Linear regression: OLS slope of the annual rate on calendar year; its 95% CI uses the t quantile with
+n - 2 degrees of freedom, the distribution of its p-value.
+Mann-Kendall: non-parametric test for monotonic trend (Mann 1945, Kendall 1975); Sen's slope =
+median of the pairwise slopes against calendar year (scipy.stats.theilslopes; 2020 is excluded, so
+the years are not equally spaced). The classification line is pymannkendall's label of the
+two-sided test at alpha = 0.05.
+Both are fitted on the unrounded annual rates (temporal_trends_annual.csv); full-precision statistics in temporal_trends_tests.csv.
+
+--- In-race DNF rate (primary) ---
+
+IM — Linear regression, in-race DNF rate (primary) (n=23 years, 2002-2025):
+  Slope: -0.175376 pp/year (95% CI: -0.311144 to -0.039608; t quantile 2.0796, df = 21; SE 0.065285)
+  R²: 0.2557
+  p-value: 0.013823
+
+IM — Mann-Kendall trend test, in-race DNF rate (primary):
+  Classification (pymannkendall, two-sided, alpha = 0.05): no trend
+  Tau: -0.2806
+  p-value: 0.064497
+  Sen's slope: -0.187640 pp/year (vs calendar year; 95% CI -0.372786 to 0.019525)
+
+HIM — Linear regression, in-race DNF rate (primary) (n=21 years, 2004-2025):
+  Slope: 0.037185 pp/year (95% CI: -0.009638 to 0.084008; t quantile 2.0930, df = 19; SE 0.022371)
+  R²: 0.1270
+  p-value: 0.112879
+
+HIM — Mann-Kendall trend test, in-race DNF rate (primary):
+  Classification (pymannkendall, two-sided, alpha = 0.05): no trend
+  Tau: 0.2000
+  p-value: 0.215689
+  Sen's slope: 0.029480 pp/year (vs calendar year; 95% CI -0.020115 to 0.080896)
+
+--- Total DNF rate (secondary) ---
+
+IM — Linear regression, total DNF rate (secondary) (n=23 years, 2002-2025):
+  Slope: -0.162186 pp/year (95% CI: -0.298691 to -0.025681; t quantile 2.0796, df = 21; SE 0.065639)
+  R²: 0.2252
+  p-value: 0.022125
+
+IM — Mann-Kendall trend test, total DNF rate (secondary):
+  Classification (pymannkendall, two-sided, alpha = 0.05): no trend
+  Tau: -0.2648
+  p-value: 0.081318
+  Sen's slope: -0.176197 pp/year (vs calendar year; 95% CI -0.352142 to 0.033464)
+
+HIM — Linear regression, total DNF rate (secondary) (n=21 years, 2004-2025):
+  Slope: 0.068021 pp/year (95% CI: 0.015641 to 0.120402; t quantile 2.0930, df = 19; SE 0.025026)
+  R²: 0.2800
+  p-value: 0.013649
+
+HIM — Mann-Kendall trend test, total DNF rate (secondary):
+  Classification (pymannkendall, two-sided, alpha = 0.05): increasing
+  Tau: 0.3333
+  p-value: 0.037198
+  Sen's slope: 0.063352 pp/year (vs calendar year; 95% CI 0.001786 to 0.130744)
+
+--- Finish-time DNF rate (total minus in-race) ---
+
+IM — Linear regression, finish-time DNF rate (total minus in-race) (n=23 years, 2002-2025):
+  Slope: 0.013190 pp/year (95% CI: 0.009546 to 0.016834; t quantile 2.0796, df = 21; SE 0.001752)
+  R²: 0.7296
+  p-value: 2.153e-07
+
+IM — Mann-Kendall trend test, finish-time DNF rate (total minus in-race):
+  Classification (pymannkendall, two-sided, alpha = 0.05): increasing
+  Tau: 0.7075
+  p-value: 0.000002
+  Sen's slope: 0.012380 pp/year (vs calendar year; 95% CI 0.008653 to 0.016793)
+
+HIM — Linear regression, finish-time DNF rate (total minus in-race) (n=21 years, 2004-2025):
+  Slope: 0.030836 pp/year (95% CI: 0.015707 to 0.045964; t quantile 2.0930, df = 19; SE 0.007228)
+  R²: 0.4892
+  p-value: 0.000417
+
+HIM — Mann-Kendall trend test, finish-time DNF rate (total minus in-race):
+  Classification (pymannkendall, two-sided, alpha = 0.05): increasing
+  Tau: 0.6667
+  p-value: 0.000023
+  Sen's slope: 0.019994 pp/year (vs calendar year; 95% CI 0.012080 to 0.045963)
+
+============================================================
+SECTION 1c: HIGHEST AND LOWEST ANNUAL RATE OF THE IN-RACE AND TOTAL SERIES; EVENT WITH THE HIGHEST
+IN-RACE DNF SHARE IN THE SEASON OF THE HIGHEST RATE
+============================================================
+
+Seasons of the trend tests (2020 and the partial 2026 excluded). In-race DNF = DNF without a
+recorded finish time; the event's share is over its starters. The season rate without that event is a
+rate of the same series.
+
+In-race DNF rate (primary):
+  IM: highest annual rate 2003 14.6551%; lowest annual rate 2004 6.7445%; event with the highest in-race DNF share of starters in 2003: Ironman Coeur d'Alene 2003 599 / 1,940 = 30.8763%; season rate without it: 11.5235% (1,158 / 10,049)
+  HIM: highest annual rate 2017 5.7019%; lowest annual rate 2007 3.1537%; event with the highest in-race DNF share of starters in 2017: 2017 IRONMAN 70.3 Boulder 691 / 2,643 = 26.1445%; season rate without it: 5.3197% (7,520 / 141,362)
+
+Total DNF rate (secondary):
+  IM: highest annual rate 2003 14.6551%; lowest annual rate 2004 6.7445%; event with the highest in-race DNF share of starters in 2003: Ironman Coeur d'Alene 2003 599 / 1,940 = 30.8763%; season rate without it: 11.5235% (1,158 / 10,049)
+  HIM: highest annual rate 2017 5.9012%; lowest annual rate 2007 3.1537%; event with the highest in-race DNF share of starters in 2017: 2017 IRONMAN 70.3 Boulder 691 / 2,643 = 26.1445%; season rate without it: 5.5227% (7,807 / 141,362)
+
+============================================================
+SECTION 1d: IN-RACE DNF RATE — TREND TESTS BEFORE AND FROM 2010 AND POOLED RATE BY PERIOD
+============================================================
+
+Trend tests of the in-race DNF rate restricted to the seasons up to 2009 and to 2010-2025 (2020 excluded),
+as in section 1b (rows with seasons = '<first season>-<last season>' in temporal_trends_tests.csv).
+
+IM — Linear regression, in-race DNF rate (primary), seasons 2002-2009 (n=8 years, 2002-2009):
+  Slope: 0.022022 pp/year (95% CI: -0.982236 to 1.026281; t quantile 2.4469, df = 6; SE 0.410419)
+  R²: 0.0005
+  p-value: 0.958949
+
+IM — Mann-Kendall trend test, in-race DNF rate (primary), seasons 2002-2009:
+  Classification (pymannkendall, two-sided, alpha = 0.05): no trend
+  Tau: 0.0000
+  p-value: 1.000000
+  Sen's slope: -0.027988 pp/year (vs calendar year; 95% CI -0.761384 to 1.020405)
+
+IM — Linear regression, in-race DNF rate (primary), seasons 2010-2025 (n=15 years, 2010-2025):
+  Slope: 0.091996 pp/year (95% CI: -0.047560 to 0.231552; t quantile 2.1604, df = 13; SE 0.064598)
+  R²: 0.1350
+  p-value: 0.177968
+
+IM — Mann-Kendall trend test, in-race DNF rate (primary), seasons 2010-2025:
+  Classification (pymannkendall, two-sided, alpha = 0.05): no trend
+  Tau: 0.1810
+  p-value: 0.373053
+  Sen's slope: 0.067879 pp/year (vs calendar year; 95% CI -0.091148 to 0.241397)
+
+HIM — Linear regression, in-race DNF rate (primary), seasons 2004-2009 (n=6 years, 2004-2009):
+  Slope: 0.037990 pp/year (95% CI: -0.623352 to 0.699332; t quantile 2.7764, df = 4; SE 0.238197)
+  R²: 0.0063
+  p-value: 0.881014
+
+HIM — Mann-Kendall trend test, in-race DNF rate (primary), seasons 2004-2009:
+  Classification (pymannkendall, two-sided, alpha = 0.05): no trend
+  Tau: -0.0667
+  p-value: 1.000000
+  Sen's slope: -0.050462 pp/year (vs calendar year; 95% CI -0.856942 to 0.848688)
+
+HIM — Linear regression, in-race DNF rate (primary), seasons 2010-2025 (n=15 years, 2010-2025):
+  Slope: 0.000453 pp/year (95% CI: -0.060059 to 0.060966; t quantile 2.1604, df = 13; SE 0.028010)
+  R²: 0.0000
+  p-value: 0.987330
+
+HIM — Mann-Kendall trend test, in-race DNF rate (primary), seasons 2010-2025:
+  Classification (pymannkendall, two-sided, alpha = 0.05): no trend
+  Tau: -0.0667
+  p-value: 0.766525
+  Sen's slope: -0.012182 pp/year (vs calendar year; 95% CI -0.105723 to 0.056066)
+
+Pooled in-race DNF rate by period: in-race DNFs / starters summed over the seasons of the period
+(2020 and 2026 excluded; the first period starts at the first season of the event type):
+  IM 2002-2009 (8 seasons): 23,001 / 185,668 = 12.3882%
+  IM 2010-2019 (10 seasons): 50,188 / 620,480 = 8.0886%
+  IM 2021-2025 (5 seasons): 27,321 / 295,051 = 9.2598%
+  HIM 2004-2009 (6 seasons): 2,357 / 59,414 = 3.9671%
+  HIM 2010-2019 (10 seasons): 52,751 / 1,071,705 = 4.9222%
+  HIM 2021-2025 (5 seasons): 32,453 / 728,970 = 4.4519%
+
+============================================================
+SECTION 1e: OFFICIAL-SOURCE SHARE OF THE STARTERS AND OF THE FINISH-TIME DNFs BY SEASON
+============================================================
+
+official / all = share (%), by season and event type (full precision in temporal_trends_annual.csv):
+  season type        starters from the official source    finish-time DNFs from the official source
+  2004   him                 1,962 / 1,962 = 100.0000%                                            —
+  2005   him                 4,370 / 4,370 = 100.0000%                                            —
+  2006   him                  5,624 / 8,278 = 67.9391%                            2 / 2 = 100.0000%
+  2007   him                  6,503 / 9,259 = 70.2344%                                            —
+  2008   him                 7,381 / 12,954 = 56.9785%                                            —
+  2009   him                11,096 / 22,591 = 49.1169%                                            —
+  2010   him                15,838 / 41,490 = 38.1731%                            1 / 1 = 100.0000%
+  2011   him                25,163 / 52,027 = 48.3653%                            3 / 3 = 100.0000%
+  2012   him                32,479 / 71,880 = 45.1850%                          59 / 59 = 100.0000%
+  2013   him                37,894 / 78,849 = 48.0589%                          16 / 16 = 100.0000%
+  2014   him                48,104 / 98,011 = 49.0802%                          81 / 81 = 100.0000%
+  2015   him               64,934 / 125,491 = 51.7439%                        360 / 360 = 100.0000%
+  2016   him               71,404 / 134,323 = 53.1584%                        816 / 816 = 100.0000%
+  2017   him               86,957 / 144,005 = 60.3847%                        287 / 287 = 100.0000%
+  2018   him               93,780 / 154,078 = 60.8653%                        779 / 779 = 100.0000%
+  2019   him              109,445 / 171,551 = 63.7974%                    1,234 / 1,234 = 100.0000%
+  2020   him                 8,696 / 12,666 = 68.6562%                          39 / 39 = 100.0000%
+  2021   him               74,153 / 102,737 = 72.1775%                        786 / 786 = 100.0000%
+  2022   him              124,325 / 147,808 = 84.1125%                    1,288 / 1,288 = 100.0000%
+  2023   him              132,698 / 145,580 = 91.1513%                         390 / 391 = 99.7442%
+  2024   him              154,209 / 164,162 = 93.9371%                        456 / 456 = 100.0000%
+  2025   him              154,344 / 168,683 = 91.4994%                        410 / 410 = 100.0000%
+  2026   him              153,755 / 160,507 = 95.7933%                         380 / 398 = 95.4774%
+  2002   im                   3,956 / 6,018 = 65.7361%                                            —
+  2003   im                  7,276 / 11,989 = 60.6890%                                            —
+  2004   im                  7,989 / 10,112 = 79.0051%                                            —
+  2005   im                 14,561 / 21,976 = 66.2586%                                            —
+  2006   im                 14,615 / 26,220 = 55.7399%                          13 / 13 = 100.0000%
+  2007   im                 16,309 / 31,892 = 51.1382%                            2 / 2 = 100.0000%
+  2008   im                 17,042 / 38,403 = 44.3767%                                            —
+  2009   im                 21,321 / 39,058 = 54.5880%                          52 / 52 = 100.0000%
+  2010   im                 23,600 / 40,001 = 58.9985%                          18 / 18 = 100.0000%
+  2011   im                 25,401 / 44,215 = 57.4488%                            3 / 3 = 100.0000%
+  2012   im                 33,393 / 54,383 = 61.4034%                           11 / 22 = 50.0000%
+  2013   im                 37,641 / 59,692 = 63.0587%                           26 / 39 = 66.6667%
+  2014   im                 46,515 / 71,026 = 65.4901%                           67 / 99 = 67.6768%
+  2015   im                 46,145 / 72,050 = 64.0458%                         115 / 116 = 99.1379%
+  2016   im                 46,987 / 68,420 = 68.6744%                         159 / 184 = 86.4130%
+  2017   im                 52,053 / 70,098 = 74.2575%                          74 / 74 = 100.0000%
+  2018   im                 54,794 / 70,182 = 78.0742%                        165 / 165 = 100.0000%
+  2019   im                 53,130 / 70,413 = 75.4548%                        175 / 175 = 100.0000%
+  2020   im                  4,265 / 4,265 = 100.0000%                            7 / 7 = 100.0000%
+  2021   im                 34,573 / 49,703 = 69.5592%                        160 / 160 = 100.0000%
+  2022   im                 51,291 / 68,752 = 74.6029%                        186 / 186 = 100.0000%
+  2023   im                 45,698 / 55,133 = 82.8868%                          97 / 97 = 100.0000%
+  2024   im                 52,379 / 57,397 = 91.2574%                        101 / 101 = 100.0000%
+  2025   im                 59,781 / 64,066 = 93.3116%                        172 / 172 = 100.0000%
+  2026   im                53,781 / 53,781 = 100.0000%                        108 / 108 = 100.0000%
+  all seasons, IM: starters from the official source 824,496 / 1,159,245 = 71.1235%; finish-time DNFs from the official source 1,711 / 1,793 = 95.4267%
+  all seasons, HIM: starters from the official source 1,425,114 / 2,033,262 = 70.0900%; finish-time DNFs from the official source 7,387 / 7,406 = 99.7435%
+  all seasons, both event types: starters from the official source 2,249,610 / 3,192,507 = 70.4653%; finish-time DNFs from the official source 9,098 / 9,199 = 98.9021%
+
+============================================================
+SECTION 2: ANNUAL DNF RATE BY DISTANCE × SEX (total DNF rate)
+============================================================
+
+ race_year race_type gender  N_starts  N_DNF  DNF_rate
+      2002        im Female      1259    192   15.2502
+      2002        im   Male      4756    633   13.3095
+      2003        im Female      2310    345   14.9351
+      2003        im   Male      9666   1412   14.6079
+      2004       him Female       533     20    3.7523
+      2004       him   Male      1429     50    3.4990
+      2004        im Female      2207    158    7.1590
+      2004        im   Male      7894    518    6.5619
+      2005       him Female      1171     60    5.1238
+      2005       him   Male      3197    133    4.1602
+      2005        im Female      4068    442   10.8653
+      2005        im   Male     17902   2075   11.5909
+      2006       him Female      2192    107    4.8814
+      2006       him   Male      6079    225    3.7013
+      2006        im Female      4956    642   12.9540
+      2006        im   Male     21253   2568   12.0830
+      2007       him Female      2270     73    3.2159
+      2007       him   Male      6985    219    3.1353
+      2007        im Female      5872    749   12.7554
+      2007        im   Male     26009   3233   12.4303
+      2008       him Female      3521    226    6.4186
+      2008       him   Male      9421    495    5.2542
+      2008        im Female      7144   1017   14.2357
+      2008        im   Male     31247   4392   14.0557
+      2009       him Female      6084    237    3.8955
+      2009       him   Male     16485    511    3.0998
+      2009        im Female      6502    735   11.3042
+      2009        im   Male     32545   3943   12.1155
+      2010       him Female     10714    556    5.1895
+      2010       him   Male     30727   1334    4.3415
+      2010        im Female      7463    671    8.9910
+      2010        im   Male     32521   2698    8.2962
+      2011       him Female     13316    620    4.6561
+      2011       him   Male     38667   1664    4.3034
+      2011        im Female      8388    724    8.6314
+      2011        im   Male     35798   3050    8.5200
+      2012       him Female     17612    788    4.4742
+      2012       him   Male     54247   2376    4.3800
+      2012        im Female     10657    980    9.1958
+      2012        im   Male     43698   3437    7.8653
+      2013       him Female     19639    946    4.8169
+      2013       him   Male     59155   2365    3.9980
+      2013        im Female     11550   1085    9.3939
+      2013        im   Male     48108   3291    6.8409
+      2014       him Female     23779   1126    4.7353
+      2014       him   Male     74159   2920    3.9375
+      2014        im Female     13500   1187    8.7926
+      2014        im   Male     57457   3809    6.6293
+      2015       him Female     30077   2205    7.3312
+      2015       him   Male     95156   4957    5.2093
+      2015        im Female     14317   1488   10.3932
+      2015        im   Male     57646   4960    8.6042
+      2016       him Female     33020   2394    7.2502
+      2016       him   Male    101054   5102    5.0488
+      2016        im Female     13468   1171    8.6947
+      2016        im   Male     54834   3782    6.8972
+      2017       him Female     36301   2774    7.6417
+      2017       him   Male    107603   5704    5.3010
+      2017        im Female     13927   1319    9.4708
+      2017        im   Male     56114   4088    7.2852
+      2018       him Female     37979   2865    7.5436
+      2018       him   Male    115996   6047    5.2131
+      2018        im Female     13519   1458   10.7848
+      2018        im   Male     56603   4549    8.0367
+      2019       him Female     42167   3201    7.5912
+      2019       him   Male    129226   6291    4.8682
+      2019        im Female     13405   1723   12.8534
+      2019        im   Male     56953   5457    9.5816
+      2020       him Female      2718    183    6.7329
+      2020       him   Male      9939    466    4.6886
+      2020        im Female       890     85    9.5506
+      2020        im   Male      3366    207    6.1497
+      2021       him Female     25869   1825    7.0548
+      2021       him   Male     76777   3636    4.7358
+      2021        im Female     10159   1464   14.4109
+      2021        im   Male     39495   4135   10.4697
+      2022       him Female     35222   2551    7.2426
+      2022       him   Male    112456   5660    5.0331
+      2022        im Female     12878   1724   13.3872
+      2022        im   Male     55779   5667   10.1597
+      2023       him Female     33907   1734    5.1140
+      2023       him   Male    111490   4668    4.1869
+      2023        im Female     10893   1036    9.5107
+      2023        im   Male     44152   4126    9.3450
+      2024       him Female     37866   2166    5.7202
+      2024       him   Male    126029   5664    4.4942
+      2024        im Female     10277   1117   10.8689
+      2024        im   Male     47047   3618    7.6902
+      2025       him Female     39787   2366    5.9467
+      2025       him   Male    128682   5393    4.1910
+      2025        im Female     11833   1104    9.3298
+      2025        im   Male     52134   3960    7.5958
+      2026       him Female     39204   1842    4.6985
+      2026       him   Male    121154   4669    3.8538
+      2026        im Female      9359    906    9.6805
+      2026        im   Male     44364   3410    7.6864
+
+============================================================
+SECTION 3: VARIATION AROUND COVID-19 (2017-2019 vs 2021-2023; total DNF rate)
+============================================================
+
+Note: descriptive comparison only.
+Separating a COVID-specific effect from natural fluctuation is not possible.
+See year-by-year data above for full context.
+
+Pre-COVID (2017-2019):
+                   N_starts  N_DNF  DNF_rate
+race_type gender                            
+him       Female     116447   8840    7.5914
+          Male       352825  18042    5.1136
+          Unknown       362     75   20.7182
+im        Female      40851   4500   11.0156
+          Male       169670  14094    8.3067
+          Unknown       172     64   37.2093
+
+Post-COVID (2021-2023):
+                   N_starts  N_DNF  DNF_rate
+race_type gender                            
+him       Female      94998   6110    6.4317
+          Male       300723  13964    4.6435
+          Unknown       404     59   14.6040
+im        Female      33930   4224   12.4492
+          Male       139426  13928    9.9895
+          Unknown       232     46   19.8276
+
+Delta (post - pre) in DNF rate (pp):
+  IM Male: 8.3067% → 9.9895% (Δ = +1.6828 pp)
+  IM Female: 11.0156% → 12.4492% (Δ = +1.4335 pp)
+  HIM Male: 5.1136% → 4.6435% (Δ = -0.4701 pp)
+  HIM Female: 7.5914% → 6.4317% (Δ = -1.1597 pp)
+
+============================================================
+SECTION 4: THE 2024-2025 SEASONS (total and in-race DNF rates)
+============================================================
+
+ race_year race_type  N_starts  N_DNF  DNF_rate  N_inrace  inrace_rate
+      2024       him    164162   7853    4.7837      7397       4.5059
+      2024        im     57397   4756    8.2861      4655       8.1102
+      2025       him    168683   7798    4.6229      7388       4.3798
+      2025        im     64066   5083    7.9340      4911       7.6655
